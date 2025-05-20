@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navigating Generative AI: Interactive Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Visualization & Content Choices:
+        - Course Overview: Text -> Goal: Inform -> Method: Collapsible section -> Interaction: Click to expand/collapse -> Justification: Provides context without cluttering initial view.
+        - What is AI/GenAI/LLM: Text definitions -> Goal: Inform -> Method: Clickable cards/definitions -> Interaction: Click to reveal -> Justification: Breaks down complex terms.
+        - AI Tool Examples: Text/Logos -> Goal: Inform -> Method: Interactive cards (logo + description) -> Interaction: Click/hover -> Justification: Visual and concise.
+        - LLM Training Data: Concept -> Goal: Inform -> Method: HTML/CSS visual (icons feeding 'AI brain'), simple Bar Chart (Chart.js) for 'Amount of Data' (illustrative) -> Interaction: Static visual, chart display -> Justification: Visual metaphor for data input, chart for scale. Library: Chart.js.
+        - Predict Next Word: Concept -> Goal: Engage/Illustrate -> Method: Interactive sentence completion -> Interaction: User input/selection -> Justification: Practical demo of LLM core idea.
+        - Hallucinations: Concept/Examples -> Goal: Warn/Inform -> Method: Text, 'Spot the Hallucination' quiz (True/False) -> Interaction: Quiz -> Justification: Active learning, critical thinking.
+        - Misinformation/Deepfakes: Concept -> Goal: Warn -> Method: Text, described examples -> Interaction: Read -> Justification: Awareness.
+        - AI Bias: Concept/Examples -> Goal: Warn/Inform -> Method: Text, clickable scenarios/image examples -> Interaction: Click to explore -> Justification: Illustrates abstract concept.
+        - Cognitive Risks: Concept -> Goal: Warn/Advise -> Method: Text, 'Do/Don't' interactive list -> Interaction: Click/review -> Justification: Actionable advice.
+        - Plagiarism/Privacy: Concept/Scenarios -> Goal: Warn/Advise -> Method: Text, short scenarios with MCQs -> Interaction: Quiz -> Justification: Ethical decision-making practice.
+        - AI for Brainstorming: Concept -> Goal: Instruct -> Method: Example prompts, simulated AI responses -> Interaction: Click to see examples -> Justification: Shows practical application.
+        - AI for Refining Work: Concept -> Goal: Instruct -> Method: Before/after text, simulated refinement buttons -> Interaction: Click buttons to see text change -> Justification: Demonstrates powerful, ethical use.
+        - AI in Elektro: Concept -> Goal: Contextualize -> Method: Text, clickable cards for applications -> Interaction: Click to explore -> Justification: Relevance to students' field.
+        - Class AI Rules: Concept -> Goal: Reinforce/Engage -> Method: Drag & drop good practices -> Interaction: User builds rules list -> Justification: Active participation, ownership.
+        - Key Vocabulary: List -> Goal: Support -> Method: Interactive Glossary (click term for definition) -> Interaction: Click -> Justification: Easy reference.
+        - CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .nav-button { transition: background-color 0.3s ease, color 0.3s ease; }
+        .nav-button.active { background-color: #0284c7; color: white; }
+        .nav-button:hover:not(.active) { background-color: #e0f2fe; }
+        .content-section { display: none; }
+        .content-section.active { display: block; }
+        .interactive-card { transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; }
+        .interactive-card:hover { transform: translateY(-5px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); }
+        .clickable-definition span { cursor: pointer; text-decoration: underline; color: #0369a1; }
+        .draggable { cursor: grab; }
+        .dropzone { border: 2px dashed #cbd5e1; min-height: 100px; }
+        .dropzone.dragover { border-color: #0284c7; background-color: #e0f2fe; }
+        .chart-container { position: relative; width: 100%; max-width: 500px; margin-left: auto; margin-right: auto; height: 300px; max-height: 350px; }
+        @media (min-width: 768px) { .chart-container { height: 350px; } }
+
+        /* Tooltip styles */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+            color: #0ea5e9; /* Light blue for tooltip triggers */
+            font-weight: 500;
+        }
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 220px;
+            background-color: #334155; /* Darker gray-blue */
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 8px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -110px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 0.875rem;
+            line-height: 1.25rem;
+        }
+        .tooltip .tooltiptext::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #334155 transparent transparent transparent;
+        }
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+        /* Custom modal styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 100; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; /* Could be more or less, depending on screen size */
+            max-width: 500px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .modal-close-button {
+            background-color: #0284c7;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-top: 15px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body class="bg-slate-100 text-slate-800">
+
+    <header class="bg-sky-700 text-white p-4 shadow-md sticky top-0 z-50">
+        <div class="container mx-auto flex flex-col sm:flex-row justify-between items-center">
+            <h1 class="text-xl sm:text-2xl font-bold">Navigating Generative AI: An Interactive Guide</h1>
+            <nav class="mt-2 sm:mt-0">
+                <button data-target="home" class="nav-button active px-3 py-2 rounded-md text-sm font-medium">Home</button>
+                <button data-target="module1" class="nav-button px-3 py-2 rounded-md text-sm font-medium">What is AI?</button>
+                <button data-target="module2" class="nav-button px-3 py-2 rounded-md text-sm font-medium">Dangers</button>
+                <button data-target="module3" class="nav-button px-3 py-2 rounded-md text-sm font-medium">AI as Helper</button>
+                <button data-target="module4" class="nav-button px-3 py-2 rounded-md text-sm font-medium">AI in Your World</button>
+                <button data-target="glossary" class="nav-button px-3 py-2 rounded-md text-sm font-medium">Glossary</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container mx-auto p-4 sm:p-6">
+
+        <section id="home" class="content-section active">
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <h2 class="text-2xl font-bold text-sky-700 mb-4">Welcome Elektro Students!</h2>
+                <p class="mb-3">This interactive guide will help you understand Generative Artificial Intelligence (AI). We'll explore what it is, how it works, its dangers, and how it can be a useful tool for you, especially in your Elektro studies. This course is designed to be practical and help you improve your English too!</p>
+                <p class="mb-3"><strong>Course Overview:</strong> This guide is based on a seven-session course. We'll cover:</p>
+                <ul class="list-disc list-inside mb-4 space-y-1">
+                    <li>What AI and Generative AI are.</li>
+                    <li>How Large Language Models (LLMs) like ChatGPT learn and create text.</li>
+                    <li>Understanding AI "hallucinations" – when AI makes mistakes.</li>
+                    <li>The dangers of AI: misinformation, deepfakes, bias, and how AI can affect our thinking.</li>
+                    <li>Ethical issues like plagiarism and data privacy.</li>
+                    <li>How AI can help you with brainstorming and improving your own work.</li>
+                    <li>The impact of AI on technical jobs, including Elektro.</li>
+                    <li>Thinking about rules for using AI responsibly.</li>
+                </ul>
+                <p>Click on the navigation buttons above to explore the different modules. Let's start learning!</p>
+            </div>
+        </section>
+
+        <section id="module1" class="content-section">
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <h2 class="text-2xl font-bold text-sky-700 mb-4">Module 1: What is AI?</h2>
+                <p class="mb-6">This module introduces the basics of Artificial Intelligence (AI), Generative AI, and Large Language Models (LLMs). You'll learn how these technologies create new things and how they "learn" from information.</p>
+
+                <div class="space-y-6">
+                    <div>
+                        <h3 class="text-xl font-semibold text-sky-600 mb-2">What is Artificial Intelligence (AI)?</h3>
+                        <p>AI refers to computer systems that can do tasks that usually need human intelligence. This includes learning, solving problems, making decisions, and understanding language. Think of it as a smart tool for your Elektro work!</p>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl font-semibold text-sky-600 mb-2">What is Generative AI?</h3>
+                        <p>Generative AI is a special type of AI that <strong class="tooltip">creates<span class="tooltiptext">To make or produce something new.</span></strong> new and original <strong class="tooltip">content<span class="tooltiptext">Information, ideas, or artistic works.</span></strong>. It doesn't just copy; it makes new text, images, audio, or video based on what it has learned. It's like it's predicting what should come next in a pattern.</p>
+                        <p class="mt-2"><strong>Examples of Generative AI tools:</strong></p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-2">
+                            <div class="interactive-card bg-sky-50 p-4 rounded-lg border border-sky-200">
+                                <h4 class="font-semibold">📝 Text Generation (e.g., ChatGPT, Gemini)</h4>
+                                <p class="text-sm">Writes emails, stories, code, answers questions.</p>
+                            </div>
+                            <div class="interactive-card bg-sky-50 p-4 rounded-lg border border-sky-200">
+                                <h4 class="font-semibold">🖼️ Image Generation (e.g., DALL-E, Midjourney)</h4>
+                                <p class="text-sm">Creates pictures from text descriptions.</p>
+                            </div>
+                            <div class="interactive-card bg-sky-50 p-4 rounded-lg border border-sky-200">
+                                <h4 class="font-semibold">🎬 Video Generation (e.g., Synthesia)</h4>
+                                <p class="text-sm">Creates videos from text.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl font-semibold text-sky-600 mb-2">What are Large Language Models (LLMs)?</h3>
+                        <p>LLMs are AI that understand and generate human-like text. Think of phone autocomplete, but much more advanced! They are "large" because they learn from huge amounts of text data.</p>
+                        <p class="mt-2"><strong>Analogy:</strong> Imagine a student who has read almost every book and website. They become very good at knowing how words fit together. LLMs are like that, but they are computer programs.</p>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl font-semibold text-sky-600 mb-2">Training Data: What LLMs "Read"</h3>
+                        <p>LLMs learn by being "trained" on massive amounts of text and code. This <strong class="tooltip">training data<span class="tooltiptext">Information used to teach an AI system.</span></strong> can include:</p>
+                        <ul class="list-disc list-inside ml-4 mt-2">
+                            <li>Books</li>
+                            <li>Websites (Wikipedia, news, blogs)</li>
+                            <li>Research papers</li>
+                            <li>Code</li>
+                        </ul>
+                        <p class="mt-2">The AI reads billions of text samples to learn <strong class="tooltip">patterns<span class="tooltiptext">A regularly repeated arrangement or sequence.</span></strong>, context, and grammar.</p>
+                        <div class="chart-container mt-4">
+                            <canvas id="trainingDataChart"></canvas>
+                        </div>
+                        <p class="text-center text-sm text-slate-600 mt-1">Illustrative: Types of data LLMs learn from.</p>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl font-semibold text-sky-600 mb-2">The Core Task: Predicting the Next Word</h3>
+                        <p>LLMs work by <strong class="tooltip">predicting<span class="tooltiptext">To say what you think will happen in the future.</span></strong> what word is most likely to come next in a sentence. For example, if you see "The cat sat on the ____," you might say "mat." An LLM does something similar based on patterns it learned.</p>
+                        <div class="mt-4 p-4 bg-amber-50 border border-amber-200 rounded-lg">
+                            <h4 class="font-semibold mb-2">Activity: Guess the Next Word!</h4>
+                            <p id="predictSentence" class="mb-2">To fix the lamp, first you need to turn off the _______.</p>
+                            <div id="predictOptions" class="space-x-2">
+                                <button class="predict-option bg-amber-500 hover:bg-amber-600 text-white px-3 py-1 rounded-md text-sm" data-correct="true">power</button>
+                                <button class="predict-option bg-amber-500 hover:bg-amber-600 text-white px-3 py-1 rounded-md text-sm">water</button>
+                                <button class="predict-option bg-amber-500 hover:bg-amber-600 text-white px-3 py-1 rounded-md text-sm">door</button>
+                            </div>
+                            <p id="predictFeedback" class="text-sm mt-2"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="module2" class="content-section">
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <h2 class="text-2xl font-bold text-sky-700 mb-4">Module 2: AI's Mistakes & Dangers</h2>
+                <p class="mb-6">AI is powerful, but it's not perfect. This module covers AI "hallucinations" (mistakes), misinformation, bias, and other risks like how AI can affect our thinking and privacy. Understanding these dangers helps us use AI wisely.</p>
+
+                <div class="space-y-6">
+                    <div>
+                        <h3 class="text-xl font-semibold text-sky-600 mb-2">What are AI <strong class="tooltip">Hallucinations<span class="tooltiptext">In AI, when the model generates incorrect or nonsensical information but presents it as fact.</span></strong>?</h3>
+                        <p>An AI hallucination is when an LLM generates information that is factually incorrect, nonsensical, or unrelated to your question, but it sounds confident. The AI "makes things up."</p>
+                        <p class="mt-2"><strong>Examples:</strong></p>
+                        <ul class="list-disc list-inside ml-4 mt-1 text-sm">
+                            <li>Saying a telescope discovered something it didn't.</li>
+                            <li>Giving a recipe with glue as an ingredient.</li>
+                            <li>Image AIs making people with six fingers.</li>
+                        </ul>
+                        <p class="mt-2"><strong>Why do LLMs hallucinate?</strong></p>
+                        <ul class="list-disc list-inside ml-4 mt-1 text-sm">
+                            <li>They predict words based on probability; sometimes they pick a wrong but pattern-fitting word.</li>
+                            <li>Their training data might have errors, biases, or be outdated.</li>
+                            <li>They don't "understand" truth like humans do; they just match patterns.</li>
+                            <li>They are often programmed to give an answer, even if they don't "know."</li>
+                        </ul>
+                    </div>
+
+                    <div class="mt-4 p-4 bg-rose-50 border border-rose-200 rounded-lg">
+                        <h4 class="font-semibold mb-2">Activity: Spot the Hallucination!</h4>
+                        <p class="mb-2 text-sm">Is the following statement true or an AI hallucination? Click your answer.</p>
+                        <div id="hallucinationQuiz">
+                            <p id="hallucinationStatement" class="mb-2 font-medium"></p>
+                            <div id="hallucinationOptions" class="space-x-2">
+                                <button class="hallucination-option bg-rose-500 hover:bg-rose-600 text-white px-3 py-1 rounded-md text-sm" data-answer="true">True Fact</button>
+                                <button class="hallucination-option bg-rose-500 hover:bg-rose-600 text-white px-3 py-1 rounded-md text-sm" data-answer="false">AI Hallucination</button>
+                            </div>
+                            <p id="hallucinationFeedback" class="text-sm mt-2"></p>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl font-semibold text-sky-600 mb-2">AI and <strong class="tooltip">Misinformation<span class="tooltiptext">False or inaccurate information, especially that which is deliberately intended to deceive.</span></strong></h3>
+                        <p>Generative AI can quickly create convincing but false text, images, or videos. This is called misinformation.</p>
+                        <p class="mt-1"><strong><strong class="tooltip">Deepfakes<span class="tooltiptext">AI-generated videos or audio recordings that look and sound like real people saying or doing things they never did.</span></strong>:</strong> These are AI-made videos/audio that mimic real people. They can be used to spread false news or damage reputations. For example, a fake video of a politician.</p>
+                        <p class="mt-1 text-sm"><strong>Remember:</strong> Always check information from trusted sources, especially if it seems surprising or shocking!</p>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl font-semibold text-sky-600 mb-2">AI <strong class="tooltip">Bias<span class="tooltiptext">When an AI system shows prejudice for or against certain things, people, or groups, often learned from biased training data.</span></strong>: When AI is Unfair</h3>
+                        <p>AI bias happens when an AI system gives prejudiced results. This is often because its training data had societal biases (e.g., about race, gender, age).</p>
+                        <p class="mt-2"><strong>Examples of AI Bias:</strong></p>
+                        <ul class="list-disc list-inside ml-4 mt-1 text-sm">
+                            <li>An AI image generator mostly shows men when asked for "CEO pictures."</li>
+                            <li>A hiring AI unfairly filters out good candidates from certain groups if trained on biased data.</li>
+                            <li>Facial recognition working poorly for some ethnic groups if not trained on diverse faces.</li>
+                        </ul>
+                        <p class="mt-1 text-sm"><strong>Impact:</strong> Bias can lead to unfair outcomes, like denying jobs or services to certain people.</p>
+                    </div>
+
+                     <div>
+                        <h3 class="text-xl font-semibold text-sky-600 mb-2">Cognitive Risks: Is AI Making Us Lazy Thinkers?</h3>
+                        <p><strong class="tooltip">Cognitive risk<span class="tooltiptext">The danger of weakening our thinking skills by relying too much on AI.</span></strong> means AI might hurt our thinking skills.</p>
+                        <ul class="list-disc list-inside ml-4 mt-1 text-sm">
+                            <li><strong>Cognitive Offloading:</strong> Letting AI do the thinking for us. If we always use AI, we might not develop our own problem-solving skills.</li>
+                            <li><strong>Reduced Critical Thinking:</strong> If we use AI for answers without doing the research ourselves, we miss learning to analyze and judge information.</li>
+                            <li><strong>Over-reliance:</strong> Depending too much on AI. It's important to struggle and learn by figuring things out ourselves.</li>
+                        </ul>
+                        <p class="mt-1"><strong>Analogy:</strong> Your brain is like a muscle. If AI always does the "heavy lifting" (thinking), your brain "muscle" might not get strong.</p>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl font-semibold text-sky-600 mb-2">Ethical Concerns: Plagiarism, Privacy, and Jobs</h3>
+                        <ul class="list-disc list-inside ml-4 mt-1 space-y-1 text-sm">
+                            <li><strong><strong class="tooltip">Plagiarism<span class="tooltiptext">Copying someone else's work or ideas and pretending they are your own.</span></strong>:</strong> Using AI to write your assignment and saying it's your own work is plagiarism. This is serious. Always do your own thinking first.</li>
+                            <li><strong>Data <strong class="tooltip">Privacy<span class="tooltiptext">Keeping personal information safe and not sharing it without permission.</span></strong>:</strong> AI tools might collect your data (questions, text). Be careful about sharing sensitive personal or company information, especially with free AI tools.</li>
+                            <li><strong>Impact on Jobs:</strong> AI might change jobs by automating some tasks. This means learning new skills and adapting will be important for electricians too.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="module3" class="content-section">
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <h2 class="text-2xl font-bold text-sky-700 mb-4">Module 3: AI as Your Smart Assistant</h2>
+                <p class="mb-6">While there are dangers, AI can also be a very helpful tool, especially for learning and work. This module explores how you can use AI for brainstorming ideas and, most importantly, for refining and improving work you've already done.</p>
+
+                <div class="space-y-6">
+                    <div>
+                        <h3 class="text-xl font-semibold text-sky-600 mb-2">AI for <strong class="tooltip">Brainstorming<span class="tooltiptext">Generating many ideas quickly, often in a group.</span></strong> and Idea Generation</h3>
+                        <p>If you're stuck, AI can help you get initial ideas. You guide the AI and then critically evaluate its suggestions.</p>
+                        <p class="mt-1"><strong>Example for Elektro:</strong> You could ask an AI: "Give me 5 ideas for a simple electrical circuit project for beginners."</p>
+                        <p class="mt-1 text-sm"><strong>Important:</strong> AI's ideas are just a starting point. You must use your own knowledge to choose and develop them. It's about sparking your creativity, not replacing it.</p>
+                        <div class="mt-3 p-3 bg-emerald-50 border border-emerald-200 rounded-lg">
+                            <p class="text-sm font-medium">Try thinking of a prompt for an Elektro topic:</p>
+                            <input type="text" id="brainstormPrompt" placeholder="e.g., Common safety issues for soldering" class="w-full p-2 border border-emerald-300 rounded-md mt-1 text-sm">
+                            <button id="showBrainstormExample" class="mt-2 bg-emerald-500 hover:bg-emerald-600 text-white px-3 py-1 rounded-md text-sm">See Example AI Response</button>
+                            <div id="brainstormResponse" class="mt-2 text-sm p-2 bg-white rounded-md border border-emerald-200" style="display:none;">
+                                <p><strong>AI might suggest:</strong></p>
+                                <ul class="list-disc list-inside ml-4">
+                                    <li>Always wear safety glasses.</li>
+                                    <li>Work in a well-ventilated area.</li>
+                                    <li>Use a proper soldering iron stand.</li>
+                                    <li>Be careful of hot solder and iron tip.</li>
+                                    <li>Ensure components are not powered.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl font-semibold text-sky-600 mb-2">The Best Use: AI for <strong class="tooltip">Refining<span class="tooltiptext">To improve something by making small changes.</span></strong> Your Own Work</h3>
+                        <p>A powerful and ethical way to use AI is to improve work <strong class="italic">you have already created</strong>. After you write a draft or solve a problem, AI can be a helpful reviewer.</p>
+                        <p class="mt-2"><strong>AI can help with:</strong></p>
+                        <ul class="list-disc list-inside ml-4 mt-1 text-sm">
+                            <li>Grammar and Spelling</li>
+                            <li>Style and Tone (making writing clearer or more formal)</li>
+                            <li>Clarity (fixing confusing sentences)</li>
+                            <li>Word Choice (suggesting better words)</li>
+                            <li>Summarizing your own text</li>
+                            <li>Getting feedback (e.g., "Is this explanation clear?")</li>
+                        </ul>
+                        <p class="mt-1 text-sm"><strong>Crucial:</strong> You do the main thinking and creating. AI is then a tool for editing and feedback. This helps you learn!</p>
+                        
+                        <div class="mt-4 p-4 bg-indigo-50 border border-indigo-200 rounded-lg">
+                            <h4 class="font-semibold mb-2">Activity: Refining a Technical Instruction</h4>
+                            <p class="text-sm mb-1">Here's a sample instruction. Imagine you wrote this. How can AI help improve it?</p>
+                            <p id="refineTextOriginal" class="p-2 bg-white border border-indigo-300 rounded-md text-sm mb-2">To safely check a fuse, first ensure power is off. Then, remove fuse carefuly. Look for a break in the wire inside, or test with multimeter.</p>
+                            <div class="space-x-2 mb-2">
+                                <button data-refine-action="grammar" class="refine-button bg-indigo-500 hover:bg-indigo-600 text-white px-3 py-1 rounded-md text-sm">Check Grammar</button>
+                                <button data-refine-action="clarity" class="refine-button bg-indigo-500 hover:bg-indigo-600 text-white px-3 py-1 rounded-md text-sm">Improve Clarity</button>
+                                <button data-refine-action="professional" class="refine-button bg-indigo-500 hover:bg-indigo-600 text-white px-3 py-1 rounded-md text-sm">Make Professional</button>
+                            </div>
+                            <p id="refineTextImproved" class="p-2 bg-white border border-indigo-300 rounded-md text-sm" style="display:none;"></p>
+                            <p id="refineFeedback" class="text-xs mt-1 text-indigo-700"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="module4" class="content-section">
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <h2 class="text-2xl font-bold text-sky-700 mb-4">Module 4: AI in Your (Elektro) World</h2>
+                <p class="mb-6">AI is not just a general technology; it's starting to impact specific fields, including electrical work. This module looks at how AI might affect your future career, reminds you about data privacy, and helps you think about class rules for using AI.</p>
+
+                <div class="space-y-6">
+                    <div>
+                        <h3 class="text-xl font-semibold text-sky-600 mb-2">AI in the Elektro World and Technical Jobs</h3>
+                        <p>AI is changing industries, including skilled trades. Here's how it might impact Elektro:</p>
+                        <ul class="list-disc list-inside ml-4 mt-2 space-y-1 text-sm">
+                            <li><strong>More Jobs for AI Infrastructure:</strong> AI needs data centers, which need electricians!</li>
+                            <li><strong>AI as a Tool for Electricians:</strong>
+                                <ul class="list-circle list-inside ml-4">
+                                    <li>Monitoring electrical systems remotely.</li>
+                                    <li>Diagnosing complex faults.</li>
+                                    <li>Predicting when equipment might fail (predictive maintenance).</li>
+                                    <li>Helping design electrical layouts.</li>
+                                    <li>Quick access to technical guides via AI chatbots.</li>
+                                </ul>
+                            </li>
+                            <li><strong>Changes in Job Tasks:</strong> Some routine tasks might be AI-assisted. Electricians might focus more on complex problem-solving and overseeing AI systems.</li>
+                            <li><strong>Need for New Skills:</strong> "AI literacy" – understanding how to work with AI tools and interpret their outputs – will be important. Adaptability and lifelong learning are key!</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl font-semibold text-sky-600 mb-2">Data Privacy Reminder</h3>
+                        <p class="text-sm">When using AI tools, especially for work:</p>
+                        <ul class="list-disc list-inside ml-4 mt-1 text-sm">
+                            <li>Avoid inputting sensitive client information or confidential company data into public AI models.</li>
+                            <li>Be aware that your interactions might be logged or used for AI training.</li>
+                            <li>Norway has a National Strategy for AI that includes protecting privacy.</li>
+                        </ul>
+                    </div>
+
+                    <div class="mt-4 p-4 bg-teal-50 border border-teal-200 rounded-lg">
+                        <h3 class="text-xl font-semibold text-sky-600 mb-2">Activity: Our Class AI Usage Rules</h3>
+                        <p class="text-sm mb-3">Let's think about good rules for using AI. Drag the good practices into the "Our AI Rules" box.</p>
+                        <div class="flex flex-col md:flex-row gap-4">
+                            <div class="md:w-1/2">
+                                <h4 class="font-semibold mb-1 text-teal-700">Good Practices (Drag these):</h4>
+                                <div id="goodPractices" class="space-y-2">
+                                    <div id="rule1" draggable="true" class="draggable bg-white p-2 border border-teal-300 rounded-md shadow text-sm">My work first, then AI for help.</div>
+                                    <div id="rule2" draggable="true" class="draggable bg-white p-2 border border-teal-300 rounded-md shadow text-sm">Always check AI facts.</div>
+                                    <div id="rule3" draggable="true" class="draggable bg-white p-2 border border-teal-300 rounded-md shadow text-sm">No copying from AI (plagiarism).</div>
+                                    <div id="rule4" draggable="true" class="draggable bg-white p-2 border border-teal-300 rounded-md shadow text-sm">Protect personal information.</div>
+                                    <div id="rule5" draggable="true" class="draggable bg-white p-2 border border-teal-300 rounded-md shadow text-sm">Use AI to learn, not to cheat.</div>
+                                     <div id="rule6" draggable="true" class="draggable bg-white p-2 border border-teal-300 rounded-md shadow text-sm">AI is a tool, not my brain.</div>
+                                </div>
+                            </div>
+                            <div class="md:w-1/2">
+                                <h4 class="font-semibold mb-1 text-teal-700">Our AI Rules (Drop here):</h4>
+                                <div id="rulesDropzone" class="dropzone bg-teal-100 p-3 rounded-lg space-y-2">
+                                    <p class="text-xs text-slate-500 text-center">Drag rules here</p>
+                                </div>
+                            </div>
+                        </div>
+                        <button id="resetRulesButton" class="mt-3 bg-teal-500 hover:bg-teal-600 text-white px-3 py-1 rounded-md text-sm">Reset Rules</button>
+                    </div>
+                     <div class="mt-6">
+                        <h3 class="text-xl font-semibold text-sky-600 mb-2">Course Recap & Final Thoughts</h3>
+                        <p class="text-sm">We've covered a lot! Remember these key points:</p>
+                        <ul class="list-disc list-inside ml-4 mt-1 text-sm">
+                            <li>AI (especially Generative AI and LLMs) can create new content by predicting patterns.</li>
+                            <li>AI can make mistakes (hallucinations) and has dangers like misinformation and bias.</li>
+                            <li>Using AI too much can weaken your thinking skills (cognitive risk).</li>
+                            <li>Always be ethical: don't plagiarize and protect privacy.</li>
+                            <li>AI is a powerful tool for brainstorming and, most importantly, for refining YOUR OWN work.</li>
+                            <li>For Elektro students, AI will be a tool that changes how work is done. Be ready to learn and adapt!</li>
+                        </ul>
+                        <p class="mt-2 font-semibold text-sm">The most important message: AI is a powerful tool, but it requires your critical thinking and responsible use.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="glossary" class="content-section">
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <h2 class="text-2xl font-bold text-sky-700 mb-4">Glossary of Key AI Terms</h2>
+                <p class="mb-4">Here are definitions for some important AI terms used in this guide. Click on a term to see its meaning.</p>
+                <div id="glossaryList" class="space-y-2">
+                    </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="text-center p-4 mt-8 text-sm text-slate-600 border-t border-slate-300">
+        Interactive AI Guide for Elektro Students | Adapted from VG1 Yrkesfag Engelsk Elektro Lesson Plan
+    </footer>
+
+    <div id="messageModal" class="modal">
+        <div class="modal-content">
+            <p id="modalMessageText" class="mb-4"></p>
+            <button id="modalClose" class="modal-close-button">OK</button>
+        </div>
+    </div>
+
+
+<script>
+    const navButtons = document.querySelectorAll('.nav-button');
+    const contentSections = document.querySelectorAll('.content-section');
+    const predictOptions = document.querySelectorAll('.predict-option');
+    const predictFeedback = document.getElementById('predictFeedback');
+    const predictSentence = document.getElementById('predictSentence');
+    const messageModal = document.getElementById('messageModal');
+    const modalMessageText = document.getElementById('modalMessageText');
+    const modalCloseButton = document.getElementById('modalClose');
+
+    const hallucinationQuizDiv = document.getElementById('hallucinationQuiz');
+    const hallucinationStatementEl = document.getElementById('hallucinationStatement');
+    const hallucinationOptions = document.querySelectorAll('.hallucination-option');
+    const hallucinationFeedbackEl = document.getElementById('hallucinationFeedback');
+
+    const showBrainstormExampleBtn = document.getElementById('showBrainstormExample');
+    const brainstormResponseDiv = document.getElementById('brainstormResponse');
+
+    const refineButtons = document.querySelectorAll('.refine-button');
+    const refineTextOriginalEl = document.getElementById('refineTextOriginal');
+    const refineTextImprovedEl = document.getElementById('refineTextImproved');
+    const refineFeedbackEl = document.getElementById('refineFeedback');
+    const originalRefineText = refineTextOriginalEl.textContent;
+
+    const draggables = document.querySelectorAll('.draggable');
+    const dropzone = document.getElementById('rulesDropzone');
+    const goodPracticesContainer = document.getElementById('goodPractices');
+    const initialGoodPracticesHTML = goodPracticesContainer.innerHTML;
+    const resetRulesButton = document.getElementById('resetRulesButton');
+
+    const glossaryListDiv = document.getElementById('glossaryList');
+
+    // --- Navigation ---
+    navButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            navButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            const targetId = button.getAttribute('data-target');
+            contentSections.forEach(section => {
+                section.classList.remove('active');
+                if (section.id === targetId) {
+                    section.classList.add('active');
+                }
+            });
+            window.scrollTo(0,0); // Scroll to top on section change
+        });
+    });
+
+    // --- Modal Logic ---
+    function showModal(message) {
+        modalMessageText.textContent = message;
+        messageModal.style.display = "block";
+    }
+    modalCloseButton.onclick = function() {
+        messageModal.style.display = "none";
+    }
+    window.onclick = function(event) {
+        if (event.target == messageModal) {
+            messageModal.style.display = "none";
+        }
+    }
+
+    // --- Module 1: Predict the Next Word ---
+    const predictSentences = [
+        { sentence: "To fix the lamp, first you need to turn off the _______.", options: ["power", "water", "door"], correct: "power" },
+        { sentence: "It's raining today, so I will take my _______.", options: ["umbrella", "book", "phone"], correct: "umbrella" },
+        { sentence: "My favorite subject in school is _______.", options: ["Elektro", "singing", "flying"], correct: "Elektro" }
+    ];
+    let currentPredictSentence = 0;
+
+    function loadPredictSentence() {
+        const current = predictSentences[currentPredictSentence];
+        predictSentence.textContent = current.sentence;
+        const optionButtons = document.querySelectorAll('#predictOptions button');
+        optionButtons.forEach((btn, index) => {
+            btn.textContent = current.options[index];
+            btn.dataset.correct = (current.options[index] === current.correct).toString();
+        });
+        predictFeedback.textContent = "";
+    }
+
+    predictOptions.forEach(button => {
+        button.addEventListener('click', () => {
+            if (button.dataset.correct === "true") {
+                predictFeedback.textContent = "Correct! LLMs predict the next word based on patterns.";
+                predictFeedback.className = "text-sm mt-2 text-green-600";
+            } else {
+                predictFeedback.textContent = "Not quite. Try again or think about what makes sense.";
+                predictFeedback.className = "text-sm mt-2 text-red-600";
+            }
+            currentPredictSentence = (currentPredictSentence + 1) % predictSentences.length;
+            setTimeout(loadPredictSentence, 2000); // Load next sentence after a delay
+        });
+    });
+    loadPredictSentence(); // Initial load
+
+
+    // --- Module 1: Training Data Chart ---
+    const ctxTrainingData = document.getElementById('trainingDataChart')?.getContext('2d');
+    if (ctxTrainingData) {
+        new Chart(ctxTrainingData, {
+            type: 'bar',
+            data: {
+                labels: ['Books', 'Websites', 'Articles', 'Code Repos'],
+                datasets: [{
+                    label: 'Relative Amount of Training Data (Illustrative)',
+                    data: [60, 90, 75, 50],
+                    backgroundColor: [
+                        'rgba(54, 162, 235, 0.6)',
+                        'rgba(255, 206, 86, 0.6)',
+                        'rgba(75, 192, 192, 0.6)',
+                        'rgba(153, 102, 255, 0.6)'
+                    ],
+                    borderColor: [
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: { beginAtZero: true, ticks: { color: '#475569' }, grid: { color: '#e2e8f0'} },
+                    x: { ticks: { color: '#475569' }, grid: { color: '#e2e8f0'} }
+                },
+                plugins: {
+                    legend: { labels: { color: '#475569' } },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                let label = context.dataset.label || '';
+                                if (label) { label += ': '; }
+                                if (context.parsed.y !== null) {
+                                    label += context.parsed.y + ' (example units)';
+                                }
+                                return label;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+
+    // --- Module 2: Hallucination Quiz ---
+    const hallucinationQuestions = [
+        { statement: "Water is made of Hydrogen and Oxygen.", isTrue: true, explanation: "This is a true scientific fact." },
+        { statement: "The best way to charge your phone quickly is to put it in the microwave for 10 seconds.", isTrue: false, explanation: "This is extremely DANGEROUS and false! Microwaving electronics can cause fires or explosions. AI *could* generate harmful advice if not properly constrained, highlighting why critical thinking is vital." },
+        { statement: "All electricians agree that blue wires are always neutral.", isTrue: false, explanation: "This is a hallucination. Wire color codes can vary by region and standard. This kind of overgeneralization is a common AI error." },
+        { statement: "A fuse protects an electrical circuit from too much current.", isTrue: true, explanation: "This is a true fact about electrical safety devices." }
+    ];
+    let currentHallucinationQuestion = 0;
+
+    function loadHallucinationQuestion() {
+        const q = hallucinationQuestions[currentHallucinationQuestion];
+        hallucinationStatementEl.textContent = q.statement;
+        hallucinationFeedbackEl.textContent = "";
+        hallucinationOptions.forEach(opt => {
+            opt.disabled = false;
+            opt.classList.remove('bg-green-500', 'bg-red-700', 'opacity-50');
+            opt.classList.add('bg-rose-500', 'hover:bg-rose-600');
+        });
+    }
+
+    hallucinationOptions.forEach(button => {
+        button.addEventListener('click', () => {
+            const q = hallucinationQuestions[currentHallucinationQuestion];
+            const userAnswer = button.dataset.answer === "true";
+            
+            hallucinationOptions.forEach(opt => {
+                opt.disabled = true; // Disable options after answer
+                opt.classList.add('opacity-50');
+            });
+
+            if (userAnswer === q.isTrue) {
+                hallucinationFeedbackEl.textContent = "Correct! " + q.explanation;
+                hallucinationFeedbackEl.className = "text-sm mt-2 text-green-600";
+                button.classList.remove('bg-rose-500', 'opacity-50');
+                button.classList.add('bg-green-500');
+
+            } else {
+                hallucinationFeedbackEl.textContent = "Incorrect. " + q.explanation;
+                hallucinationFeedbackEl.className = "text-sm mt-2 text-red-600";
+                button.classList.remove('bg-rose-500', 'opacity-50');
+                button.classList.add('bg-red-700');
+            }
+            currentHallucinationQuestion = (currentHallucinationQuestion + 1) % hallucinationQuestions.length;
+            setTimeout(loadHallucinationQuestion, 4000); // Load next question after a delay
+        });
+    });
+    if (hallucinationStatementEl) loadHallucinationQuestion(); // Initial load if element exists
+
+    // --- Module 3: Brainstorming Example ---
+    if (showBrainstormExampleBtn) {
+        showBrainstormExampleBtn.addEventListener('click', () => {
+            brainstormResponseDiv.style.display = brainstormResponseDiv.style.display === 'none' ? 'block' : 'none';
+        });
+    }
+
+    // --- Module 3: Refining Text ---
+    const refineActions = {
+        grammar: (text) => {
+            refineFeedbackEl.textContent = "AI Suggestion: Corrected 'carefuly' to 'carefully'.";
+            return text.replace("carefuly", "carefully");
+        },
+        clarity: (text) => {
+            refineFeedbackEl.textContent = "AI Suggestion: Added 'the' before 'fuse' and rephrased for better flow.";
+            return text.replace("remove fuse", "remove the fuse").replace("Look for a break in the wire inside, or test with multimeter.", "Inspect it for a visible break in the internal wire, or test its continuity using a multimeter.");
+        },
+        professional: (text) => {
+            refineFeedbackEl.textContent = "AI Suggestion: Used more formal vocabulary and structure.";
+            return "To safely inspect a fuse, first ensure that the power supply is deactivated. Then, carefully remove the fuse from its holder. Visually examine the fuse element for any signs of breakage or test its continuity with a multimeter.";
+        }
+    };
+
+    refineButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const action = button.dataset.refineAction;
+            const currentTextToRefine = refineTextImprovedEl.style.display === 'none' ? originalRefineText : refineTextImprovedEl.textContent;
+            const improvedText = refineActions[action](currentTextToRefine);
+            refineTextImprovedEl.textContent = improvedText;
+            refineTextImprovedEl.style.display = 'block';
+        });
+    });
+
+    // --- Module 4: Drag and Drop Rules ---
+    let draggedItem = null;
+
+    draggables.forEach(draggable => {
+        draggable.addEventListener('dragstart', (e) => {
+            draggedItem = e.target;
+            setTimeout(() => e.target.style.display = 'none', 0);
+        });
+        draggable.addEventListener('dragend', (e) => {
+            setTimeout(() => {
+                draggedItem.style.display = 'block'; // Show it again if not dropped in dropzone
+                draggedItem = null;
+            }, 0);
+        });
+    });
+
+    if (dropzone) {
+        dropzone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropzone.classList.add('dragover');
+        });
+
+        dropzone.addEventListener('dragleave', () => {
+            dropzone.classList.remove('dragover');
+        });
+
+        dropzone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            if (draggedItem) {
+                // Remove placeholder if it's the first item
+                const placeholder = dropzone.querySelector('p.text-xs');
+                if (placeholder) placeholder.style.display = 'none';
+
+                dropzone.appendChild(draggedItem);
+                draggedItem.style.display = 'block'; // Ensure it's visible after drop
+                draggedItem.classList.remove('draggable'); // Optional: prevent re-dragging from dropzone
+                draggedItem.draggable = false;
+            }
+            dropzone.classList.remove('dragover');
+        });
+    }
+    
+    if (resetRulesButton) {
+        resetRulesButton.addEventListener('click', () => {
+            dropzone.innerHTML = '<p class="text-xs text-slate-500 text-center">Drag rules here</p>'; // Reset dropzone
+            goodPracticesContainer.innerHTML = initialGoodPracticesHTML; // Reset draggable items
+            // Re-add event listeners to new draggables
+            document.querySelectorAll('#goodPractices .draggable').forEach(draggable => {
+                draggable.addEventListener('dragstart', (e) => {
+                    draggedItem = e.target;
+                    setTimeout(() => e.target.style.display = 'none', 0);
+                });
+                draggable.addEventListener('dragend', (e) => {
+                    setTimeout(() => {
+                        if (draggedItem) draggedItem.style.display = 'block';
+                        draggedItem = null;
+                    }, 0);
+                });
+            });
+        });
+    }
+
+
+    // --- Glossary ---
+    const glossaryTerms = [
+        { term: "Artificial Intelligence (AI)", definition: "Computer systems designed to perform tasks that typically require human intelligence, like learning, problem-solving, and decision-making." },
+        { term: "Generative AI", definition: "A type of AI that can create new and original content (text, images, audio, video) based on what it has learned from data." },
+        { term: "Large Language Model (LLM)", definition: "An AI model trained on vast amounts of text data to understand, generate, and predict human-like text. Examples: GPT-3, Gemini." },
+        { term: "Training data", definition: "The large datasets of information (text, images, code) used to teach or 'train' an AI model." },
+        { term: "Predict", definition: "In LLMs, to estimate or 'guess' the most likely next word or piece of information in a sequence." },
+        { term: "Pattern", definition: "A regularly repeated arrangement or sequence that AI models learn to recognize in data." },
+        { term: "Hallucination (AI context)", definition: "When an AI model generates information that is factually incorrect, nonsensical, or unrelated to the prompt, but presents it confidently." },
+        { term: "Plausible", definition: "Seeming reasonable or probable, even if not actually true. AI hallucinations often sound plausible." },
+        { term: "Misinformation", definition: "False or inaccurate information that is spread, regardless of intent to deceive. AI can be used to create it." },
+        { term: "Deepfake", definition: "AI-generated media (videos, audio) where a person's likeness is replaced with someone else's, often used to create realistic but fake content." },
+        { term: "Bias (AI context)", definition: "When an AI system produces results that are systematically prejudiced, often due to biases present in its training data." },
+        { term: "Cognitive risk", definition: "The potential negative impact on human thinking skills (e.g., critical thinking, problem-solving) from over-relying on AI." },
+        { term: "Over-reliance", definition: "Depending too much on something, like AI, to the point where one's own skills may weaken." },
+        { term: "Plagiarism", definition: "The act of copying someone else's work or ideas and passing them off as one's own. Submitting AI-generated work as original is plagiarism." },
+        { term: "Privacy (Data privacy)", definition: "The protection of personal information from unauthorized access or use. Important when sharing data with AI tools." },
+        { term: "Ethical", definition: "Relating to moral principles or the branch of knowledge dealing with these; doing what is right." },
+        { term: "Brainstorming", definition: "A technique for generating ideas, often in a group, by thinking freely. AI can assist in this process." },
+        { term: "Refine", definition: "To improve something by making small changes or adjustments. AI can help refine written work." },
+        { term: "Prompt (for AI)", definition: "The instruction, question, or input given to an AI model to get a response or generate content." },
+        { term: "Automation", definition: "The use of technology to perform tasks with reduced human assistance. AI can automate certain tasks." }
+    ];
+
+    function populateGlossary() {
+        glossaryTerms.sort((a,b) => a.term.localeCompare(b.term)); // Sort alphabetically
+        glossaryTerms.forEach(item => {
+            const termDiv = document.createElement('div');
+            termDiv.className = 'p-3 bg-gray-50 border border-gray-200 rounded-md cursor-pointer hover:bg-gray-100';
+            termDiv.innerHTML = `<strong class="text-sky-700">${item.term}</strong><p class="text-sm text-slate-600 mt-1" style="display:none;">${item.definition}</p>`;
+            termDiv.addEventListener('click', () => {
+                const defP = termDiv.querySelector('p');
+                defP.style.display = defP.style.display === 'none' ? 'block' : 'none';
+            });
+            glossaryListDiv.appendChild(termDiv);
+        });
+    }
+
+    if (glossaryListDiv) populateGlossary();
+
+</script>
+</body>
+</html>
