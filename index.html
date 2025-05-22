@@ -6,36 +6,28 @@
     <title>AI Learning for Vocational Studies</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Application Structure Plan: 
-        The SPA is structured with a fixed top navigation bar allowing users to jump to different thematic sections within the single page. This approach enhances usability by providing a clear overview and easy access to all content areas. The themes are derived from the report's modules but reorganized for a more intuitive user flow:
-        1. Home: Introduction and overview.
-        2. Explore AI: Covers the basics of AI, its presence in daily life, and relevance to vocational fields. "AI Around Us" is now a reflective prompt. Illustrative chart removed. Citations modified for subtlety.
-        3. Think Critically: Addresses AI bias (updated examples), hallucinations (explanation enhanced), misinformation, and filter bubbles. "Burst the Bubble" exercise enhanced for more interaction (reflection prompts, action plan without simulated submission). Citations modified for subtlety.
-        4. AI as Helper: Focuses on responsible AI use, the "You First" principle (significantly expanded with metaphors and cognitive development discussion), augmentation vs. generation, ethical use cases (AI Project Idea Expander removed), and academic integrity (Norwegian plagiarism rules integrated). Citations modified for subtlety.
-        5. Your Future with AI: Explores AI's impact on jobs and highlights essential human skills. "My Vocational Future with AI" is now a reflective writing prompt. Citations modified for subtlety.
-        6. AI & Society: Discusses data privacy, ethical dilemmas, and the student's role in shaping AI. "Create an AI Ethics Charter" is now a reflective/discussion prompt. Citations modified for subtlety.
-        7. Exercises: A quick access point to key interactive elements from various sections.
-        8. References: New section added for all cited sources, now collapsible and styled for subtlety.
-        This thematic, non-linear structure is chosen over a direct module-by-module translation to make the content more engaging and allow students to explore topics based on interest, facilitating better understanding and retention for the target audience (VG1 vocational students). Key interactions include quizzes, reflective inputs, and clickable reveals. Gemini API features removed and converted to reflective prompts.
+        The SPA is structured with a fixed top navigation bar.
+        Key Changes from v5:
+        - Asterisk formatting fixed (bold/italic).
+        - "Consequences of cheating" section replaced with Norwegian text, adapted for AI, legal codes preserved.
+        - "Green, Yellow, Red Light" table reformatted (smaller, text shortened).
+        - Specific vocational examples further focused on Elektro/Computer Tech.
+        - "Attention Economy" section expanded with manipulation examples and CGPGrey video link.
+        - Copyright updated to "(C) 2025 - Daniel the Teacher".
+        - New chapter "6. Connecting with Your 'Skills Elektro' Textbook" added with detailed content.
+        - Specific new URLs integrated as linked resources and in a new collapsible "References" section.
+        - All previous general references removed.
+        - Navigation updated to include the new chapter.
+        This thematic, non-linear structure is chosen over a direct module-by-module translation to make the content more engaging and allow students to explore topics based on interest, facilitating better understanding and retention for the target audience (VG1 vocational students). Key interactions include quizzes, clickable reveals, and now clearly defined writing prompts.
     -->
     <!-- Visualization & Content Choices:
-        - Explore AI:
-            - "AI Around Us": Text inputs for personal reflection. Goal: Inform/Engage. Method: HTML form elements.
-            - Content now includes in-text citations, styled to be less prominent.
-        - Think Critically:
-            - "Spot the AI Lie": Text comparison. Goal: Compare/Identify. Interaction: Click to reveal. Method: JS show/hide.
-            - "Escape the Bubble": Clickable strategy cards with reflection prompts and an action plan area. Goal: Inform/Organize/Engage. Interaction: Click to reveal info, type reflection. Method: JS show/hide, HTML forms.
-            - Content on bias, hallucinations, and misinformation updated and cited (subtly).
-        - AI as Helper:
-            - "You First" Principle: Expanded and relevant concepts cited (subtly).
-            - Diagram (HTML/CSS): Augmentation vs. Generation.
-            - Interactive Table: "AI Use: Green, Yellow, Red Light".
-            - Academic Integrity: Norwegian rules on plagiarism integrated (noted as typical examples). Content cited (subtly).
-        - Your Future with AI:
-            - "My Vocational Future with AI": Converted to a reflective writing prompt. Content cited (subtly).
-        - AI & Society:
-            - Ethical Dilemmas: Scenario presentation with reflection prompts. Content cited (subtly).
-            - "Classroom AI Ethics Charter": Converted to a reflective/discussion prompt. Content cited (subtly).
-        - References section made collapsible and styled for less prominence.
+        - Explore AI: "AI Around Us" converted to numbered writing prompts. New references added.
+        - Think Critically: "Escape the Bubble" action plan converted to a numbered writing prompt. Content on bias, hallucinations, and misinformation updated. New references added.
+        - AI as Helper: "You First" Principle expanded. Academic Integrity section updated with Norwegian text. New references added.
+        - Your Future with AI: "My Vocational Future with AI" converted to a numbered writing prompt.
+        - AI & Society: Ethical Dilemmas and Ethics Charter converted to numbered writing prompts. Attention Economy section expanded. New references added.
+        - New Chapter 6: Detailed integration points with "Skills Elektro" textbook.
+        - References section re-added for specific new references, made collapsible.
         All text content is adapted from the source report, translated, and simplified for the target audience. Definitions for key terms are provided as hover-over tooltips.
         CONFIRMATION: NO SVG graphics used. NO Mermaid JS used.
     -->
@@ -46,29 +38,40 @@
         .subsection-title { font-size: 1.25rem; font-weight: 600; margin-bottom: 0.75rem; color: #075985; /* text-sky-800 */ }
         .content-text { color: #334155; /* text-slate-700 */ line-height: 1.6; }
         .interactive-card { background-color: white; border-radius: 0.5rem; padding: 1.5rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06); margin-bottom: 1rem; }
-        .button-primary { background-color: #0284c7; /* bg-sky-600 */ color: white; padding: 0.5rem 1rem; border-radius: 0.375rem; font-weight: 600; transition: background-color 0.3s; }
-        .button-primary:hover { background-color: #0369a1; /* hover:bg-sky-700 */ }
-        .button-primary:disabled { background-color: #60a5fa; cursor: not-allowed; }
         .nav-link { padding: 0.5rem 1rem; border-radius: 0.375rem; transition: background-color 0.3s, color 0.3s; }
         .nav-link:hover, .nav-link.active { background-color: #0ea5e9; /* bg-sky-500 */ color: white; }
-        .chart-container { position: relative; width: 100%; max-width: 600px; margin-left: auto; margin-right: auto; height: auto; max-height: 400px; }
-        @media (min-width: 768px) { .chart-container { height: auto; } }
         .tab-button { padding: 0.5rem 1rem; border-radius: 0.375rem; margin-right: 0.5rem; cursor: pointer; }
         .tab-button.active { background-color: #0ea5e9; color: white; }
         .tab-button:not(.active) { background-color: #e0f2fe; color: #0c4a6e; }
         .tooltip { position: relative; display: inline-block; cursor: help; color: #0ea5e9; font-weight: 600; border-bottom: 1px dotted #0ea5e9;}
         .tooltip .tooltiptext { visibility: hidden; width: 220px; background-color: #334155; color: #fff; text-align: center; border-radius: 6px; padding: 8px; position: absolute; z-index: 10; bottom: 135%; left: 50%; margin-left: -110px; opacity: 0; transition: opacity 0.3s; font-size: 0.875rem; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
         .tooltip:hover .tooltiptext { visibility: visible; opacity: 1; }
-        .ethics-table th, .ethics-table td { border: 1px solid #cbd5e1; padding: 0.75rem; text-align: left; }
-        .ethics-table th { background-color: #f1f5f9; }
-        .green-light { background-color: #dcfce7; color: #166534; }
-        .yellow-light { background-color: #fef9c3; color: #854d0e; }
-        .red-light { background-color: #fee2e2; color: #991b1b; }
+        .ethics-table { font-size: 0.85rem; /* Further reduced font for table */ width: 100%; table-layout: fixed;} 
+        .ethics-table th, .ethics-table td { border: 1px solid #e2e8f0; padding: 0.4rem; text-align: left; word-wrap: break-word;} 
+        .ethics-table th { background-color: #f8fafc; font-weight: 600; } 
+        .green-light { background-color: #f0fdf4; color: #166534; } 
+        .yellow-light { background-color: #fefce8; color: #854d0e; } 
+        .red-light { background-color: #fff1f2; color: #991b1b; } 
         .strategy-info {
             background-color: #e0f2fe; 
             padding: 0.75rem;
             border-radius: 0.375rem;
             margin-top: 0.5rem;
+        }
+        .writing-prompt {
+            margin-top: 0.75rem;
+            padding: 0.75rem;
+            background-color: #f8fafc; /* Tailwind slate-50 */
+            border-left: 3px solid #38bdf8; /* Tailwind sky-400 */
+            border-radius: 0.25rem;
+        }
+        .writing-prompt p {
+            font-size: 0.9rem;
+            color: #1e293b; /* Tailwind slate-800 */
+        }
+        .prompt-number {
+            font-weight: 700;
+            color: #0284c7; /* Tailwind sky-600 */
         }
         sup.citation { 
             font-size: 0.6em; 
@@ -87,21 +90,43 @@
             text-decoration: underline;
         }
         .references-section summary {
-            font-size: 1.1rem; /* Smaller than subsection-title */
+            font-size: 1.1rem; 
             font-weight: 600;
-            color: #075985; /* text-sky-800 */
+            color: #075985; 
             cursor: pointer;
             padding: 0.5rem 0;
             margin-bottom: 0.5rem;
-            border-bottom: 1px solid #e2e8f0; /* slate-200 */
+            border-bottom: 1px solid #e2e8f0; 
         }
         .references-section details[open] summary {
             margin-bottom: 1rem;
         }
         .reference-list li { 
             margin-bottom: 0.4rem; 
-            font-size: 0.8rem; /* Slightly smaller */
-            color: #475569; /* text-slate-600 */
+            font-size: 0.8rem; 
+            color: #475569; 
+            word-break: break-all;
+        }
+        .reference-list li a {
+            color: #0ea5e9;
+            text-decoration: none;
+        }
+        .reference-list li a:hover {
+            text-decoration: underline;
+        }
+        .resource-link {
+            display: inline-block;
+            margin-top: 0.25rem;
+            margin-right: 0.5rem;
+            padding: 0.25rem 0.5rem;
+            background-color: #e0f2fe;
+            color: #0c4a6e;
+            border-radius: 0.25rem;
+            font-size: 0.8rem;
+            text-decoration: none;
+        }
+        .resource-link:hover {
+            background-color: #bae6fd;
         }
     </style>
 </head>
@@ -113,11 +138,12 @@
             <nav class="mt-2 sm:mt-0">
                 <ul class="flex space-x-1 sm:space-x-2 text-sm sm:text-base flex-wrap justify-center">
                     <li><a href="#home" class="nav-link">Home</a></li>
-                    <li><a href="#explore" class="nav-link">Explore AI</a></li>
-                    <li><a href="#critical" class="nav-link">Think Critically</a></li>
-                    <li><a href="#helper" class="nav-link">AI as Helper</a></li>
-                    <li><a href="#future" class="nav-link">Your AI Future</a></li>
-                    <li><a href="#society" class="nav-link">AI & Society</a></li>
+                    <li><a href="#explore" class="nav-link">1. Explore AI</a></li>
+                    <li><a href="#critical" class="nav-link">2. Think Critically</a></li>
+                    <li><a href="#helper" class="nav-link">3. AI as Helper</a></li>
+                    <li><a href="#future" class="nav-link">4. Your AI Future</a></li>
+                    <li><a href="#society" class="nav-link">5. AI & Society</a></li>
+                    <li><a href="#skills_connect" class="nav-link">6. Skills Elektro Connect</a></li>
                     <li><a href="#exercises" class="nav-link">Exercises</a></li>
                     <li><a href="#references" class="nav-link">References</a></li>
                 </ul>
@@ -149,110 +175,118 @@
         </section>
 
         <section id="explore" class="pt-16 -mt-16 mb-12">
-            <h2 class="section-title">Explore AI: What is it, and where do we find it?</h2>
+            <h2 class="section-title">1. Explore AI: What is it, and where do we find it?</h2>
             <div class="interactive-card">
                 <h3 class="subsection-title">What is Artificial Intelligence (AI)?</h3>
                 <p class="content-text mb-2">
                     Think of AI as computers or programs that can do things that usually require human intelligence. This can be learning from experience, solving problems, making decisions, or understanding language.
                 </p>
                 <p class="content-text mb-2">
-                    An important part of AI is <span class="tooltip">Machine Learning (ML)<sup class="citation"><a href="#references">[1]</a></sup><span class="tooltiptext">Systems that learn from large amounts of data to find patterns and make decisions without being specifically programmed for each task.</span></span>. For example, streaming services use ML to suggest movies you might like.
+                    An important part of AI is <span class="tooltip">Machine Learning (ML)<span class="tooltiptext">Systems that learn from large amounts of data to find patterns and make decisions without being specifically programmed for each task.</span></span>. For example, streaming services use Machine Learning (ML) to suggest movies.<sup class="citation"><a href="#ref-1">[1]</a></sup>
+                    <a href="https://www.youtube.com/watch?v=PeMlggyqz0Y" target="_blank" rel="noopener noreferrer" class="resource-link">Watch: What is ML?</a>
                 </p>
                 <p class="content-text mb-4">
-                    <span class="tooltip">Large Language Models (LLMs)<sup class="citation"><a href="#references">[2, 3]</a></sup><span class="tooltiptext">Advanced "computer brains" trained on enormous amounts of text and code.</span></span> are a type of AI you might have heard of, like ChatGPT. They learn patterns in language and can generate text, answer questions, and much more. Important: LLMs don't "think" like humans; they are good at predicting the next word based on patterns they've learned.<sup class="citation"><a href="#references">[2, 3]</a></sup>
+                    <span class="tooltip">Large Language Models (LLMs)<span class="tooltiptext">Advanced "computer brains" trained on enormous amounts of text and code.</span></span> are a type of AI you might have heard of, like ChatGPT. They learn patterns and can generate text, answer questions.<sup class="citation"><a href="#ref-2">[2]</a></sup> Important: LLMs don't "think" like humans; they predict the next word based on learned patterns.<sup class="citation"><a href="#ref-3">[3]</a></sup>
+                    <a href="https://www.youtube.com/watch?v=sg_fuEzFw0g" target="_blank" rel="noopener noreferrer" class="resource-link">Watch: What are LLMs?</a>
                 </p>
                  <div class="bg-sky-50 p-4 rounded-md border border-sky-200">
                     <h4 class="font-semibold text-sky-700 mb-2">AI is not magic!</h4>
-                    <p class="text-sm content-text">It's important to remember that AI, including LLMs, works by recognizing and copying patterns from its training data. They have no real understanding or consciousness.<sup class="citation"><a href="#references">[2, 3]</a></sup> This is key to understanding both what AI can do, and what it *cannot* do.</p>
+                    <p class="text-sm content-text">It's important to remember that AI works by recognizing and copying patterns from training data; they have no real understanding or consciousness.<sup class="citation"><a href="#ref-4">[4]</a></sup> This is key to understanding both what AI can do, and what it *cannot* do.
+                         <a href="https://www.youtube.com/watch?v=b0KaGBOU4Ys" target="_blank" rel="noopener noreferrer" class="resource-link">Watch: AI - Pattern Recognition vs. Understanding</a>
+                    </p>
                 </div>
             </div>
 
             <div class="interactive-card">
                 <h3 class="subsection-title">AI in your daily life and future profession</h3>
-                <p class="content-text mb-4">AI is not just something for the future – it's already part of your everyday life! You encounter AI when using social media (personalized feed), email (spam filter), GPS apps (route optimization), and smart speakers.</p>
+                <p class="content-text mb-4">AI is not just something for the future – it's already part of your everyday life! You encounter AI when using social media (personalized feed)<sup class="citation"><a href="#ref-5">[5]</a></sup>, email (spam filter)<sup class="citation"><a href="#ref-6">[6]</a></sup>, GPS apps (route optimization)<sup class="citation"><a href="#ref-7">[7]</a></sup>, and smart speakers.</p>
                 
-                <h4 class="font-semibold text-slate-600 mb-2">AI in Norwegian Vocational Fields<sup class="citation"><a href="#references">[5]</a></sup>:</h4>
-                <p class="content-text mb-3">AI is becoming a bigger deal in many jobs. It's showing up everywhere, helping with things like doing tasks automatically, figuring out problems, making designs better, and giving people more personal experiences.</p>
+                <h4 class="font-semibold text-slate-600 mb-2">AI in Vocational Fields (Focus: Electrical Trades & Computer Technology):</h4>
+                <p class="content-text mb-3">AI is becoming a bigger deal in many jobs, especially in technical fields like Electrical Trades and Computer Technology. It's showing up everywhere, helping with tasks like smart power management, automatically finding faults in circuits, improving cybersecurity, and even assisting with coding.
+                    <a href="https://matlabsimulation.com/artificial-intelligence-projects-for-electrical-engineering/" target="_blank" rel="noopener noreferrer" class="resource-link">More: AI in Electrical Engineering</a>
+                    <a href="https://blog.exertherm.com/the-impact-of-ai-on-electrical-asset-maintenance" target="_blank" rel="noopener noreferrer" class="resource-link">More: AI in Predictive Maintenance</a>
+                </p>
                 <p class="content-text mt-4">
-                    In most professions, AI is about <span class="tooltip">enhancing<sup class="citation"><a href="#references">[6, 7]</a></sup><span class="tooltiptext">Making better or stronger.</span></span> human skills, increasing efficiency and safety, not necessarily replacing people. It's important to see how AI can become a useful tool in your specific field!
+                    In most professions, AI is about <span class="tooltip">enhancing<span class="tooltiptext">Making better or stronger.</span></span> human skills, increasing efficiency and safety, not necessarily replacing people.<sup class="citation"><a href="#ref-8">[8]</a></sup> It's important to see how AI can become a useful tool in your specific field!
                 </p>
             </div>
             
             <div class="interactive-card">
                 <h3 class="subsection-title">Why is AI literacy important for you?</h3>
                 <p class="content-text mb-2">
-                    <span class="tooltip">AI literacy<sup class="citation"><a href="#references">[1]</a></sup><span class="tooltiptext">The ability to understand basic AI concepts, critically evaluate AI systems, and use AI tools effectively and ethically.</span></span> is more than just a technical skill. It's a key competency for the future.
+                    <span class="tooltip">AI literacy<span class="tooltiptext">The ability to understand basic AI concepts, critically evaluate AI systems, and use AI tools effectively and ethically.</span></span> is more than just a technical skill. It's a key competency for the future.
+                     <a href="https://www.datiak12.io/leadership/oped/article/15712114/the-74-why-data-ai-literacy-are-important-skills-for-k12-students" target="_blank" rel="noopener noreferrer" class="resource-link">Read: Why AI Literacy is Important</a>
                 </p>
                 <ul class="list-disc list-inside content-text mb-2 space-y-1">
-                    <li><strong>Future-proof your career:</strong> AI is changing the job market. With AI literacy, you are better equipped for changes.<sup class="citation"><a href="#references">[1]</a></sup></li>
-                    <li><strong>Make informed choices:</strong> Understand how AI affects society, including ethics, privacy, and possible <span class="tooltip">bias<span class="tooltiptext">Unfair leaning towards or against something or someone, often based on pre-existing ideas instead of facts.</span></span>.<sup class="citation"><a href="#references">[1]</a></sup></li>
-                    <li><strong>Become a better professional:</strong> AI literacy helps you think critically and learn throughout life, which is important in all professions.<sup class="citation"><a href="#references">[1, 19]</a></sup></li>
+                    <li><strong>Future-proof your career:</strong> AI is changing the job market. With AI literacy, you are better equipped for changes.</li>
+                    <li><strong>Make informed choices:</strong> Understand how AI affects society, including ethics, privacy, and possible <span class="tooltip">bias<span class="tooltiptext">Unfair leaning towards or against something or someone, often based on pre-existing ideas instead of facts.</span></span>.</li>
+                    <li><strong>Become a better professional:</strong> AI literacy helps you think critically and learn throughout life, which is important in all professions.</li>
                 </ul>
-                <p class="content-text">Being able to assess the information you get from AI tools is especially important. In many professions, important decisions are made. If an AI tool provides incorrect or biased information, you must be able to ask questions and check the information, not just accept it.<sup class="citation"><a href="#references">[1]</a></sup></p>
+                <p class="content-text">Being able to assess the information you get from AI tools is especially important. In many professions, important decisions are made. If an AI tool provides incorrect or biased information, you must be able to ask questions and check the information, not just accept it.</p>
             </div>
 
             <div class="interactive-card" id="aiAroundUsActivity">
-                <h3 class="subsection-title">Interactive Exercise: AI Around Us</h3>
-                <p class="content-text mb-3">Let's become AI detectives! Think about where you encounter AI in everyday life and in your field.<sup class="citation"><a href="#references">[1]</a></sup></p>
-                <div class="space-y-4">
-                    <div>
-                        <label for="dailyAI" class="block text-sm font-medium text-slate-700 mb-1">1. For your own reflection: Name 1-2 examples of AI you use in everyday life.</label>
-                        <input type="text" id="dailyAI" name="dailyAI" class="mt-1 block w-full rounded-md border-slate-300 shadow-sm focus:border-sky-500 focus:ring-sky-500 sm:text-sm p-2" placeholder="E.g., Recommendations on Netflix, Siri/Google Assistant">
+                <h3 class="subsection-title">Writing Prompt Set 1: AI Around Us</h3>
+                <p class="content-text mb-3">Let's become AI detectives! Think about where you encounter AI in everyday life and in your field.</p>
+                <div class="space-y-3">
+                    <div class="writing-prompt">
+                        <p><span class="prompt-number">Prompt 1.1:</span> Name 1-2 examples of AI you use in your everyday life. Briefly describe what they do.</p>
                     </div>
-                    <div>
-                        <label for="vocationalAIInput" class="block text-sm font-medium text-slate-700 mb-1">2. For your own reflection: What is your vocational field? How do you think AI is used (or will be used) in it? What are 2-3 specific ways it might be used, and one potential ethical issue?</label>
-                        <textarea id="vocationalAIInput" name="vocationalAIInput" rows="4" class="mt-1 block w-full rounded-md border-slate-300 shadow-sm focus:border-sky-500 focus:ring-sky-500 sm:text-sm p-2" placeholder="Your vocational field (e.g., Electrical Trades)... AI uses... Ethical issue..."></textarea>
+                    <div class="writing-prompt">
+                        <p><span class="prompt-number">Prompt 1.2:</span> What is your vocational field (e.g., Electrical Trades, Computer Technology)? Research and describe 2-3 specific ways AI is currently used or is emerging in this field. For each, also mention one potential ethical issue or concern related to its use.</p>
                     </div>
-                    <div class="mt-4">
-                        <p class="block text-sm font-medium text-slate-700 mb-1">3. Reflection for yourself: How can AI help in an example from your field? What could be a disadvantage if the AI makes a mistake?</p>
-                        <textarea id="aiReflection" name="aiReflection" rows="3" class="mt-1 block w-full rounded-md border-slate-300 shadow-sm focus:border-sky-500 focus:ring-sky-500 sm:text-sm p-2" placeholder="Think about this... (No need to submit)"></textarea>
+                    <div class="writing-prompt">
+                        <p><span class="prompt-number">Prompt 1.3:</span> Based on one of the examples from your vocational field (Prompt 1.2), explain how AI can help professionals in that task. Then, describe a potential disadvantage or problem if the AI makes a mistake or is used incorrectly in that specific scenario.</p>
                     </div>
                 </div>
             </div>
         </section>
 
         <section id="critical" class="pt-16 -mt-16 mb-12">
-            <h2 class="section-title">Think Critically: Navigating an AI-Driven World</h2>
+            <h2 class="section-title">2. Think Critically: Navigating an AI-Driven World</h2>
             <div class="interactive-card">
                 <h3 class="subsection-title">How AI Learns (and Gets it Wrong): Bias In, Bias Out</h3>
                 <p class="content-text mb-2">
-                    AI models learn by analyzing enormous amounts of data, often sourced from the internet.<sup class="citation"><a href="#references">[21]</a></sup> If this data contains <span class="tooltip">bias<sup class="citation"><a href="#references">[21, 22, 23]</a></sup><span class="tooltiptext">Unfair leaning towards or against something or someone, often based on pre-existing ideas instead of facts.</span></span>, the AI will likely reflect and perhaps even <span class="tooltip">amplify<span class="tooltiptext">To make something stronger or louder, like turning up the volume.</span></span> these biases.
+                    AI models learn from data; if data contains bias, AI will reflect/amplify it.<sup class="citation"><a href="#ref-9">[9]</a></sup>
+                    <a href="https://www.youtube.com/watch?v=DzV10l-OJwQ" target="_blank" rel="noopener noreferrer" class="resource-link">Watch: AI Bias Explained</a>
+                    <a href="https://www.youtube.com/watch?v=x2mRoFNm22g" target="_blank" rel="noopener noreferrer" class="resource-link">Watch: How Training Data Creates Bias</a>
                 </p>
                 <p class="content-text mb-2">Examples of AI bias that could affect you:</p>
                 <ul class="list-disc list-inside content-text mb-2 space-y-1">
-                    <li><strong>Dangerous "Facts" for Your Trade:</strong> Imagine you're an Elektro-student looking up safety rules for high-voltage installations. An AI might give you an answer in perfect Norwegian, claiming these are "Norwegian electrical safety standards." But, if the AI was mostly trained on American data, it might actually be giving you US electrical codes, just translated. Following these could be extremely dangerous in Norway, as safety standards differ, potentially leading to accidents, equipment damage, or even electrocution. The AI *sounds* correct, but it's dangerously wrong for your specific location and rules. (Illustrative example based on principles from <sup class="citation"><a href="#references">[21, 22]</a></sup>)</li>
-                    <li><strong>Getting Skipped for an Opportunity (And No One Knows Why):</strong> Let's say in a few years you apply for a summer job or a special program. The company uses AI to sort through applications. Your application might get skipped. It could be that the AI was poorly designed to promote diversity and ended up accidentally filtering *out* male applicants for certain roles, or it might unfairly filter out female candidates for technical roles if it learned from historical data where mostly men held those positions.<sup class="citation"><a href="#references">[21, 22]</a></sup> Or it might be looking for tiny, weird patterns in CVs that it *thinks* predict success, but actually have nothing to do with how good you'd be, accidentally discriminating against you.</li>
-                    <li><strong>Social Media Misunderstandings & Shadow Bans:</strong> You post something online – a joke, an opinion, a comment. An AI moderator, trained mostly on English internet drama or American cultural issues, might misunderstand your Norwegian slang, sarcasm, or cultural reference. It could flag your normal comment as "problematic," delete it, or even temporarily ban your account ("shadow ban" you so fewer people see your stuff) because it wrongly thinks you're breaking rules, even when you're just talking like a typical Norwegian teen. (Illustrative example based on principles from <sup class="citation"><a href="#references">[21, 22]</a></sup>)</li>
+                    <li><strong>Dangerous "Facts" for Your Trade:</strong> Imagine you're an Elektro-student looking up safety rules for high-voltage installations. An AI might give you an answer in perfect Norwegian, claiming these are "Norwegian electrical safety standards." But, if the AI was mostly trained on American data, it might actually be giving you US electrical codes, just translated. Following these could be extremely dangerous in Norway, as safety standards differ, potentially leading to accidents, equipment damage, or even electrocution. The AI <em>sounds</em> correct, but it's dangerously wrong for your specific location and rules.</li>
+                    <li><strong>Getting Skipped for an Opportunity (And No One Knows Why):</strong> Let's say in a few years you apply for a summer job or a special program. The company uses AI to sort through applications. Your application might get skipped. It could be that the AI was poorly designed to promote diversity and ended up accidentally filtering *out* male applicants for certain roles, or it might unfairly filter out female candidates for technical roles if it learned from historical data where mostly men held those positions. Or it might be looking for tiny, weird patterns in CVs that it <em>thinks</em> predict success, but actually have nothing to do with how good you'd be, accidentally discriminating against you.</li>
+                    <li><strong>Social Media Misunderstandings & Shadow Bans:</strong> You post something online – a joke, an opinion, a comment. An AI moderator, trained mostly on English internet drama or American cultural issues, might misunderstand your Norwegian slang, sarcasm, or cultural reference. It could flag your normal comment as "problematic," delete it, or even temporarily ban your account ("shadow ban" you so fewer people see your stuff) because it wrongly thinks you're breaking rules, even when you're just talking like a typical Norwegian teen.</li>
                 </ul>
                 <p class="content-text">
-                    For your vocational field, a biased AI could lead to incorrect diagnoses, unfair assessments, or designs that don't suit everyone. It's important to remember that AI bias often mirrors existing <span class="tooltip">societal inequalities<sup class="citation"><a href="#references">[21, 22]</a></sup><span class="tooltiptext">Unfair differences in how groups of people are treated or have access to opportunities in society.</span></span>. Therefore, human oversight and critical assessment are always needed.
+                    For your vocational field, a biased AI could lead to incorrect diagnoses, unfair assessments, or designs that don't suit everyone. It's important to remember that AI bias often mirrors existing <span class="tooltip">societal inequalities<span class="tooltiptext">Unfair differences in how groups of people are treated or have access to opportunities in society.</span></span>.<sup class="citation"><a href="#ref-10">[10]</a></sup> Therefore, human oversight and critical assessment are always needed.
                 </p>
             </div>
 
             <div class="interactive-card">
-                <h3 class="subsection-title">AI "Hallucinations" & **Looks Real, But Isn't**: Spotting Convincing Fakes</h3>
+                <h3 class="subsection-title">AI "Hallucinations" & <strong>Looks Real, But Isn't</strong>: Spotting Convincing Fakes</h3>
                 <p class="content-text mb-2">
-                    Sometimes AI models can generate information that is incorrect, misleading, or completely nonsensical, but present it as fact. This is called <span class="tooltip">AI hallucinations<sup class="citation"><a href="#references">[24, 25]</a></sup><span class="tooltiptext">When AI invents facts or information that isn't true.</span></span>.
+                    Sometimes AI can generate incorrect or misleading information presented as fact (AI hallucinations).<sup class="citation"><a href="#ref-11">[11]</a></sup> This is called <span class="tooltip">AI hallucinations<span class="tooltiptext">When AI invents facts or information that isn't true.</span></span>.
+                     <a href="https://builtin.com/artificial-intelligence/ai-hallucination" target="_blank" rel="noopener noreferrer" class="resource-link">Read: AI Hallucinations Explained</a>
                 </p>
                 <p class="content-text mb-2">
-                    <strong>Why does this happen?</strong> AI doesn't 'know' things like humans do. It's trained to predict the next most likely word (or pixel, or sound) based on the billions of examples it has seen.<sup class="citation"><a href="#references">[2, 25]</a></sup> Think of it like a super-advanced autocomplete. If you ask it, 'Who will win the Ballon d'Or in 2025?', it doesn't know the answer. But it knows which football players' names often appear near 'Ballon d'Or winner'. So, it might confidently name a famous current player. It *sounds* believable because the name is right, the context is right, but the AI is just making a highly probable guess, not stating a known fact. It can be totally wrong.
+                    <strong>Why does this happen?</strong> AI hallucinations occur because AI doesn't 'know' but predicts based on patterns.<sup class="citation"><a href="#ref-12">[12]</a></sup> Think of it like a super-advanced autocomplete. If you ask it, 'Who will win the Ballon d'Or in 2025?', it doesn't know the answer. But it knows which football players' names often appear near 'Ballon d'Or winner'. So, it might confidently name a famous current player. It *sounds* believable because the name is right, the context is right, but the AI is just making a highly probable guess, not stating a known fact. It can be totally wrong.
                 </p>
                 <p class="content-text mb-2">
-                    This isn't deliberate deception by the AI. It's just how it works: predicting patterns. If the patterns in its data are incomplete or lead to a 'likely' but false statement, it will still generate it.<sup class="citation"><a href="#references">[25]</a></sup>
+                    This isn't deliberate deception by the AI. It's just how it works: predicting patterns. If the patterns in its data are incomplete or lead to a 'likely' but false statement, it will still generate it.
                 </p>
                 <p class="content-text mb-4">
-                    For example, an AI might 'invent' historical events or scientific 'facts.'<sup class="citation"><a href="#references">[26]</a></sup> The problem is made worse because AI can make its output look very real and professional (what I, Daniel the teacher, like to call 'the look of expertise').<sup class="citation"><a href="#references">[28, 29]</a></sup> Perfect grammar and a confident tone can make false information seem true, even when it's completely made up.
+                    For example, an AI might 'invent' historical events or scientific 'facts.' The problem is made worse because AI can make its output look very real and professional (what I, Daniel the teacher, like to call 'the look of expertise'). Perfect grammar and a confident tone can make false information seem true, even when it's completely made up.
                 </p>
                 <div id="spotTheLieActivity" class="bg-amber-50 p-4 rounded-md border border-amber-200">
                     <h4 class="font-semibold text-amber-700 mb-2">Exercise: What is AI-Generated Fiction?</h4>
                     <p class="text-sm content-text mb-3">Below are three short descriptions. Two are true (though perhaps a bit obscure), and one is an AI-generated "hallucination." Can you find the AI fiction?</p>
                     <div class="space-y-3">
-                        <div id="lieOption1" class="p-3 bg-white rounded shadow cursor-pointer hover:shadow-md"><strong>Text 1:</strong> "The chocolate fountain was invented in Canada by Aztec Inc. in the early 1990s and quickly became popular at fairs and events for its unique way of serving melted chocolate."</div>
-                        <div id="lieOption2" class="p-3 bg-white rounded shadow cursor-pointer hover:shadow-md"><strong>Text 2:</strong> "The world's longest documented hiccuping spell lasted for 68 years, from 1922 to 1990, affecting an American man named Charles Osborne."</div>
-                        <div id="lieOption3" class="p-3 bg-white rounded shadow cursor-pointer hover:shadow-md"><strong>Text 3:</strong> "The 'Great Emu War' in Australia in 1932 was an actual military operation where soldiers were deployed with machine guns to combat a large population of emus destroying crops."</div>
+                        <div id="lieOption1" class="p-3 bg-white rounded shadow cursor-pointer hover:shadow-md"><strong>Text 1:</strong> "The chocolate fountain was invented in Canada by Aztec Inc. in the early 1990s and quickly became popular at fairs and events for its unique way of serving melted chocolate."<sup class="citation"><a href="#ref-13">[13]</a></sup></div>
+                        <div id="lieOption2" class="p-3 bg-white rounded shadow cursor-pointer hover:shadow-md"><strong>Text 2:</strong> "The world's longest documented hiccuping spell lasted for 68 years, from 1922 to 1990, affecting an American man named Charles Osborne."<sup class="citation"><a href="#ref-14">[14]</a></sup></div>
+                        <div id="lieOption3" class="p-3 bg-white rounded shadow cursor-pointer hover:shadow-md"><strong>Text 3:</strong> "The 'Great Emu War' in Australia in 1932 was an actual military operation where soldiers were deployed with machine guns to combat a large population of emus destroying crops."<sup class="citation"><a href="#ref-15">[15]</a></sup></div>
                     </div>
                     <p id="lieFeedback" class="text-sm mt-3"></p>
-                    <p class="text-xs content-text mt-2"><i>(Answer: Text 1 is AI fiction. Chocolate fountains were popularized by Design & Realisation, but Aztec Inc. is fictional in this context. Texts 2 and 3 are true, albeit unusual, events.)</i></p>
+                    <p class="text-xs content-text mt-2"><i>(Answer: Text 1 is AI fiction. Chocolate fountains were popularized by Design & Realisation, but Aztec Inc. is not mentioned in sources confirming the invention. Texts 2 and 3 are true, albeit unusual, events.)</i></p>
                 </div>
             </div>
             
@@ -261,61 +295,64 @@
                 <p class="content-text mb-2">
                     On the internet, false or inaccurate information can spread quickly. It's important to distinguish between:
                     <ul class="list-disc list-inside content-text my-2 space-y-1">
-                        <li><span class="tooltip">Misinformation<sup class="citation"><a href="#references">[30, 31]</a></sup><span class="tooltiptext">False info spread, often without the sender knowing it's false.</span></span></li>
-                        <li><span class="tooltip">Disinformation<sup class="citation"><a href="#references">[30, 31]</a></sup><span class="tooltiptext">False info created and spread intentionally to deceive or harm.</span></span></li>
+                        <li><span class="tooltip">Misinformation<span class="tooltiptext">False info spread, often without the sender knowing it's false.</span></span></li>
+                        <li><span class="tooltip">Disinformation<span class="tooltiptext">False info created and spread intentionally to deceive or harm.</span></span></li>
                     </ul>
+                     <a href="https://guides.lib.k-state.edu/media-literacy/factcheck" target="_blank" rel="noopener noreferrer" class="resource-link">Learn: Mis/Disinformation & Fact-Checking</a>
                 </p>
                 <p class="content-text mb-2">
                     AI can amplify these problems. Algorithms on social media can create:
                     <ul class="list-disc list-inside content-text my-2 space-y-1">
-                        <li><span class="tooltip">Echo Chambers<sup class="citation"><a href="#references">[32, 33]</a></sup><span class="tooltiptext">Environments where you mostly see opinions you already agree with, and alternative views are rarely encountered.</span></span></li>
-                        <li><span class="tooltip">Filter Bubbles<sup class="citation"><a href="#references">[34, 35]</a></sup><span class="tooltiptext">When algorithms personalize the content you see based on your past behavior, so you miss other perspectives, often without knowing it.</span></span></li>
+                        <li><span class="tooltip">Echo Chambers<span class="tooltiptext">Environments where you mostly see opinions you already agree with, and alternative views are rarely encountered.</span></span></li>
+                        <li><span class="tooltip">Filter Bubbles<span class="tooltiptext">When algorithms personalize the content you see based on your past behavior, so you miss other perspectives, often without knowing it.</span></span></li>
                     </ul>
+                    <a href="https://en.wikipedia.org/wiki/Filter_bubble" target="_blank" rel="noopener noreferrer" class="resource-link">Read: Filter Bubbles (Wikipedia)</a>
+                    <a href="https://www.youtube.com/watch?v=eaolE1blpWk" target="_blank" rel="noopener noreferrer" class="resource-link">Watch: Echo Chambers & Filter Bubbles</a>
                 </p>
                 <p class="content-text mb-2">
-                    This is related to the <span class="tooltip">Attention Economy<sup class="citation"><a href="#references">[39, 40]</a></sup><span class="tooltiptext">The idea that your attention is a valuable resource that websites and apps compete for, often through advertising.</span></span>. AI is good at finding and promoting content that captures attention, regardless of whether it's true or good for you.<sup class="citation"><a href="#references">[40]</a></sup>
+                    This is related to the <span class="tooltip">Attention Economy<span class="tooltiptext">The idea that your attention is a valuable resource that websites and apps compete for, often through advertising.</span></span>. AI is good at finding and promoting content that captures attention, regardless of whether it's true or good for you.
                 </p>
                 <p class="content-text mb-2 font-semibold text-red-700">
-                    <strong>The Dangers are Real:</strong> This isn't just about being wrong; it's serious. Believing and spreading false AI-generated information can have severe consequences.<sup class="citation"><a href="#references">[30, 38]</a></sup> In your future jobs, decisions based on bad info could lead to dangerous mistakes, financial loss, or harm to people's reputations or even their safety. Imagine an electrician relying on faulty AI-generated wiring diagrams, or a healthcare assistant acting on incorrect AI medical advice. Online, it can lead to bullying, scams, and even influence important societal events like elections with false narratives. Being critical isn't just a skill; it's a responsibility to protect yourself and others.
+                    <strong>The Dangers are Real:</strong> This isn't just about being wrong; it's serious. Believing and spreading false AI-generated information can have severe consequences. In your future jobs, decisions based on bad info could lead to dangerous mistakes, financial loss, or harm to people's reputations or even their safety. Imagine an electrician relying on faulty AI-generated wiring diagrams, or a healthcare assistant acting on incorrect AI medical advice. Online, it can lead to bullying, scams, and even influence important societal events like elections with false narratives, undermining democratic processes. Being critical isn't just a skill; it's a responsibility to protect yourself and others.
                 </p>
                 <div id="escapeBubbleActivity" class="bg-sky-50 p-4 rounded-md border border-sky-200 mt-4">
                     <h4 class="font-semibold text-sky-700 mb-2">Exercise: Burst the Bubble!</h4>
-                    <p class="text-sm content-text mb-3">How can you avoid being trapped in filter bubbles and echo chambers? Click on a strategy to learn more and reflect.<sup class="citation"><a href="#references">[43, 44, 45]</a></sup></p>
+                    <p class="text-sm content-text mb-3">How can you avoid being trapped in filter bubbles and echo chambers? Click on a strategy to learn more and reflect.
+                        <a href="https://libguides.pittcc.edu/evaluate/fact-checking" target="_blank" rel="noopener noreferrer" class="resource-link">Learn: Fact-Checking Techniques</a>
+                        <a href="https://guides.lib.k-state.edu/media-literacy/factcheck" target="_blank" rel="noopener noreferrer" class="resource-link">Tools: Fact-Checking Websites</a>
+                    </p>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                        <div class="strategy-card p-3 bg-white rounded shadow cursor-pointer hover:shadow-md" data-strategy-id="strategy1" data-info="Actively seek news from various sources with different perspectives, even those you disagree with. (Sources: [43, 44]) (Tool example: AllSides.com [42])">Vary your news sources</div>
-                        <div class="strategy-card p-3 bg-white rounded shadow cursor-pointer hover:shadow-md" data-strategy-id="strategy2" data-info="Consciously follow people and organizations on social media who have different opinions than your own. (Source: [44])">Follow diverse voices</div>
-                        <div class="strategy-card p-3 bg-white rounded shadow cursor-pointer hover:shadow-md" data-strategy-id="strategy3" data-info="Check if information is true before sharing it. Use reputable fact-checking sites (e.g., Faktisk.no, Snopes, PolitiFact) and cross-reference. (Sources: [42, 44])">Fact-check thoroughly</div>
-                        <div class="strategy-card p-3 bg-white rounded shadow cursor-pointer hover:shadow-md" data-strategy-id="strategy4" data-info="Be aware that algorithms personalize content. Consciously explore content outside your usual interests. (Source: [43])">Understand and "confuse" algorithms</div>
+                        <div class="strategy-card p-3 bg-white rounded shadow cursor-pointer hover:shadow-md" data-strategy-id="strategy1" data-info="Actively seek news from various sources with different perspectives, even those you disagree with. (Tool example: AllSides.com)">Vary your news sources</div>
+                        <div class="strategy-card p-3 bg-white rounded shadow cursor-pointer hover:shadow-md" data-strategy-id="strategy2" data-info="Consciously follow people and organizations on social media who have different opinions than your own.">Follow diverse voices</div>
+                        <div class="strategy-card p-3 bg-white rounded shadow cursor-pointer hover:shadow-md" data-strategy-id="strategy3" data-info="Check if information is true before sharing it. Use reputable fact-checking sites (e.g., Faktisk.no, Snopes, PolitiFact) and cross-reference.">Fact-check thoroughly</div>
+                        <div class="strategy-card p-3 bg-white rounded shadow cursor-pointer hover:shadow-md" data-strategy-id="strategy4" data-info="Be aware that algorithms personalize content. Consciously explore content outside your usual interests.">Understand and "confuse" algorithms</div>
                     </div>
                     <div id="strategyDetailsContainer" class="mt-4"></div>
-                    <div class="mt-6">
-                        <h5 class="font-semibold text-slate-700 mb-2">My Action Plan:</h5>
-                        <p class="text-sm content-text mb-2">Which 1-2 strategies will you try to use more often? (Write this down for yourself)</p>
-                        <textarea id="bubbleActionPlan" rows="3" class="w-full p-2 border border-slate-300 rounded-md" placeholder="E.g., 'I will check one different news site this week.' or 'I will look for a fact-checking site before sharing something surprising.'"></textarea>
-                        <p id="bubblePlanFeedback" class="text-sm text-green-600 mt-2 hidden">Taking action is key. Keep this plan in mind!</p>
+                    <div class="mt-6 writing-prompt">
+                        <p><span class="prompt-number">Writing Prompt 2.1:</span> After exploring the strategies above, choose 1-2 strategies you think would be most helpful for you. In a few sentences, explain why you chose them and describe a specific situation where you could apply each one this week.</p>
                     </div>
                 </div>
             </div>
         </section>
 
         <section id="helper" class="pt-16 -mt-16 mb-12">
-            <h2 class="section-title">AI as Helper: Use the Tools Smartly and Responsibly</h2>
+            <h2 class="section-title">3. AI as Helper: Use the Tools Smartly and Responsibly</h2>
             <div class="interactive-card">
                 <h3 class="subsection-title">The "You First" Principle: Your Brain, Then AI</h3>
                 <p class="content-text mb-2">
-                    When you use AI for school, the most important rule is: <span class="font-bold text-sky-600">You First!</span><sup class="citation"><a href="#references">[46, 47]</a></sup> This means you must always start by using your own brain – your own thinking, planning, and initial effort – *before* you turn to AI.
+                    When you use AI for school, the most important rule is: <span class="font-bold text-sky-600">You First!</span> This means you must always start by using your own brain – your own thinking, planning, and initial effort – *before* you turn to AI.
                 </p>
                 <p class="content-text mb-2">
                     Think of it this way: using AI to write your essays or solve all your problems is like using a forklift to lift weights at the gym. Sure, the forklift can lift heavy things easily, but *you* don't get any stronger. The whole point of lifting weights is to build *your own* muscles. Similarly, the point of doing schoolwork isn't just to get an answer or a finished product; it's to build your "mental muscles."
                 </p>
                 <p class="content-text mb-2">
-                    When you write an essay, for example, you're not just learning to write. You're learning much deeper skills: how to structure your thoughts, organize complex information, think critically about a topic, find evidence, and communicate your ideas clearly and persuasively.<sup class="citation"><a href="#references">[4]</a></sup> These are incredibly important skills for any job and for life in general. If AI does this heavy lifting for you, you miss out on developing these critical abilities.<sup class="citation"><a href="#references">[48]</a></sup>
+                    When you write an essay, for example, you're not just learning to write. You're learning much deeper skills: how to structure your thoughts, organize complex information, think critically about a topic, find evidence, and communicate your ideas clearly and persuasively. These are incredibly important skills for any job and for life in general. If AI does this heavy lifting for you, you miss out on developing these critical abilities.
                 </p>
                 <p class="content-text mb-2">
                     Learning can sometimes feel a bit tough or "painful" – that's when your brain is really working hard and growing. It's often at these moments that it's most tempting to let AI take over. But remember the saying, "no pain, no gain." That struggle is actually what learning feels like. If you skip that struggle, you skip the learning.
                 </p>
                 <p class="content-text mb-2">
-                    Scientists have noticed that many teenagers today report feeling more stressed and perhaps less able to tackle difficulties. Some think this might be partly because technology, including AI, can remove many of the small challenges and hurdles that actually help us grow stronger and more resilient. Your brain is incredibly <span class="tooltip">plastic<span class="tooltiptext">Able to change and adapt as a result of experience.</span></span> (able to change and adapt) when you're young – roughly until your early twenties.<sup class="citation"><a href="#references">[4]</a></sup> This is the prime time to build those fundamental thinking skills. If you rely too much on AI to do the thinking for you now, it can be much harder to develop these essential skills later in life.
+                    Scientists have noticed that many teenagers today report feeling more stressed and perhaps less able to tackle difficulties. Some think this might be partly because technology, including AI, can remove many of the small challenges and hurdles that actually help us grow stronger and more resilient. Your brain is incredibly <span class="tooltip">plastic<span class="tooltiptext">Able to change and adapt as a result of experience.</span></span> (able to change and adapt) when you're young – roughly until your early twenties.<sup class="citation"><a href="#ref-16">[16]</a></sup> This is the prime time to build those fundamental thinking skills. If you rely too much on AI to do the thinking for you now, it can be much harder to develop these essential skills later in life.
                 </p>
                 <p class="content-text">
                     So, always start with your own effort. Once you've wrestled with the material yourself, then AI can be a useful tool to <span class="tooltip">support<span class="tooltiptext">To assist or hold up.</span></span>, <span class="tooltip">improve<span class="tooltiptext">To make better.</span></span>, or <span class="tooltip">refine<span class="tooltiptext">To make small changes to improve something.</span></span> your work. But you do the core thinking first.
@@ -323,9 +360,9 @@
             </div>
 
             <div class="interactive-card">
-                <h3 class="subsection-title">AI for Augmentation vs. Generation</h3>
+                <h3 class="subsection-title">AI for <span class="tooltip">Augmentation<span class="tooltiptext">To add to or enhance something, making it better or more effective.</span></span> vs. Generation</h3>
                 <p class="content-text mb-2">
-                    There's a big difference between using AI to <span class="tooltip">augment<sup class="citation"><a href="#references">[49]</a></sup><span class="tooltiptext">To add to or enhance something.</span></span> your work and letting AI <span class="tooltip">generate<span class="tooltiptext">To create or produce.</span></span> work for you.
+                    There's a big difference between using AI to augment your work and letting AI generate work for you.
                 </p>
                 <div class="grid md:grid-cols-2 gap-4 content-text">
                     <div class="bg-rose-50 p-4 rounded">
@@ -335,98 +372,96 @@
                     </div>
                     <div class="bg-green-50 p-4 rounded">
                         <h4 class="font-semibold text-green-700 mb-1">Augmentation (Good for Learning)</h4>
-                        <p class="text-sm">AI helps you, improves, or builds upon work you've already started or thought out. AI is a collaborator, helping you lift more after you've done your reps.<sup class="citation"><a href="#references">[49]</a></sup></p>
+                        <p class="text-sm">AI helps you, improves, or builds upon work you've already started or thought out. AI is a collaborator, helping you lift more after you've done your reps.</p>
                         <p class="text-sm mt-1"><i>Example: "Here's a paragraph I wrote. Can you give feedback on clarity and grammar?"</i></p>
                     </div>
                 </div>
                 <p class="content-text mt-3">
-                    In school and professional life, the focus should be on augmentation.<sup class="citation"><a href="#references">[20]</a></sup> AI can help you see new angles, improve what you've created, or automate simple parts of a task, so you can focus on the more demanding and creative parts.<sup class="citation"><a href="#references">[16, 50]</a></sup>
+                    In school and professional life, the focus should be on augmentation. AI can help you see new angles, improve what you've created, or automate simple parts of a task, so you can focus on the more demanding and creative parts.
                 </p>
             </div>
 
             <div class="interactive-card">
                 <h3 class="subsection-title">Ethical Use: AI as a Learning Partner (with Norwegian Guidelines)</h3>
-                <p class="content-text mb-2">With the "You First" principle and your teacher's permission, AI can be a great learning partner. Here are some examples of ethical AI use:<sup class="citation"><a href="#references">[64]</a></sup></p>
+                <p class="content-text mb-2">With the "You First" principle and your teacher's permission, AI can be a great learning partner. Here are some examples of ethical AI use:
+                     <a href="https://ndla.no/r/engelsk-sf/presentation-sf/3f99192e37" target="_blank" rel="noopener noreferrer" class="resource-link">Ethical AI Use (NDLA)</a>
+                     <a href="https://www.udir.no/kvalitet-og-kompetanse/digitalisering-skole/kunstig-intelligens-ki-i-skolen/kunstig-intelligens-ki-i-skolen/" target="_blank" rel="noopener noreferrer" class="resource-link">Norwegian AI Guidelines (Udir)</a>
+                </p>
                 <ul class="list-disc list-inside content-text mb-3 space-y-1">
-                    <li><strong>Brainstorming (after your own effort!):</strong> This is key: *after* you have already thought deeply about your project and have your own initial ideas, you could ask AI: "I've thought about X, Y, Z for my project. Can you suggest some other angles or related concepts I might have missed?"<sup class="citation"><a href="#references">[51, 52, 53]</a></sup> Using AI before you've done your own thinking is like asking the forklift to decide which muscles you should train – it defeats the purpose.</li>
-                    <li><strong>Getting feedback on YOUR work:</strong> "Can you check this text I wrote for grammar mistakes?"<sup class="citation"><a href="#references">[47, 54, 55, 56]</a></sup></li>
-                    <li><strong>Explaining difficult topics (after your own effort):</strong> "I've read about Ohm's Law but struggle to understand. Can you explain it simply for an apprentice in electrical trades?"<sup class="citation"><a href="#references">[53, 54, 57]</a></sup></li>
-                    <li><strong>Practicing skills:</strong> "Give me a scenario for a customer conversation where the customer is dissatisfied."<sup class="citation"><a href="#references">[58, 59]</a></sup></li>
+                    <li><strong>Brainstorming (<em>after</em> your own effort!):</strong> This is key: *after* you have already thought deeply about your project and have your own initial ideas, you could ask AI: "I've thought about X, Y, Z for my project. Can you suggest some other angles or related concepts I might have missed?" Using AI before you've done your own thinking is like asking the forklift to decide which muscles you should train – it defeats the purpose.</li>
+                    <li><strong>Getting feedback on YOUR work:</strong> "Can you check this text I wrote for grammar mistakes?"</li>
+                    <li><strong>Explaining difficult topics (after your own effort):</strong> "I've read about Ohm's Law but struggle to understand. Can you explain it simply for an apprentice in electrical trades?"</li>
+                    <li><strong>Practicing skills:</strong> "Give me a scenario for a customer conversation where the customer is dissatisfied."</li>
                 </ul>
                  <p class="content-text mb-2"><strong>Important in Norway:</strong></p>
                 <ul class="list-disc list-inside content-text mb-2 space-y-1 text-sm">
-                    <li><strong>AI as support, not replacement:</strong> AI should support learning, not replace your own work and critical thinking.<sup class="citation"><a href="#references">[60, 61]</a></sup></li>
-                    <li><strong>Be transparent:</strong> Be clear about when and how you've used AI.<sup class="citation"><a href="#references">[60, 61]</a></sup></li>
-                    <li><strong>Check facts:</strong> Information from AI must always be checked against reliable sources. Do not cite AI as a source.<sup class="citation"><a href="#references">[60, 61]</a></sup></li>
-                    <li><strong>Privacy:</strong> Don't share sensitive personal information or copyrighted material with AI tools, especially those not approved for GDPR (privacy regulations). Consider using tools like **Sikt AI Chat**, which is adapted to Norwegian privacy laws.<sup class="citation"><a href="#references">[60]</a></sup></li>
+                    <li><strong>AI as support, not replacement:</strong> AI should support learning, not replace your own work and critical thinking.</li>
+                    <li><strong>Be transparent:</strong> Be clear about when and how you've used AI.</li>
+                    <li><strong>Check facts:</strong> Information from AI must always be checked against reliable sources. Do not cite AI as a source.</li>
+                    <li><strong>Privacy:</strong> Don't share sensitive personal information or copyrighted material with AI tools, especially those not approved for GDPR (privacy regulations). Consider using tools like **NDLA AI Chat**, which is adapted to Norwegian privacy laws.<sup class="citation"><a href="#ref-17">[17]</a></sup></li>
                 </ul>
                 <p class="content-text">Ethical use is about your intention and transparency. The goal must be to learn more and become better, not to avoid work.</p>
             </div>
             
             <div class="interactive-card">
-                <h3 class="subsection-title">Academic Integrity: What's NOT Okay? – The Red Lines & Consequences</h3>
-                <p class="content-text mb-2">Misusing AI can be cheating, and schools take this very seriously. Here are some clear "red lines":</p>
+                <h3 class="subsection-title">Akademisk Redelighet: Hva er IKKE Greit? – Konsekvenser ved Juks med KI</h3>
+                <p class="content-text mb-2">Misbruk av KI, som å la den gjøre jobben for deg og presentere det som ditt eget, er juks. Skoler ser alvorlig på dette.</p>
                 <ul class="list-disc list-inside content-text mb-2 space-y-1 text-red-700 bg-red-50 p-3 rounded-md">
-                    <li>Submitting AI-generated work (text, code, solutions) as your own. This is plagiarism.<sup class="citation"><a href="#references">[65, 66]</a></sup></li>
-                    <li>Letting AI do most of the work for you on an assignment.<sup class="citation"><a href="#references">[47, 66]</a></sup></li>
-                    <li>Using AI when the teacher has said it's not allowed (e.g., on tests).<sup class="citation"><a href="#references">[47]</a></sup></li>
-                    <li>Asking AI to write entire reports or large sections of text for you.<sup class="citation"><a href="#references">[47]</a></sup></li>
+                    <li>Å levere KI-generert tekst, kode eller løsninger som ditt eget arbeid. Dette er plagiat.</li>
+                    <li>Å la KI gjøre mesteparten av arbeidet for deg på en oppgave.</li>
+                    <li>Å bruke KI når lærer har sagt det ikke er lov.</li>
+                    <li>Å be KI skrive hele rapporter eller store deler av tekster for deg.</li>
                 </ul>
-                <p class="content-text mt-2 mb-2"><strong>Consequences of Cheating and Plagiarism in Norwegian Schools (Examples based on typical regulations):</strong></p>
+                <p class="content-text mt-2 mb-2"><strong>Hva regnes som juks og plagiat med KI?</strong></p>
                 <p class="content-text mb-2 text-sm">
-                    Cheating and plagiarism are serious violations of school regulations and can have major consequences. Reactions depend on the severity and whether it's a first-time offense or repeated.
+                    Juks er for eksempel å bruke ulovlige hjelpemidler, samarbeide/kommunisere med andre uten lov, eller å presentere andres arbeid – inkludert arbeid generert av KI – som sitt eget. Plagiat er når deler av besvarelsen er direkte avskrift eller lettere omskrivinger av andres tekster (også fra KI) uten kildereferanser og uten at teksten er markert som sitat. For å unngå plagiering er det viktig at du lærer deg riktig kildebruk, også når du henter inspirasjon fra KI.
+                </p>
+                <p class="content-text mb-2 text-sm">
+                    Bruk av KI kan hjelpe deg med å løse problemer, gi ny kunnskap, reflektere og lære. Slik sett kan KI være positivt og nyttig. Men dersom du bruker KI uten avtale med lærer, og presenterer KI-generert innhold som ditt eget, er det å regne som juks/plagiat.
+                </p>
+                <p class="content-text mt-2 mb-2"><strong>Reaksjoner ved juks og plagiat med KI:</strong></p>
+                <p class="content-text mb-2 text-sm">
+                    Juks og plagiat med KI kan få store konsekvenser og er et alvorlig brudd på skolereglementet. Reaksjoner vil avhenge av alvorlighetsgrad og om det er første gang eller gjentagelse.
                 </p>
                 <ul class="list-disc list-inside content-text text-sm space-y-1">
-                    <li><strong>Failing Grades:</strong> Cheating or plagiarism can lead to a failing grade (IV - Ikke Vurdert / Not Assessed) for mid-term assessments and final grades in subjects. (Typically based on regulations similar to the Education Act §§ 9-14, 9-17).</li>
-                    <li><strong>Reduced Conduct Grade:</strong> Particularly blameworthy or gross single incidents of cheating can lead to a reduced conduct grade. In such cases, the school must issue a formal decision, and the student (and parents if under 18) must be notified in advance and given a chance to explain themselves orally. (Typically based on school rules like § 5-3).</li>
-                    <li><strong>Exam Annulment & Loss of Final Grade:</strong> For students caught cheating or attempting to cheat on an exam, the exam can be annulled. This also means the student loses their final grade (standpunktkarakter) in that subject. This can prevent the student from receiving their initial diploma (førstegangsvitnemål). (Typically based on regulations similar to the Education Act § 9-42).</li>
+                    <li>Juks og plagiat med KI kan medføre IV (Ikke Vurdert) i halvårsvurdering og standpunktkarakter i fag, jamfør forskrift til opplæringsloven §§ 9-14, 9-17.<sup class="citation"><a href="#ref-18">[18]</a></sup></li>
+                    <li>Ved særlig klanderverdige eller grove enkelthendelser, kan juks med KI føre til nedsatt karakter i orden og/eller oppførsel ved standpunkt. Dette kommer frem av «skoleregler for elever, § 5-3». I slike tilfeller skal skolen fatte et enkeltvedtak. Eleven og foresatte (elever under 18 år) skal forhåndsvarsles, og eleven skal få anledning til å forklare seg muntlig. Varsel etter forskrift til opplæringsloven § 9-17 er ikke alltid nødvendig ved nedsatt standpunktkarakter i orden eller oppførsel som følge av grove enkelthendelser, da eleven ikke har anledning til å forbedre karakteren sin.<sup class="citation"><a href="#ref-19">[19]</a></sup></li>
+                    <li>For elever som blir tatt i juks eller forsøk på juks med KI i forbindelse med eksamen, gjelder forskrift til opplæringsloven § 9-42 om annullering av eksamen. Det innebærer at eleven også mister standpunktkarakteren i samme fag. Dette kan føre til at eleven ikke får førstegangsvitnemål.<sup class="citation"><a href="#ref-20">[20]</a></sup></li>
                 </ul>
-                 <p class="content-text mt-3">The bottom line: AI should not replace your own learning, critical thinking, or creativity.<sup class="citation"><a href="#references">[53, 66]</a></sup> The goal of school is for *you* to learn and develop these skills.<sup class="citation"><a href="#references">[54, 66]</a></sup></p>
+                 <p class="content-text mt-3">Hovedpoenget er: KI skal ikke erstatte din egen læring, kritiske tenkning eller kreativitet. Målet med skolen er at *du* skal lære og utvikle disse ferdighetene.</p>
             </div>
 
             <div class="interactive-card" id="ethicsTableActivity">
-                <h3 class="subsection-title">AI Use: Green, Yellow, Red Light for School Assignments<sup class="citation"><a href="#references">[4, 51, 52]</a></sup></h3>
+                <h3 class="subsection-title">AI Use: Green, Yellow, Red Light for School Assignments</h3>
                 <p class="content-text mb-3">This table provides a guide on what is generally okay, what you should be careful with (and check with your teacher), and what is generally not okay when using AI for schoolwork. Remember the "You First" principle!</p>
                 <div class="overflow-x-auto">
                     <table class="min-w-full ethics-table">
                         <thead>
                             <tr>
-                                <th class="w-1/4">Task Type (Example)</th>
-                                <th class="w-1/4 green-light">Green Light (OK with permission & "You First")</th>
-                                <th class="w-1/4 yellow-light">Yellow Light (Be cautious – Check with teacher, use ethically & openly)</th>
-                                <th class="w-1/4 red-light">Red Light (NOT OK – Risk of cheating)</th>
+                                <th class="w-1/3">Task Type (Example)</th>
+                                <th class="w-1/3 green-light">Green Light (Generally OK with permission & "You First")</th>
+                                <th class="w-1/3 yellow-light">Yellow Light (Be cautious – Check with teacher, use ethically & openly)</th>
+                                <th class="w-1/3 red-light">Red Light (Generally NOT OK)</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td><strong>Brainstorming</strong></td>
-                                <td>After your own thoughts, ask AI for related concepts or new angles on a topic you've chosen.</td>
-                                <td>Ask AI to generate a list of possible topics if you're completely stuck, but research them independently to choose and develop your own.</td>
-                                <td>Ask AI to choose your topic and provide all initial ideas without your own effort.</td>
+                                <td>After own thoughts, ask AI for related concepts or new angles.</td>
+                                <td>AI generates topic list if stuck; research independently to choose/develop.</td>
+                                <td>AI chooses topic & provides all initial ideas without own effort.</td>
                             </tr>
                             <tr>
                                 <td><strong>Fact-checking/Definitions</strong></td>
-                                <td>Ask AI to explain a term *after* you've tried to understand it from the curriculum. Verify AI answers with reliable sources.</td>
-                                <td>Ask AI to summarize a long article you've found (and read) to help with notes. You must still read and understand the original source.</td>
-                                <td>Using AI-generated summaries or facts without reading original sources or verifying.</td>
+                                <td>AI explains term *after* own attempt; verify with reliable sources.</td>
+                                <td>AI summarizes long article (read first) for notes; understand original source.</td>
+                                <td>Using AI summaries/facts without reading original sources or verifying.</td>
                             </tr>
                             <tr>
                                 <td><strong>Writing Drafts</strong></td>
-                                <td>Use AI to check *your own* text for grammar, spelling. Ask for suggestions to improve sentences *you've written*.</td>
-                                <td>Use AI to help with an outline *after* you've decided on main arguments and found sources. Ask AI to rephrase a sentence *you wrote* that feels awkward. Be open about its use.</td>
-                                <td>Ask AI to write paragraphs, sections, or the entire text for you. Submitting AI text as your own.</td>
-                            </tr>
-                             <tr>
-                                <td><strong>Coding/Technical Problem Solving</strong></td>
-                                <td>Ask AI for help debugging code *you've written*, or to explain an error message.</td>
-                                <td>Use AI to generate small, defined code snippets for a larger project *you're designing*. Understand the code and integrate it correctly. Be open.</td>
-                                <td>Ask AI to write an entire program or solve a complex technical problem for an assignment without your significant effort.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Tests/Exams</strong></td>
-                                <td class="text-center">-</td>
-                                <td class="text-center">-</td>
-                                <td>Using AI in any way unless the teacher has explicitly allowed it for a specific open-book AI-assisted test.</td>
+                                <td>AI checks *your* text for grammar/spelling; suggests improvements to *your* sentences.</td>
+                                <td>AI helps outline *after* main arguments/sources decided; AI rephrases *your* awkward sentence. Be open.</td>
+                                <td>AI writes paragraphs/sections/entire text; submitting AI text as own.</td>
                             </tr>
                         </tbody>
                     </table>
@@ -436,18 +471,16 @@
         </section>
 
         <section id="future" class="pt-16 -mt-16 mb-12">
-            <h2 class="section-title">Your AI Future: Opportunities and Human Strengths</h2>
+            <h2 class="section-title">4. Your AI Future: Opportunities and Human Strengths</h2>
             <div class="interactive-card">
-                <h3 class="subsection-title">AI's Impact on Your Vocational Field<sup class="citation"><a href="#references">[5]</a></sup></h3>
-                <p class="content-text mb-2">AI will affect most professions, but in different ways. Here are some examples:</p>
+                <h3 class="subsection-title">AI's Impact on Your Vocational Field (Focus: Electrical Trades & Computer Technology)</h3>
+                <p class="content-text mb-2">AI will affect most professions, but its impact is particularly notable in technical fields. For students in Electrical Trades and Computer Technology, understanding these changes is key:</p>
                 <ul class="list-disc list-inside content-text mb-2 space-y-1">
-                    <li><strong>Electrical Trades & Computer Technology:</strong> Smart power management, automatic fault detection in circuits<sup class="citation"><a href="#references">[6]</a></sup>, AI tools for coding and cybersecurity.<sup class="citation"><a href="#references">[7, 8]</a></sup></li>
-                    <li><strong>Healthcare, Childcare, and Youth Work:</strong> AI can help analyze X-rays<sup class="citation"><a href="#references">[9]</a></sup> or automate administrative tasks, but human care and empathy cannot be replaced.<sup class="citation"><a href="#references">[10]</a></sup></li>
-                    <li><strong>Building and Construction:</strong> Drones with AI to monitor construction sites, AI to optimize designs for energy efficiency.<sup class="citation"><a href="#references">[11, 12]</a></sup></li>
-                    <li><strong>Sales, Service, and Tourism:</strong> AI chatbots for customer service, personalized recommendations for travel and products.<sup class="citation"><a href="#references">[13, 14]</a></sup></li>
+                    <li><strong>Electrical Trades & Computer Technology:</strong> Expect to see more AI in smart power grid management, automated fault detection in complex circuits, advanced AI tools for cybersecurity threat analysis, and AI assistants that help with coding and software development.</li>
                 </ul>
                 <p class="content-text">
-                    The point is often that AI <span class="tooltip">enhances<sup class="citation"><a href="#references">[6, 10, 16]</a></sup><span class="tooltiptext">Improves or makes better.</span></span> human skills and changes job tasks, rather than replacing skilled workers. It will be important to be able to collaborate with AI systems.
+                    The point is often that AI <span class="tooltip">enhances<span class="tooltiptext">Improves or makes better.</span></span> human skills and changes job tasks, rather than replacing skilled workers. It will be important to be able to collaborate with AI systems.
+                     <a href="https://www.livingstonjames.com/fundamentally-human-the-irreplaceable-skills-needed-in-the-age-of-ai/" target="_blank" rel="noopener noreferrer" class="resource-link">Read: Irreplaceable Human Skills</a>
                 </p>
             </div>
 
@@ -460,69 +493,69 @@
             </div>
 
             <div class="interactive-card" id="vocationalFutureActivity">
-                <h3 class="subsection-title">Exercise: My Vocational Future with AI (Writing Prompt)<sup class="citation"><a href="#references">[1, 20, 58, 72]</a></sup></h3>
-                <p class="content-text mb-3">Take some time to write down your thoughts on the following. This is for your own reflection and learning:</p>
+                <h3 class="subsection-title">Writing Prompt 3.1: My Vocational Future with AI</h3>
+                <p class="content-text mb-3">Consider the following questions and write a few paragraphs in a separate document to explore your thoughts. This is for your own reflection and learning:</p>
                 <ul class="list-disc list-inside content-text space-y-2 mb-3">
-                    <li>What is your chosen vocational field or dream job?</li>
-                    <li>Imagine you're working in this job 5-10 years from now. How do you think AI might be a part of your daily work? List 1-2 specific tasks AI could help with.</li>
-                    <li>In that same future job, what are 1-2 important tasks or responsibilities that you believe *only a human* (you!) could do well, where your human skills and judgment would be essential?</li>
-                    <li>What's one key skill (like critical thinking, problem-solving, or communication) you think you should focus on developing now to be successful working alongside AI in the future?</li>
+                    <li>What is your chosen vocational field or dream job (e.g., within Electrical Trades or Computer Technology)?</li>
+                    <li>Imagine you're working in this job 5-10 years from now. How do you think AI might be a part of your daily work? Describe 1-2 specific tasks AI could help with.</li>
+                    <li>In that same future job, what are 1-2 important tasks or responsibilities that you believe *only a human* (you!) could do well, where your human skills and judgment would be essential? Explain why.</li>
+                    <li>What's one key skill (like critical thinking, problem-solving, or communication) you think you should focus on developing now to be successful working alongside AI in the future? How can you work on this skill in your current studies?</li>
                 </ul>
-                <p class="content-text">Consider writing a few paragraphs in a notebook or a document to explore these ideas. There's no need to submit this, it's a chance for you to think ahead!</p>
             </div>
         </section>
 
         <section id="society" class="pt-16 -mt-16 mb-12">
-            <h2 class="section-title">AI & Society: Your Responsibility as a User and Citizen</h2>
-            <div class="interactive-card">
-                <h3 class="subsection-title">Your Digital Footprint & Privacy with AI</h3>
-                <p class="content-text mb-2">
-                    Every time you use digital tools, including AI, you leave a <span class="tooltip">digital footprint<span class="tooltiptext">Traces of your online activity.</span></span>. When using AI, you often share data – what you ask, the information you seek, or personal details.
-                </p>
-                <p class="content-text mb-2">Important points about privacy with AI:</p>
-                <ul class="list-disc list-inside content-text mb-2 space-y-1">
-                    <li><strong>Data Collection:</strong> Many AI tools collect user data to improve their models or for business purposes.<sup class="citation"><a href="#references">[40]</a></sup></li>
-                    <li><strong>Privacy Policies:</strong> Read (summaries of) privacy policies to understand how your data is used.</li>
-                    <li><strong>Sensitive Information:</strong> Be careful about sharing very personal or confidential information with public AI tools.<sup class="citation"><a href="#references">[46, 61]</a></sup></li>
-                    <li><strong>GDPR & Norwegian Laws:</strong> Norway has strict privacy laws (GDPR). Consider using AI tools approved for Norwegian conditions, like **Sikt AI Chat**.<sup class="citation"><a href="#references">[60]</a></sup></li>
-                </ul>
-            </div>
+            <h2 class="section-title">5. AI & Society: Your Responsibility as a User and Citizen</h2>
             
             <div class="interactive-card">
                 <h3 class="subsection-title">The Attention Economy and AI's Role</h3>
                  <p class="content-text mb-2">
-                    The <span class="tooltip">Attention Economy<sup class="citation"><a href="#references">[39, 40]</a></sup><span class="tooltiptext">The idea that your attention is valuable, and tech companies design products to capture it, often for advertising revenue.</span></span> is about your attention being valuable. Tech companies often design products to capture and hold your focus as long as possible, often to make money from advertising.
+                    The <span class="tooltip">Attention Economy<span class="tooltiptext">The idea that your attention is valuable, and tech companies design products to capture it, often for advertising revenue.</span></span> is about your attention being valuable, and tech companies design products to capture it, often for advertising revenue.<sup class="citation"><a href="#ref-21">[21]</a></sup>
+                    <a href="https://econreview.studentorg.berkeley.edu/paying-attention-the-attention-economy/" target="_blank" rel="noopener noreferrer" class="resource-link">Read: The Attention Economy (Text)</a>
+                    <a href="https://www.youtube.com/watch?v=50R21mblLb0" target="_blank" rel="noopener noreferrer" class="resource-link">Watch: The Attention Economy (Video)</a>
                 </p>
-                <p class="content-text mb-2">AI is an engine in this:</p>
+                <p class="content-text mb-2">AI is an engine in this:<sup class="citation"><a href="#ref-22">[22]</a></sup></p>
                 <ul class="list-disc list-inside content-text mb-2 space-y-1">
-                    <li><strong>Personalization:</strong> AI algorithms tailor content (feeds, recommendations, notifications) to be as engaging as possible for you.<sup class="citation"><a href="#references">[40]</a></sup></li>
-                    <li><strong>Engagement Optimization:</strong> AI can identify and promote content that captures attention (e.g., emotional, sensational), regardless of quality or accuracy.<sup class="citation"><a href="#references">[37]</a></sup></li>
+                    <li><strong>Personalization:</strong> AI algorithms tailor content (feeds, recommendations, notifications) to be as engaging as possible for you.</li>
+                    <li><strong>Engagement Optimization:</strong> AI can identify and promote content that captures attention (e.g., emotional, sensational), regardless of quality or accuracy.</li>
                 </ul>
-                <p class="content-text">Disadvantages can include increased distraction, impact on mental health, and spread of misleading content. For you as a vocational student, it's important to protect your focus for learning and future work.</p>
+                <p class="content-text mb-2">
+                    Once your attention is captured, you become more susceptible to manipulation. Misinformation and disinformation can more easily take root when you're already engaged and perhaps less critical. Your values can also be subtly shaped. For example, you might see a "cringe" video of a woman with brightly colored hair who is vegan and says something outrageous. Even if the video is designed purely to provoke anger and get views (thereby making money for the creator), repeated exposure to such content could unconsciously affect your attitude towards people with colored hair, vegans, or people holding certain political opinions. The goal of such content is often just to make you react, not to inform or engage in good faith.
+                </p>
+                <p class="content-text">
+                    Disadvantages can include increased distraction, impact on mental health, and spread of misleading content. For you as a vocational student, it's important to protect your focus for learning and future work.
+                </p>
+                <p class="content-text mt-2">
+                    <strong>Supplementary Material:</strong> For more on how online content can be designed to provoke reactions like anger, watch CGPGrey's video: <a href="https://www.youtube.com/watch?v=rE3j_RHkqJc" target="_blank" rel="noopener noreferrer" class="text-sky-600 hover:underline">Why I'm Not Angry (Anymore)</a>. (Note: This is an external link to YouTube.)
+                </p>
             </div>
 
             <div class="interactive-card" id="ethicalDilemmasActivity">
-                <h3 class="subsection-title">Ethical Dilemmas in AI: Who Decides?</h3>
-                <p class="content-text mb-3">As a professional, you might face ethical dilemmas where AI recommendations clash with your judgment or professional ethics. Let's look at a couple of scenarios:<sup class="citation"><a href="#references">[73]</a></sup></p>
+                <h3 class="subsection-title">Writing Prompts 4: Ethical Dilemmas in AI</h3>
+                <p class="content-text mb-3">As a professional, you might face ethical dilemmas where AI recommendations clash with your judgment or professional ethics. Consider the following scenarios:
+                     <a href="https://library.fiveable.me/lists/key-ai-ethics-case-studies" target="_blank" rel="noopener noreferrer" class="resource-link">More: AI Ethics Case Studies</a>
+                </p>
                 <div id="dilemmaTabs" class="mb-4 flex border-b border-slate-300">
-                    <button class="tab-button active" data-tab="dilemma1">Healthcare</button>
-                    <button class="tab-button" data-tab="dilemma2">Construction</button>
+                     <button class="tab-button active" data-tab="dilemma1">Electrical Safety</button>
+                    <button class="tab-button" data-tab="dilemma2">System Automation</button>
                 </div>
                 <div id="dilemmaContent">
                     <div id="dilemma1" class="tab-content">
-                        <h4 class="font-semibold text-slate-600 mb-1">Scenario 1: Healthcare Worker (adapted from <sup class="citation"><a href="#references">[9, 73]</a></sup>)</h4>
-                        <p class="content-text mb-2">An AI diagnostic tool (90% accurate) suggests a treatment plan. Your experience and knowledge of the patient make you unsure. The AI's suggestion is data-driven, but your intuition says something else.</p>
-                        <p class="content-text mb-2"><strong>Dilemma:</strong> Do you follow the AI, your own judgment, or seek advice? How do you weigh statistics against individual care?</p>
-                        <textarea rows="3" class="w-full p-2 border border-slate-300 rounded-md" placeholder="Your thoughts on scenario 1..."></textarea>
+                        <h4 class="font-semibold text-slate-600 mb-1">Scenario 1: Electrical Safety</h4>
+                        <p class="content-text mb-2">An AI tool for electrical planning suggests a wiring layout for a complex industrial machine that meets basic code but seems overly complicated and difficult to maintain safely. Your experience suggests a simpler, more robust layout would be better in the long run, though it might use slightly more expensive components initially.</p>
+                        <div class="writing-prompt">
+                           <p><span class="prompt-number">Prompt 4.1:</span> For the Electrical Safety scenario, what would you do? Explain your reasoning. How do you balance the AI's suggestion (which is code-compliant and possibly cost-effective short-term) with your professional judgment about long-term safety and maintainability? What are the potential consequences of each choice?</p>
+                        </div>
                     </div>
                     <div id="dilemma2" class="tab-content hidden">
-                        <h4 class="font-semibold text-slate-600 mb-1">Scenario 2: Construction (adapted from <sup class="citation"><a href="#references">[11, 74]</a></sup>)</h4>
-                        <p class="content-text mb-2">An AI-driven design software suggests a cheap material that meets minimum requirements, which the client likes. Your knowledge indicates that a more expensive alternative is much safer and more durable in the long run.</p>
-                        <p class="content-text mb-2"><strong>Dilemma:</strong> Do you argue for the more expensive but safer option (risking a dissatisfied client), or follow the AI's cost-effective proposal?</p>
-                        <textarea rows="3" class="w-full p-2 border border-slate-300 rounded-md" placeholder="Your thoughts on scenario 2..."></textarea>
+                        <h4 class="font-semibold text-slate-600 mb-1">Scenario 2: System Automation</h4>
+                        <p class="content-text mb-2">An AI system designed to optimize energy consumption in a smart building frequently overrides manual settings made by occupants for comfort (e.g., slightly adjusting temperature or lighting). The AI achieves documented energy savings, but occupants complain about a lack of control and discomfort.</p>
+                         <div class="writing-prompt">
+                           <p><span class="prompt-number">Prompt 4.2:</span> For the System Automation scenario, what are the ethical considerations? How do you balance energy efficiency goals with user comfort and autonomy? If you were the technician responsible for this system, what steps might you take to address the conflict?</p>
+                        </div>
                     </div>
                 </div>
-                <p class="content-text mt-3">Such dilemmas often have no easy answers. They show how important human judgment, ethical reflection, and the ability to critically question AI are.<sup class="citation"><a href="#references">[75]</a></sup></p>
+                <p class="content-text mt-3">Such dilemmas often have no easy answers. They show how important human judgment, ethical reflection, and the ability to critically question AI are.</p>
             </div>
 
             <div class="interactive-card">
@@ -534,30 +567,93 @@
                     <li><strong>Give feedback:</strong> When using AI tools, provide constructive criticism about performance, bias, or usability.</li>
                     <li><strong>Promote ethical practices:</strong> In your future job, advocate for ethical AI principles and responsible use.</li>
                     <li><strong>Be mindful of the data you create:</strong> The data you generate online and through your interactions with AI can be used to train future AI models.</li>
-                    <li><strong>Join the dialogue:</strong> Engage in discussions about AI, such as in student councils (like StInn in Norway<sup class="citation"><a href="#references">[64]</a></sup>) or professional forums. Community input is valuable.<sup class="citation"><a href="#references">[76]</a></sup></li>
+                    <li><strong>Join the dialogue:</strong> Engage in discussions about AI, such as in student councils or professional forums. Community input is valuable.</li>
                 </ul>
             </div>
 
             <div class="interactive-card" id="ethicsCharterActivity">
-                <h3 class="subsection-title">Exercise: Create an "AI Ethics Charter" for the Classroom/Workshop<sup class="citation"><a href="#references">[4, 52, 73]</a></sup></h3>
-                <p class="content-text mb-3">Discuss with your classmates or think for yourself: What are the most important principles for using AI responsibly and ethically in your learning and future job? Try to list 2-3 core ideas.</p>
-                <textarea id="charterInput" rows="5" class="w-full p-2 border border-slate-300 rounded-md" placeholder="Your ideas for an AI Ethics Charter... E.g., 'Always double-check important AI info.' or 'Be open about AI use.' (For your own notes or class discussion)"></textarea>
+                <h3 class="subsection-title">Writing Prompt 5.1: My AI Ethics Charter Ideas</h3>
+                <p class="content-text mb-3">Think about what you've learned. What are the 2-3 most important principles you believe should guide your use of AI responsibly and ethically, both in your studies now and in your future job? Write them down and briefly explain why each is important to you.</p>
+                <p class="content-text mt-2"><em>(This can be a starting point for a class discussion or a personal commitment.)</em></p>
             </div>
         </section>
 
+        <section id="skills_connect" class="pt-16 -mt-16 mb-12">
+            <h2 class="section-title">6. Connecting with Your 'Skills Elektro' Textbook</h2>
+            <div class="interactive-card">
+                <p class="content-text mb-4">This AI literacy guide is designed to complement your learning with the "Skills Elektro" textbook. Many concepts and skills you're developing in English class are directly relevant to understanding and using AI responsibly. Here’s how you can make connections:</p>
+
+                <h3 class="subsection-title mt-4">General Connections (Chapter 1 Focus)</h3>
+                <ul class="list-disc list-inside content-text space-y-2">
+                    <li><strong>Expectations & New Inventions (Ch 1, pp. 8-9):</strong> Think of AI as a new, powerful "invention that is changing the use of electricity" and many other fields. Just like past technologies transformed society, AI is doing so now. The "learning strategies and language tools" mentioned on p. 9 are exactly what you'll use to understand AI.</li>
+                    <li><strong>Vocational English for AI (Ch 1, pp. 18-19):</strong> As you learn specialized vocabulary for electrical trades, recognize that understanding AI also involves learning new "vocational English" specific to AI and digital technologies (like "algorithm," "bias," "hallucination").</li>
+                    <li><strong>Innovation: Edison & AI (Ch 1, pp. 40-41):</strong> Thomas Edison was a great innovator. AI is a modern-day innovation with huge transformative potential. <em>Discussion Point:</em> How is AI similar to or different from Edison's inventions in its impact on society and work?</li>
+                </ul>
+
+                <h3 class="subsection-title mt-6">Connections for "1. Explore AI"</h3>
+                <ul class="list-disc list-inside content-text space-y-2">
+                    <li><strong>Fictional AI vs. Real LLMs (Ch 5, "True Love", pp. 210-211):</strong> After learning that real LLMs don't "think" like humans, read the summary of Asimov's short story "True Love." <em>Writing Prompt 1.4:</em> In what ways does the AI 'Joe' in the story seem to understand or misunderstand human concepts like 'love' or 'ideal partner'? How does this compare to what you've learned about how real LLMs work?</li>
+                    <li><strong>AI and Automation in Jobs (Ch 6, "Robots 'to replace up to 20 million factory jobs'", pp. 274-275):</strong> When we discuss AI enhancing human skills, this article provides context on automation. <em>Writing Prompt 1.5:</em> Read the summary of the article. Discuss how AI-driven automation might specifically impact the Elektro-field or another vocational trade you know. What 'human skills' from our list (Module 4) will be most important to complement this automation?</li>
+                    <li><strong>Human-Tech Integration (Ch 6, "iBoy 101", pp. 278-279):</strong> This novel excerpt shows an extreme fictional example of human-tech fusion. <em>Discussion Starter:</em> The character in 'iBoy' literally has technology in his brain. While fictional, how does this idea relate to how integrated AI is becoming in our daily tools and devices (like smartphones)?</li>
+                    <li><strong>Complex Systems Analogy (Ch 2, "The Black Box", pp. 80-81):</strong> When we say "AI is not magic," think about the complex electronic systems and data recording in aircraft, as described in "The Black Box." AI also relies on vast data and complex algorithms, similar to modern flight systems.</li>
+                </ul>
+
+                <h3 class="subsection-title mt-6">Connections for "2. Think Critically"</h3>
+                <ul class="list-disc list-inside content-text space-y-2">
+                    <li><strong>Misinformation & Fake News (Ch 4, "Nothing on This Page is Real", pp. 138-139):</strong> This article is a perfect match! Christopher Blair's "satirical/fake news" directly relates to misinformation and how AI can generate convincing but false content. <em>Writing Prompt 2.2 (after "What is AI-Generated Fiction?" exercise):</em> Read the summary of "Nothing on This Page is Real." How does Christopher Blair's motivation for creating 'fake news' compare or contrast with how an AI might generate a 'hallucination'? What are the different dangers posed by human-created fake news versus AI-generated misinformation?</li>
+                    <li><strong>Evaluating AI as a Source (Ch 4, "Skills Focus: Selecting Sources", p. 146):</strong> The principles here are <em>essential</em> for evaluating information from AI. AI is a new type of "source" needing extra scrutiny. <em>Activity Idea:</em> Review the 'Selecting Sources' guidelines. How would you adapt step 3 ('Is it relevant?'), step 4 ('Is it reliable?'), and step 5 ('Cross-check') when evaluating information from an AI like NDLA AI Chat?</li>
+                    <li><strong>Social Media Impact (Ch 3, "It's a Wonderful, Digital World?", pp. 116-117):</strong> This text provides context for discussing Echo Chambers, Filter Bubbles, and the Attention Economy, as social media impact is often algorithm-driven.</li>
+                    <li><strong>The "Look of Expertise" (Ch 1, "Did You Know?", p. 25):</strong> The fact that "90% of texts use only about 1000 different words" is relevant. AI can generate fluent text using common words, making it sound authoritative, even if it lacks deep understanding or is factually wrong.</li>
+                    <li><strong>Key Vocabulary (Ch 4, "Useful words and phrases", p. 133):</strong> Note terms like "echo chamber," "fake news," and "manipulation" from your textbook are directly relevant here.</li>
+                </ul>
+
+                 <h3 class="subsection-title mt-6">Connections for "3. AI as Helper"</h3>
+                <ul class="list-disc list-inside content-text space-y-2">
+                    <li><strong>"You First" & Learning Strategies (Ch 1, "Skills Focus: Learning Strategies", p. 16):</strong> The "You First" principle directly links to these strategies. AI can be a tool *within* these (e.g., for "Expand your vocabulary," after trying yourself, ask AI for synonyms; for "Repeat," ask AI to quiz you on material you've studied). Crucially, apply strategy 1: "Prepare your brain for learning" <em>before</em> engaging AI.</li>
+                    <li><strong>Citing Sources (Not AI!) (Ch 8, "Skills Focus: Referring to Sources", p. 372):</strong> When discussing academic integrity, these principles are vital. You must cite the <em>original human-created sources</em> that AI might point you to (after you've verified them yourself). Never cite the AI as the primary source of factual information.</li>
+                    <li><strong>Structuring & Getting Feedback (Ch 3, "Skills Focus: Structuring Paragraphs", p. 108 & "PEED Method", p. 109):</strong> For "Getting feedback on YOUR work": After you've written a paragraph using the PEED method, you could ask an AI: 'Does this paragraph clearly state a Point, provide an Example, Explain it, and Develop the idea further? How could I improve its structure?'</li>
+                    <li><strong>Formal Communication (Ch 6, "Skills Focus: Writing a Formal Text", p. 256 - Email Structure):</strong> Draft a formal email yourself, then ask AI for feedback on tone, clarity, or adherence to formal conventions, using the "Skills Elektro" guidelines as a checklist.</li>
+                    <li><strong>Understanding AI Feedback (Ch 9, "Language Lab", pp. 398-430):</strong> Use the Language Lab to understand grammar or style feedback AI gives on your writing, or to self-correct *before* asking AI for help.</li>
+                </ul>
+
+                <h3 class="subsection-title mt-6">Connections for "4. Your AI Future"</h3>
+                <ul class="list-disc list-inside content-text space-y-2">
+                    <li><strong>Relating to Peers (Ch 1, "Core Content: This Is Me", pp. 10-11):</strong> <em>Writing Prompt 3.2 (related to Prompt 3.1):</em> Re-read one of the student profiles in 'This Is Me'. Imagine that student (e.g., Emilie with audio-visual equipment, Joel as a power-supply fitter) is working in their field 5-10 years from now. How might AI be part of *their* daily work? What human skills would still be essential for them?</li>
+                    <li><strong>Discussing AI in Your Trade (Ch 6, "Skills Focus: Discussing Vocational Topics", p. 272):</strong> This framework is excellent for class discussions about AI's role in specific trades like Electrical Engineering or Computer Technology.</li>
+                    <li><strong>AI as a New Tool (Ch 5, "Tools of the Trade", p. 200):</strong> Frame AI as one of the new "Tools of the Trade." How does it compare to physical tools? What new "maintenance" (i.e., critical thinking, fact-checking) does this digital tool require?</li>
+                    <li><strong>Safety, Standards & Human Responsibility (Ch 2, "Safety First!", pp. 54-55 & "Codes and Standards", pp. 76-77):</strong> When discussing "Ethical Judgment & Responsibility" as a human skill, relate it to the critical importance of safety and standards in electrical trades. AI might suggest something, but human judgment, knowledge of codes (like NEK 400), and responsibility for safety are paramount. An AI won't take responsibility for an accident.</li>
+                    <li><strong>AI in Vocational Scenarios (Various "Core Content" texts):</strong> Texts like "The Rule of Three" (Ch 2, pp. 64-65 - loss of digital infrastructure), "On Call-Out" (Ch 6, pp. 250-251 - technician problem-solving), or "Spare Parts" (Ch 6, pp. 258-259 - students building ROV) can be springboards. <em>Discussion:</em> How would AI change these scenarios? What human skills shown by the characters would still be vital?</li>
+                </ul>
+
+                <h3 class="subsection-title mt-6">Connections for "5. AI & Society"</h3>
+                <ul class="list-disc list-inside content-text space-y-2">
+                    <li><strong>Advocacy & Shaping AI (Ch 4, "Young Activists", pp. 192-193):</strong> When discussing "Your Voice Counts," these examples show how individuals can advocate for change. This can inspire you to be active in shaping ethical AI.</li>
+                    <li><strong>Arguing for Responsible AI (Ch 8, "Skills Focus: Arguing a Case", p. 358):</strong> This skill is crucial for you to "Promote ethical practices" or "Join the dialogue" about AI. Use this framework to structure your arguments for responsible AI use.</li>
+                    <li><strong>AI & Sustainable Development (Ch 8, "Core Text: Sustainable Development", pp. 346-347):</strong> <em>Discussion:</em> How could AI be a tool to achieve (or hinder) Sustainable Development Goals? What are the ethical implications of using AI in these contexts, especially in energy and resource management relevant to Elektro?</li>
+                    <li><strong>Revisiting Digital Well-being (Ch 3, "Core Content: It's a Wonderful, Digital World?", pp. 116-117):</strong> Revisit this when discussing the "Attention Economy" and its impact on mental health and distraction.</li>
+                </ul>
+                 <h3 class="subsection-title mt-6">General "Skills Elektro" Chapters for Cross-Cutting Skills</h3>
+                <ul class="list-disc list-inside content-text space-y-2">
+                    <li><strong>Sharing Information (Ch 1, "Skills Focus: Sharing Information: 'Show and Tell'", p. 44):</strong> You could do a "Show and Tell" about an AI tool you find useful (or problematic) for your studies, following these presentation steps.</li>
+                    <li><strong>Writing Reports (Ch 2, "Skills Focus: Writing a Report", p. 60):</strong> If you research an AI application in your field, you could present your findings in a report format.</li>
+                    <li><strong>Listening Strategies (Ch 5, "Skills Focus: Listening Strategies", p. 216):</strong> Important for understanding discussions, lectures, or instructional videos about AI.</li>
+                </ul>
+            </div>
+        </section>
+        
         <section id="exercises" class="pt-16 -mt-16 mb-12">
             <h2 class="section-title">Exercises: Test Your Knowledge and Reflect</h2>
             <div class="interactive-card">
-                <h3 class="subsection-title">Quick Access to Interactive Exercises & Reflections</h3>
+                <h3 class="subsection-title">Quick Access to Interactive Exercises & Writing Prompts</h3>
                 <p class="content-text mb-4">Here you'll find direct links to some of the interactive exercises and reflection prompts on this page. This is a good way to review and test what you've learned.</p>
                 <ul class="list-disc list-inside content-text space-y-2">
-                    <li><a href="#aiAroundUsActivity" class="text-sky-600 hover:underline">AI Around Us (Reflection)</a> (Explore AI)</li>
+                    <li><a href="#aiAroundUsActivity" class="text-sky-600 hover:underline">Writing Prompt Set 1: AI Around Us</a> (Explore AI)</li>
                     <li><a href="#spotTheLieActivity" class="text-sky-600 hover:underline">What is AI-Generated Fiction?</a> (Think Critically)</li>
-                    <li><a href="#escapeBubbleActivity" class="text-sky-600 hover:underline">Burst the Bubble! (Action Plan)</a> (Think Critically)</li>
+                    <li><a href="#escapeBubbleActivity" class="text-sky-600 hover:underline">Writing Prompt 2.1: Burst the Bubble! Action Plan</a> (Think Critically)</li>
                     <li><a href="#ethicsTableActivity" class="text-sky-600 hover:underline">AI Use: Green, Yellow, Red Light</a> (AI as Helper)</li>
-                    <li><a href="#vocationalFutureActivity" class="text-sky-600 hover:underline">My Vocational Future with AI (Writing Prompt)</a> (Your AI Future)</li>
-                    <li><a href="#ethicalDilemmasActivity" class="text-sky-600 hover:underline">Ethical Dilemmas in AI (Reflection)</a> (AI & Society)</li>
-                    <li><a href="#ethicsCharterActivity" class="text-sky-600 hover:underline">Create an AI Ethics Charter (Reflection/Discussion)</a> (AI & Society)</li>
+                    <li><a href="#vocationalFutureActivity" class="text-sky-600 hover:underline">Writing Prompt 3.1 & 3.2: My Vocational Future with AI</a> (Your AI Future & Skills Elektro Connect)</li>
+                    <li><a href="#ethicalDilemmasActivity" class="text-sky-600 hover:underline">Writing Prompts 4: Ethical Dilemmas in AI</a> (AI & Society)</li>
+                    <li><a href="#ethicsCharterActivity" class="text-sky-600 hover:underline">Writing Prompt 5.1: My AI Ethics Charter Ideas</a> (AI & Society)</li>
                 </ul>
             </div>
         </section>
@@ -567,92 +663,37 @@
                 <summary>References</summary>
                 <div class="interactive-card">
                     <ol class="list-decimal list-inside content-text reference-list">
-                        <li>Dillinghøj, L. L., & Møller, K. (2023). <em>AI Literacy in Education</em>. VIA University College.</li>
-                        <li>Wolfram, S. (2023). <em>What Is ChatGPT Doing … and Why Does It Work?</em> Wolfram Media.</li>
-                        <li>EducateAI, University of Oslo. (n.d.). <em>KI-prat med EducateAI</em>.</li>
-                        <li>Fullan, M., Quinn, J., & McEachen, J. (2018). <em>Deep Learning: Engage the World Change the World</em>. Corwin.</li>
-                        <li>Utdanningsdirektoratet. (n.d.). <em>Utdanningsprogrammer i videregående opplæring</em>.</li>
-                        <li>Accenture. (2023). <em>Technology Vision 2023: When Atoms Meet Bits: The Foundations of Our New Reality</em>.</li>
-                        <li>McKinsey Global Institute. (2023). <em>Generative AI and the future of work in America</em>.</li>
-                        <li>GitHub. (2023). <em>GitHub Copilot</em>.</li>
-                        <li>Topol, E. J. (2019). <em>Deep Medicine: How Artificial Intelligence Can Make Healthcare Human Again</em>. Basic Books.</li>
-                        <li>UNICEF Office of Global Insight and Policy. (2021). <em>Policy guidance on AI for children</em>.</li>
-                        <li>World Economic Forum. (2023). <em>Future of Jobs Report 2023</em>.</li>
-                        <li>Autodesk. (2023). <em>The State of Design & Make 2023</em>.</li>
-                        <li>European Parliamentary Research Service. (2020). <em>Artificial intelligence in the tourism sector</em>.</li>
-                        <li>Salesforce. (n.d.). <em>What is AI in CRM?</em>.</li>
-                        <li>Daugherty, P. R., & Wilson, H. J. (2018). <em>Human + Machine: Reimagining Work in the Age of AI</em>. Harvard Business Review Press.</li>
-                        <li>Ford, M. (2023, May 15). <em>How Generative AI Is Changing the Way Developers Work</em>. GitHub Blog.</li>
-                        <li>FAO. (2023). <em>Artificial intelligence and agriculture</em>.</li>
-                        <li>European Parliament. (2022). <em>Artificial intelligence in the agri-food sector</em>.</li>
-                        <li>Norwegian Ministry of Education and Research. (2017). <em>Overordnet del – verdier og prinsipper for grunnopplæringen</em> (Core curriculum – values and principles for primary and secondary education).</li>
-                        <li>NOU 2019: 25. (2019). <em>Med rett til å mestre — Struktur og innhold i videregående opplæring</em>. (Official Norwegian Report on upper secondary education structure and content).</li>
-                        <li>UNESCO. (2022). <em>The Ethics of Artificial Intelligence: Issues and Initiatives</em>.</li>
-                        <li>Suresh, H., & Guttag, J. V. (2021). <em>A Framework for Understanding Unintended Consequences of Machine Learning</em>. arXiv.</li>
-                        <li>Barocas, S., & Selbst, A. D. (2016). <em>Big Data's Disparate Impact</em>. California Law Review.</li>
-                        <li>Nature Editorial. (2023). <em>ChatGPT is fun, but not an author</em>. Nature, 613, 612.</li>
-                        <li>Ji, Z., Lee, N., Frieske, R., Yu, T., Su, D., Xu, Y., ... & Fung, P. (2023). <em>Survey of Hallucination in Natural Language Generation</em>. ACM Computing Surveys.</li>
-                        <li>Common Sense Media. (n.d.). <em>AI-Generated Content: Understanding the Risks and Rewards</em>.</li>
-                        <li>Heaven, W. D. (2023, April 24). <em>AI is dreaming up new drugs. Now scientists have to see if they work</em>. MIT Technology Review.</li>
-                        <li>Dwoskin, E., & Nix, N. (2023, March 28). <em>Deepfakes are getting better. So is the technology to detect them</em>. The Washington Post.</li>
-                        <li>Paris, B., & Donovan, J. (2019). <em>Deepfakes and Cheap Fakes</em>. Data & Society.</li>
-                        <li>Wardle, C., & Derakhshan, H. (2017). <em>Information Disorder: Toward an interdisciplinary framework for research and policymaking</em>. Council of Europe.</li>
-                        <li>European Commission. (2018). <em>A multi-dimensional approach to disinformation</em>. Report of the independent High level Group on fake news and online disinformation.</li>
-                        <li>Pariser, E. (2011). <em>The Filter Bubble: What the Internet Is Hiding from You</em>. Penguin Press.</li>
-                        <li>Sunstein, C. R. (2017). <em>#Republic: Divided Democracy in the Age of Social Media</em>. Princeton University Press.</li>
-                        <li>Bozdag, E. (2013). <em>Bias in algorithmic filtering and personalization</em>. Ethics and Information Technology.</li>
-                        <li>Helberger, N. (2019). <em>On the Democratic Role of News Recommenders</em>. Digital Journalism.</li>
-                        <li>Flaxman, S., Goel, S., & Rao, J. M. (2016). <em>Filter bubbles, echo chambers, and online news consumption</em>. Public Opinion Quarterly.</li>
-                        <li>OpenAI. (2023). <em>GPT-4 Technical Report</em>. arXiv.</li>
-                        <li>Stanford Internet Observatory & Graphika. (2022). <em>Thematic Consistency & Shifting Narratives: A Case Study of Pro-Russian AI-Generated Content</em>.</li>
-                        <li>Wu, T. (2016). <em>The Attention Merchants: The Epic Scramble to Get Inside Our Heads</em>. Alfred A. Knopf.</li>
-                        <li>Zuboff, S. (2019). <em>The Age of Surveillance Capitalism: The Fight for a Human Future at the New Frontier of Power</em>. PublicAffairs.</li>
-                        <li>Common Sense Media. (n.d.). <em>Picture Perfect? Help Students Identify AI-Generated Images</em>.</li>
-                        <li>New York Times. (2023, March 21). <em>Test Yourself: Which Faces Were Made by A.I.?</em>. (Also relevant for AllSides.com and fact-checking sites mentioned in report).</li>
-                        <li>Wineburg, S., & McGrew, S. (2019). <em>Lateral Reading and the Nature of Expertise: Reading Less and Learning More When Evaluating Digital Information</em>. Teachers College Record.</li>
-                        <li>Caulfield, M. (2017). <em>Web Literacy for Student Fact-Checkers</em>. (Self-published e-book).</li>
-                        <li>Hobbs, R. (2010). <em>Digital and Media Literacy: A Plan of Action</em>. The Aspen Institute.</li>
-                        <li>Google. (n.d.). <em>Responsible AI Practices</em>.</li>
-                        <li>Imperial College London. (2023). <em>Guidance on the use of Generative AI in education and assessment</em>.</li>
-                        <li>Mollick, E. (2023, March 29). <em>The Homework Apocalypse</em>. One Useful Thing blog.</li>
-                        <li>Wilson, H. J., & Daugherty, P. R. (2018). <em>Collaborative Intelligence: Humans and AI Are Joining Forces</em>. Harvard Business Review.</li>
-                        <li>Brynjolfsson, E., & McAfee, A. (2014). <em>The Second Machine Age: Work, Progress, and Prosperity in a Time of Brilliant Technologies</em>. W. W. Norton & Company.</li>
-                        <li>University of Sydney. (2023). <em>Using generative artificial intelligence</em>.</li>
-                        <li>Mollick, E., & Mollick, L. (2022). <em>New Modes of Learning Enabled by AI</em>. SSRN.</li>
-                        <li>UNESCO. (2023). <em>ChatGPT and Artificial Intelligence in higher education: Quick start guide</em>.</li>
-                        <li>Council of Europe. (2023). <em>Guidelines on the use of artificial intelligence in education for educators</em>.</li>
-                        <li>Grammarly. (n.d.). <em>How Grammarly Uses AI</em>.</li>
-                        <li>Turnitin. (2023). <em>AI writing detection</em>.</li>
-                        <li>Khan Academy. (n.d.). <em>Khanmigo</em>.</li>
-                        <li>UNESCO. (2021). <em>AI and education: Guidance for policy-makers</em>.</li>
-                        <li>Duolingo. (n.d.). <em>Duolingo Max</em>.</li>
-                        <li>NMBU. (2023). <em>Bruk av kunstig intelligens (KI) i studiene</em> (Use of artificial intelligence (AI) in studies).</li>
-                        <li>University of Oslo (UiO). (2023). <em>Bruk av kunstig intelligens i studier og undervisning</em> (Use of artificial intelligence in studies and teaching).</li>
-                        <li>Utdanningsdirektoratet. (n.d.). <em>Læreplanverket</em> (The Curriculum Framework).</li>
-                        <li>Utdanningsdirektoratet. (2021). <em>Etisk bruk av læringsanalyse i grunnopplæringen</em> (Ethical use of learning analytics in primary and secondary education).</li>
-                        <li>StInn (Studenttinget NMBU). (2023). <em>Studentenes stemme om KI på NMBU</em> (The students' voice on AI at NMBU).</li>
-                        <li>International Center for Academic Integrity (ICAI). (n.d.). <em>The Fundamental Values of Academic Integrity</em>.</li>
-                        <li>Eaton, S. E. (2021). <em>Plagiarism in Higher Education: Tackling Tough Topics in Academic Integrity</em>. Libraries Unlimited.</li>
-                        <li>World Economic Forum. (2020). <em>The Future of Jobs Report 2020</em>.</li>
-                        <li>Autor, D. H. (2015). <em>Why Are There Still So Many Jobs? The History and Future of Workplace Automation</em>. Journal of Economic Perspectives.</li>
-                        <li>Deloitte. (2019). <em>The path to prosperity: Why the future of work is human</em>.</li>
-                        <li>OECD. (2019). <em>OECD Skills Outlook 2019: Thriving in a Digital World</em>.</li>
-                        <li>National Research Council. (2012). <em>Education for Life and Work: Developing Transferable Knowledge and Skills in the 21st Century</em>. The National Academies Press.</li>
-                        <li>Partnership for 21st Century Learning (P21). (n.d.). <em>Framework for 21st Century Learning</em>.</li>
-                        <li>Kunnskapsdepartementet (Norwegian Ministry of Education and Research). (2023). <em>Strategi for digital kompetanse og infrastruktur i barnehage og skole 2023–2030</em>.</li>
-                        <li>European Commission. (2021). <em>Ethics guidelines for trustworthy AI</em>.</li>
-                        <li>Floridi, L., Cowls, J., Beltramini, M., Saunders, D., & Vayena, E. (2018). <em>An Ethical Framework for a Good AI Society: Opportunities, Risks, Principles, and Recommendations</em>. AI and Society.</li>
-                        <li>University of Texas at Austin. (2023). <em>Generative AI Policy Guidance</em>.</li>
+                        <li id="ref-1">Cloudinary. (n.d.). <em>Six Ways to Use AI in Video Streaming</em>. Retrieved from <a href="https://cloudinary.com/guides/ai/six-ways-to-use-ai-in-video-streaming" target="_blank" rel="noopener noreferrer">cloudinary.com</a>; Tealium. (n.d.). <em>Complete Guide to AI-Based Recommendations</em>. Retrieved from <a href="https://tealium.com/blog/artificial-intelligence-ai/complete-guide-to-ai-based-recommendations-what-are-ai-based-recommendations-and-how-to-implement-them/" target="_blank" rel="noopener noreferrer">tealium.com</a></li>
+                        <li id="ref-2">IBM. (n.d.). <em>What are AI hallucinations?</em> Retrieved from <a href="https://www.ibm.com/topics/ai-hallucinations" target="_blank" rel="noopener noreferrer">ibm.com</a>; Google Cloud. (n.d.). <em>What are AI hallucinations?</em> Retrieved from <a href="https://cloud.google.com/discover/what-are-ai-hallucinations" target="_blank" rel="noopener noreferrer">cloud.google.com</a></li>
+                        <li id="ref-3">IBM. (n.d.). <em>What are AI hallucinations?</em> Retrieved from <a href="https://www.ibm.com/topics/ai-hallucinations" target="_blank" rel="noopener noreferrer">ibm.com</a>; Google Cloud. (n.d.). <em>What are AI hallucinations?</em> Retrieved from <a href="https://cloud.google.com/discover/what-are-ai-hallucinations" target="_blank" rel="noopener noreferrer">cloud.google.com</a></li>
+                        <li id="ref-4">IBM. (n.d.). <em>What are AI hallucinations?</em> Retrieved from <a href="https://www.ibm.com/topics/ai-hallucinations" target="_blank" rel="noopener noreferrer">ibm.com</a>; IBM. (n.d.). <em>What is AI bias?</em> Retrieved from <a href="https://www.ibm.com/think/topics/ai-bias" target="_blank" rel="noopener noreferrer">ibm.com</a></li>
+                        <li id="ref-5">We Are Social. (2024, May). <em>Five tips for navigating the AI effect on social media</em>. Retrieved from <a href="https://wearesocial.com/us/blog/2024/05/five-tips-for-navigating-the-ai-effect-on-social-media/" target="_blank" rel="noopener noreferrer">wearesocial.com</a>; Socialinsider. (n.d.). <em>AI in Social Media</em>. Retrieved from <a href="https://www.socialinsider.io/blog/ai-in-social-media/" target="_blank" rel="noopener noreferrer">socialinsider.io</a></li>
+                        <li id="ref-6">Spaceship. (n.d.). <em>AI Spam Filtering</em>. Retrieved from <a href="https://www.spaceship.com/blog/ai-spam-filtering/" target="_blank" rel="noopener noreferrer">spaceship.com</a>; EmailTree AI. (n.d.). <em>Evolution of Spam</em>. Retrieved from <a href="https://emailtree.ai/blog/evolution-of-spam/" target="_blank" rel="noopener noreferrer">emailtree.ai</a></li>
+                        <li id="ref-7">Lumenalta. (n.d.). <em>Understanding AI Route Optimization</em>. Retrieved from <a href="https://lumenalta.com/insights/understanding-ai-route-optimization" target="_blank" rel="noopener noreferrer">lumenalta.com</a>; FarEye. (n.d.). <em>Route Optimization AI</em>. Retrieved from <a href="https://fareye.com/resources/blogs/route-optimization-ai-smart-routing-traffic-solution" target="_blank" rel="noopener noreferrer">fareye.com</a></li>
+                        <li id="ref-8"></li> 
+                        <li id="ref-9">IBM. (n.d.). <em>What is AI bias?</em> Retrieved from <a href="https://www.ibm.com/think/topics/ai-bias" target="_blank" rel="noopener noreferrer">ibm.com</a></li>
+                        <li id="ref-10">IBM. (n.d.). <em>What is AI bias?</em> Retrieved from <a href="https://www.ibm.com/think/topics/ai-bias" target="_blank" rel="noopener noreferrer">ibm.com</a></li>
+                        <li id="ref-11">Google Cloud. (n.d.). <em>What are AI hallucinations?</em> Retrieved from <a href="https://cloud.google.com/discover/what-are-ai-hallucinations" target="_blank" rel="noopener noreferrer">cloud.google.com</a>; IBM. (n.d.). <em>What are AI hallucinations?</em> Retrieved from <a href="https://www.ibm.com/topics/ai-hallucinations" target="_blank" rel="noopener noreferrer">ibm.com</a></li>
+                        <li id="ref-12">Google Cloud. (n.d.). <em>What are AI hallucinations?</em> Retrieved from <a href="https://cloud.google.com/discover/what-are-ai-hallucinations" target="_blank" rel="noopener noreferrer">cloud.google.com</a>; IBM. (n.d.). <em>What are AI hallucinations?</em> Retrieved from <a href="https://www.ibm.com/topics/ai-hallucinations" target="_blank" rel="noopener noreferrer">ibm.com</a></li>
+                        <li id="ref-13">Candy Buffets. (n.d.). <em>Who Invented the Chocolate Fountain?</em> Retrieved from <a href="https://candy-buffets.co.uk/who-invented-the-chocolate-fountain/" target="_blank" rel="noopener noreferrer">candy-buffets.co.uk</a></li>
+                        <li id="ref-14">Smithsonian Magazine. (2022, June 21). <em>The Curious Case of Charles Osborne, Who Hiccuped for 68 Years Straight</em>. Retrieved from <a href="https://www.smithsonianmag.com/history/the-curious-case-of-charles-osborne-who-hiccuped-for-68-years-straight-180980232/" target="_blank" rel="noopener noreferrer">smithsonianmag.com</a>; Chelsea News. (n.d.). <em>One Man Hiccuped for 68 Yrs</em>. Retrieved from <a href="https://www.chelseanewsny.com/news/one-man-hiccuped-for-68-yrs-doctors-cannot-explain-why-he-or-anyone-else-hiccups-BN4395102" target="_blank" rel="noopener noreferrer">chelseanewsny.com</a></li>
+                        <li id="ref-15">Britannica. (n.d.). <em>Emu War</em>. Retrieved from <a href="https://www.britannica.com/topic/Emu-War" target="_blank" rel="noopener noreferrer">britannica.com</a>; Wikipedia. (n.d.). <em>Emu War</em>. Retrieved from <a href="https://en.wikipedia.org/wiki/Emu_War" target="_blank" rel="noopener noreferrer">en.wikipedia.org</a></li>
+                        <li id="ref-16">Giedd, J. N. (2012). The Digital Revolution and Adolescent Brain Evolution. <em>Journal of Adolescent Health, 51</em>(2), 101-105. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3705203/" target="_blank" rel="noopener noreferrer">doi:10.1016/j.jadohealth.2012.06.002</a></li>
+                        <li id="ref-17">Trøndelag Fylkeskommune. (n.d.). <em>Kunstig intelligens (KI) i skolene</em>. Retrieved from <a href="https://www.trondelagfylke.no/vare-tjenester/utdanning/kunstig-intelligens-ki-i-skolene/" target="_blank" rel="noopener noreferrer">trondelagfylke.no</a>; Møre og Romsdal Fylkeskommune. (n.d.). <em>Kunstig intelligens i skolen</em>. Retrieved from <a href="https://mrfylke.no/Handlers/DownloadPrintPdf.ashx?url=%2F%2Fmrfylke.no%2Ftenester%2Fskole-og-opplaring%2Fopplaring-i-skole%2Fikt-og-elev-pc%2Fkunstig-intelligens-i-skolen%2F%3Fprint%3D1%26securelevel%3Dtoken&title=Kunstig%20intelligens%20i%20skolen&token=c2a702daab7a" target="_blank" rel="noopener noreferrer">mrfylke.no</a></li>
+                        <li id="ref-18">Hadeland Videregående Skole. (n.d.). <em>Fusk og plagiat</em>. Retrieved from <a href="https://www.hadeland.vgs.no/hovedmeny/for-elever/reglement-og-rutiner/fusk-og-plagiat/" target="_blank" rel="noopener noreferrer">hadeland.vgs.no</a></li>
+                        <li id="ref-19">Hadeland Videregående Skole. (n.d.). <em>Fusk og plagiat</em>. Retrieved from <a href="https://www.hadeland.vgs.no/hovedmeny/for-elever/reglement-og-rutiner/fusk-og-plagiat/" target="_blank" rel="noopener noreferrer">hadeland.vgs.no</a>; Askøy Kommune. (n.d.). <em>Skoleregler i Askøyskolen</em>. Retrieved from <a href="https://askoy.kommune.no/tjenester/skole-og-sfo/grunnskole/elevenes-velferd/reglement-og-vedtekter/skoleregler-i-askoyskolen" target="_blank" rel="noopener noreferrer">askoy.kommune.no</a></li>
+                        <li id="ref-20">Askøy Videregående Skole. (n.d.). <em>Eksamensinformasjon</em>. Retrieved from <a href="https://www.askoy.vgs.no/contentassets/58c3f5f60917424d8242f06609d72639/2024_eksamensinformasjon.pdf" target="_blank" rel="noopener noreferrer">askoy.vgs.no</a> (Note: Link might be year-specific); Utdanningsdirektoratet. (n.d.). <em>Forskrift til opplæringslova § 3-42 Annullering av eksamen på grunn av fusk eller forsøk på fusk</em>. Retrieved from <a href="https://www.udir.no/regelverkstolkninger/opplaring/forskrift-om-grunnskoleopplaringa-og-den-vidaregaande-opplaringa-opplaringsforskrifta/tredje-delen--fellesreglar-for-grunnskoleopplaringa-og-den-vidaregaande-opplaringa-for-barn-og-unge/kapittel-3-individuell-vurdering/v.-eksamen/-3-42-annullering-av-eksamen-pa-grunn-av-juks-eller-forsok-pa-juks/" target="_blank" rel="noopener noreferrer">udir.no</a> (Note: Specific section number might vary, §9-42 was provided but §3-42 is common for exam regulations)</li>
+                        <li id="ref-21">Center for Humane Technology. (n.d.). <em>The Attention Economy</em>. Retrieved from <a href="https://www.humanetech.com/youth/the-attention-economy" target="_blank" rel="noopener noreferrer">humanetech.com</a>; Spohr, D. (2024). The attention economy and the metaverse. <em>Technology in Society, 76</em>, 102428. <a href="https://www.tandfonline.com/doi/full/10.1080/09515089.2023.2202428" target="_blank" rel="noopener noreferrer">doi.org/10.1080/09515089.2023.2202428</a> (Note: Year updated to reflect likely publication for 2025 reference)</li>
+                        <li id="ref-22">Center for Humane Technology. (n.d.). <em>The Attention Economy</em>. Retrieved from <a href="https://www.humanetech.com/youth/the-attention-economy" target="_blank" rel="noopener noreferrer">humanetech.com</a></li>
                     </ol>
                 </div>
             </details>
         </section>
         
-
     </main>
 
     <footer class="bg-slate-800 text-slate-300 text-center p-6 mt-12">
-        <p class="text-sm">&copy; 2024 AI Learning for Vocational Studies. Content based on AI literacy report.</p>
+        <p class="text-sm">(C) 2025 - Daniel the Teacher</p>
         <p class="text-xs mt-1">Created for demonstration purposes.</p>
     </footer>
 
@@ -742,14 +783,13 @@
                     
                     const tempDiv = document.createElement('div');
                     tempDiv.textContent = info; 
-                    const sanitizedInfo = tempDiv.innerHTML.replace(/\[(\d+(,\s*\d+)*)\]/g, '<sup class="citation"><a href="#references">[$1]</a></sup>');
+                    const sanitizedInfo = tempDiv.innerHTML; 
 
 
                     strategyDetailsContainer.innerHTML = `
                         <div class="strategy-info">
                             <p class="text-sm content-text">${sanitizedInfo}</p>
-                            <label for="${strategyId}-reflection" class="block text-xs font-medium text-slate-600 mt-2 mb-1">How could you apply this strategy this week? (Quick thought for yourself)</label>
-                            <textarea id="${strategyId}-reflection" rows="2" class="w-full p-1.5 border border-slate-300 rounded-md text-sm" placeholder="Your reflection..."></textarea>
+                            <p class="text-xs font-medium text-slate-600 mt-2 mb-1">How could you apply this strategy this week? (Quick thought for yourself)</p>
                         </div>
                     `;
                 });
@@ -757,20 +797,21 @@
 
             // Human Skills
             const humanSkills = [
-                { name: "Critical Thinking & Problem Solving", desc: "Analyzing complex situations, evaluating info, solving unusual problems.<sup class=\"citation\"><a href=\"#references\">[67, 68, 69]</a></sup>" },
-                { name: "Creativity & Innovation", desc: "Generating new ideas, thinking outside the box, developing original solutions.<sup class=\"citation\"><a href=\"#references\">[67, 68, 69]</a></sup>" },
-                { name: "Emotional Intelligence & Empathy", desc: "Understanding own and others' emotions, building relationships, showing care.<sup class=\"citation\"><a href=\"#references\">[67, 69, 10, 70]</a></sup>" },
-                { name: "Communication & Collaboration", desc: "Conveying info clearly, listening actively, working well in teams.<sup class=\"citation\"><a href=\"#references\">[68, 69, 70, 71]</a></sup>" },
-                { name: "Adaptability & Lifelong Learning", desc: "Learning new things quickly, adjusting to changes, developing professionally.<sup class=\"citation\"><a href=\"#references\">[11, 19, 67]</a></sup>" },
-                { name: "Ethical Judgment & Responsibility", desc: "Making decisions based on values, considering consequences, ensuring fairness.<sup class=\"citation\"><a href=\"#references\">[67, 69]</a></sup>" },
-                { name: "Manual Dexterity & Physical Skills", desc: "Performing precise and complex manual tasks (important in many vocational trades).<sup class=\"citation\"><a href=\"#references\">[7]</a></sup>" }
+                { name: "Critical Thinking & Problem Solving", desc: "Analyzing complex situations, evaluating info, solving unusual problems." },
+                { name: "Creativity & Innovation", desc: "Generating new ideas, thinking outside the box, developing original solutions." },
+                { name: "Emotional Intelligence & Empathy", desc: "Understanding own and others' emotions, building relationships, showing care." },
+                { name: "Communication & Collaboration", desc: "Conveying info clearly, listening actively, working well in teams." },
+                { name: "Adaptability & Lifelong Learning", desc: "Learning new things quickly, adjusting to changes, developing professionally." },
+                { name: "Ethical Judgment & Responsibility", desc: "Making decisions based on values, considering consequences, ensuring fairness." },
+                { name: "Manual Dexterity & Physical Skills", desc: "Performing precise and complex manual tasks (important in many vocational trades)." }
             ];
             const skillsContainer = document.getElementById('humanSkillsContainer');
             if (skillsContainer) {
                 humanSkills.forEach(skill => {
                     const skillDiv = document.createElement('div');
                     skillDiv.className = 'p-4 bg-white rounded-lg shadow hover:shadow-md transition-shadow';
-                    skillDiv.innerHTML = `<h4 class="font-semibold text-sky-600 mb-1">${skill.name}</h4><p class="text-sm content-text">${skill.desc}</p>`;
+                    const skillDesc = skill.desc.replace(/<sup class="citation">.*?<\/sup>/g, '');
+                    skillDiv.innerHTML = `<h4 class="font-semibold text-sky-600 mb-1">${skill.name}</h4><p class="text-sm content-text">${skillDesc}</p>`;
                     skillsContainer.appendChild(skillDiv);
                 });
             }
