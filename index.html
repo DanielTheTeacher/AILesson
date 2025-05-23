@@ -7,21 +7,26 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Application Structure Plan: 
         The SPA is structured with a fixed top navigation bar.
-        Key Changes from v6:
-        - Norwegian cheating section made briefer, clarified inspiration, internal citations removed.
-        - Specific school references (Hadeland, Askøy, Trøndelag) removed from main reference list.
-        - Reference list consolidated: duplicate URLs now share single citation numbers.
-        - Empty reference [8] removed.
-        - All other content and structure remains consistent with v6.
+        Key Changes from v6 (user prompt):
+        - "Connecting AI to 'Skills'" chapter: Added note about "Skills 2. utgave for Elektro og Datateknologi."
+        - Chapter Reordering & Renumbering: 
+            - "AI & Society" is now Chapter 3.
+            - "Your AI Future" is now Chapter 4.
+            - "AI as Helper" is now Chapter 5.
+        - Content Removal from "Connecting AI to 'Skills'": Specific sections removed as requested.
+        - Page Number Update in "Connecting AI to 'Skills'": "Nothing on this Page is Real" to pp. 138-142.
+        - Further Content Removal from "Connecting AI to 'Skills'": "The 'Look of Expertise'" section removed.
+        - Copyright symbol updated.
+        - All previous general references removed.
         This thematic, non-linear structure is chosen over a direct module-by-module translation to make the content more engaging and allow students to explore topics based on interest, facilitating better understanding and retention for the target audience (VG1 vocational students). Key interactions include quizzes, clickable reveals, and now clearly defined writing prompts.
     -->
     <!-- Visualization & Content Choices:
         - Explore AI: "AI Around Us" converted to numbered writing prompts. References updated.
         - Think Critically: "Escape the Bubble" action plan converted to a numbered writing prompt. Content on bias, hallucinations, and misinformation updated. References updated.
-        - AI as Helper: "You First" Principle expanded. Academic Integrity section updated with Norwegian text and clarified inspiration. References updated.
-        - Your Future with AI: "My Vocational Future with AI" converted to a numbered writing prompt.
-        - AI & Society: Ethical Dilemmas and Ethics Charter converted to numbered writing prompts. Attention Economy section expanded. References updated.
-        - New Chapter: "Connecting AI to 'Skills'" detailed integration points with "Skills Elektro" textbook.
+        - AI & Society (now Ch 3): Ethical Dilemmas and Ethics Charter converted to numbered writing prompts. Attention Economy section expanded. References updated. Privacy section removed previously.
+        - Your AI Future (now Ch 4): "My Vocational Future with AI" converted to a numbered writing prompt.
+        - AI as Helper (now Ch 5): "You First" Principle expanded. Academic Integrity section updated with Norwegian text and clarified inspiration. References updated.
+        - Connecting AI to 'Skills' (now after Exercises): Detailed integration points with "Skills Elektro" textbook, with specified content removals and updates.
         - References section updated and consolidated.
         All text content is adapted from the source report, translated, and simplified for the target audience. Definitions for key terms are provided as hover-over tooltips.
         CONFIRMATION: NO SVG graphics used. NO Mermaid JS used.
@@ -135,9 +140,9 @@
                     <li><a href="#home" class="nav-link">Home</a></li>
                     <li><a href="#explore" class="nav-link">1. Explore AI</a></li>
                     <li><a href="#critical" class="nav-link">2. Think Critically</a></li>
-                    <li><a href="#helper" class="nav-link">3. AI as Helper</a></li>
+                    <li><a href="#society" class="nav-link">3. AI & Society</a></li>
                     <li><a href="#future" class="nav-link">4. Your AI Future</a></li>
-                    <li><a href="#society" class="nav-link">5. AI & Society</a></li>
+                    <li><a href="#helper" class="nav-link">5. AI as Helper</a></li>
                     <li><a href="#exercises" class="nav-link">Exercises</a></li>
                     <li><a href="#skills_connect" class="nav-link">Connecting AI to 'Skills'</a></li>
                     <li><a href="#references" class="nav-link">References</a></li>
@@ -249,7 +254,7 @@
                 <p class="content-text mb-2">Examples of AI bias that could affect you:</p>
                 <ul class="list-disc list-inside content-text mb-2 space-y-1">
                     <li><strong>Dangerous "Facts" for Your Trade:</strong> Imagine you're an Elektro-student looking up safety rules for high-voltage installations. An AI might give you an answer in perfect Norwegian, claiming these are "Norwegian electrical safety standards." But, if the AI was mostly trained on American data, it might actually be giving you US electrical codes, just translated. Following these could be extremely dangerous in Norway, as safety standards differ, potentially leading to accidents, equipment damage, or even electrocution. The AI <em>sounds</em> correct, but it's dangerously wrong for your specific location and rules.</li>
-                    <li><strong>Getting Skipped for an Opportunity (And No One Knows Why):</strong> Let's say in a few years you apply for a summer job or a special program. The company uses AI to sort through applications. Your application might get skipped. It could be that the AI was poorly designed to promote diversity and ended up accidentally filtering *out* male applicants for certain roles, or it might unfairly filter out female candidates for technical roles if it learned from historical data where mostly men held those positions. Or it might be looking for tiny, weird patterns in CVs that it <em>thinks</em> predict success, but actually have nothing to do with how good you'd be, accidentally discriminating against you.</li>
+                    <li><strong>Getting Skipped for an Opportunity (And No One Knows Why):</strong> Let's say in a few years you apply for a summer job or a special program. The company uses AI to sort through applications. Your application might get skipped. It could be that the AI was poorly designed to promote diversity and ended up accidentally filtering <em>out</em> male applicants for certain roles, or it might unfairly filter out female candidates for technical roles if it learned from historical data where mostly men held those positions. Or it might be looking for tiny, weird patterns in CVs that it <em>thinks</em> predict success, but actually have nothing to do with how good you'd be, accidentally discriminating against you.</li>
                     <li><strong>Social Media Misunderstandings & Shadow Bans:</strong> You post something online – a joke, an opinion, a comment. An AI moderator, trained mostly on English internet drama or American cultural issues, might misunderstand your Norwegian slang, sarcasm, or cultural reference. It could flag your normal comment as "problematic," delete it, or even temporarily ban your account ("shadow ban" you so fewer people see your stuff) because it wrongly thinks you're breaking rules, even when you're just talking like a typical Norwegian teen.</li>
                 </ul>
                 <p class="content-text">
@@ -330,169 +335,8 @@
             </div>
         </section>
 
-        <section id="helper" class="pt-16 -mt-16 mb-12">
-            <h2 class="section-title">3. AI as Helper: Use the Tools Smartly and Responsibly</h2>
-            <div class="interactive-card">
-                <h3 class="subsection-title">The "You First" Principle: Your Brain, Then AI</h3>
-                <p class="content-text mb-2">
-                    When you use AI for school, the most important rule is: <strong>You First!</strong> This means you must always start by using your own brain – your own thinking, planning, and initial effort – <em>before</em> you turn to AI.
-                </p>
-                <p class="content-text mb-2">
-                    Think of it this way: using AI to write your essays or solve all your problems is like using a forklift to lift weights at the gym. Sure, the forklift can lift heavy things easily, but <em>you</em> don't get any stronger. The whole point of lifting weights is to build <em>your own</em> muscles. Similarly, the point of doing schoolwork isn't just to get an answer or a finished product; it's to build your "mental muscles."
-                </p>
-                <p class="content-text mb-2">
-                    When you write an essay, for example, you're not just learning to write. You're learning much deeper skills: how to structure your thoughts, organize complex information, think critically about a topic, find evidence, and communicate your ideas clearly and persuasively. These are incredibly important skills for any job and for life in general. If AI does this heavy lifting for you, you miss out on developing these critical abilities.
-                </p>
-                <p class="content-text mb-2">
-                    Learning can sometimes feel a bit tough or "painful" – that's when your brain is really working hard and growing. It's often at these moments that it's most tempting to let AI take over. But remember the saying, "no pain, no gain." That struggle is actually what learning feels like. If you skip that struggle, you skip the learning.
-                </p>
-                <p class="content-text mb-2">
-                    Scientists have noticed that many teenagers today report feeling more stressed and perhaps less able to tackle difficulties. Some think this might be partly because technology, including AI, can remove many of the small challenges and hurdles that actually help us grow stronger and more resilient. Your brain is incredibly <span class="tooltip">plastic<span class="tooltiptext">Able to change and adapt as a result of experience.</span></span> (able to change and adapt) when you're young – roughly until your early twenties.<sup class="citation"><a href="#ref-11">[11]</a></sup> This is the prime time to build those fundamental thinking skills. If you rely too much on AI to do the thinking for you now, it can be much harder to develop these essential skills later in life.
-                </p>
-                <p class="content-text">
-                    So, always start with your own effort. Once you've wrestled with the material yourself, then AI can be a useful tool to <span class="tooltip">support<span class="tooltiptext">To assist or hold up.</span></span>, <span class="tooltip">improve<span class="tooltiptext">To make better.</span></span>, or <span class="tooltip">refine<span class="tooltiptext">To make small changes to improve something.</span></span> your work. But you do the core thinking first.
-                </p>
-            </div>
-
-            <div class="interactive-card">
-                <h3 class="subsection-title">AI for <span class="tooltip">Augmentation<span class="tooltiptext">To add to or enhance something, making it better or more effective.</span></span> vs. Generation</h3>
-                <p class="content-text mb-2">
-                    There's a big difference between using AI to augment your work and letting AI generate work for you.
-                </p>
-                <div class="grid md:grid-cols-2 gap-4 content-text">
-                    <div class="bg-rose-50 p-4 rounded">
-                        <h4 class="font-semibold text-rose-700 mb-1">Generation (Risky for Learning)</h4>
-                        <p class="text-sm">AI creates content or solutions almost entirely from scratch, often based on a simple command (prompt), without much prior effort from you. This is like letting the forklift do all the lifting – you don't build your own skills.</p>
-                        <p class="text-sm mt-1"><i>Example: "Write an essay about..."</i></p>
-                    </div>
-                    <div class="bg-green-50 p-4 rounded">
-                        <h4 class="font-semibold text-green-700 mb-1">Augmentation (Good for Learning)</h4>
-                        <p class="text-sm">AI helps you, improves, or builds upon work you've already started or thought out. AI is a collaborator, helping you lift more after you've done your reps.</p>
-                        <p class="text-sm mt-1"><i>Example: "Here's a paragraph I wrote. Can you give feedback on clarity and grammar?"</i></p>
-                    </div>
-                </div>
-                <p class="content-text mt-3">
-                    In school and professional life, the focus should be on augmentation. AI can help you see new angles, improve what you've created, or automate simple parts of a task, so you can focus on the more demanding and creative parts.
-                </p>
-            </div>
-
-            <div class="interactive-card">
-                <h3 class="subsection-title">Ethical Use: AI as a Learning Partner (with Norwegian Guidelines)</h3>
-                <p class="content-text mb-2">With the "You First" principle and your teacher's permission, AI can be a great learning partner. Here are some examples of ethical AI use:
-                     <a href="https://ndla.no/r/engelsk-sf/presentation-sf/3f99192e37" target="_blank" rel="noopener noreferrer" class="resource-link">Ethical AI Use (NDLA)</a>
-                     <a href="https://www.udir.no/kvalitet-og-kompetanse/digitalisering-skole/kunstig-intelligens-ki-i-skolen/kunstig-intelligens-ki-i-skolen/" target="_blank" rel="noopener noreferrer" class="resource-link">Norwegian AI Guidelines (Udir)</a>
-                </p>
-                <ul class="list-disc list-inside content-text mb-3 space-y-1">
-                    <li><strong>Brainstorming (<em>after</em> your own effort!):</strong> This is key: <em>after</em> you have already thought deeply about your project and have your own initial ideas, you could ask AI: "I've thought about X, Y, Z for my project. Can you suggest some other angles or related concepts I might have missed?" Using AI before you've done your own thinking is like asking the forklift to decide which muscles you should train – it defeats the purpose.</li>
-                    <li><strong>Getting feedback on YOUR work:</strong> "Can you check this text I wrote for grammar mistakes?"</li>
-                    <li><strong>Explaining difficult topics (after your own effort):</strong> "I've read about Ohm's Law but struggle to understand. Can you explain it simply for an apprentice in electrical trades?"</li>
-                    <li><strong>Practicing skills:</strong> "Give me a scenario for a customer conversation where the customer is dissatisfied."</li>
-                </ul>
-                 <p class="content-text mb-2"><strong>Important in Norway:</strong></p>
-                <ul class="list-disc list-inside content-text mb-2 space-y-1 text-sm">
-                    <li><strong>AI as support, not replacement:</strong> AI should support learning, not replace your own work and critical thinking.</li>
-                    <li><strong>Be transparent:</strong> Be clear about when and how you've used AI.</li>
-                    <li><strong>Check facts:</strong> Information from AI must always be checked against reliable sources. Do not cite AI as a source.</li>
-                    <li><strong>Privacy:</strong> Don't share sensitive personal information or copyrighted material with AI tools, especially those not approved for GDPR (privacy regulations). Consider using tools like <strong>NDLA AI Chat</strong>, which is adapted to Norwegian privacy laws.<sup class="citation"><a href="#ref-12">[12]</a></sup></li>
-                </ul>
-                <p class="content-text">Ethical use is about your intention and transparency. The goal must be to learn more and become better, not to avoid work.</p>
-            </div>
-            
-            <div class="interactive-card">
-                <h3 class="subsection-title">Academic Integrity: What's NOT Okay? – Consequences of Cheating with AI</h3>
-                <p class="content-text mb-2">Using AI to do your work for you and presenting it as your own is considered cheating. Schools take this very seriously. The following information about what constitutes cheating with AI and its consequences is paraphrased and inspired by guidelines such as those from Vestfold Fylke (see <a href="https://www.vestfoldfylke.no/no/skoler/smi-skolen/meny/praktisk-info/regler-og-rettigheter/" target="_blank" rel="noopener noreferrer" class="text-sky-600 hover:underline">Vestfold Fylke's rules</a>). Similar rules and consequences apply in Møre og Romsdal and other regions.</p>
-                
-                <h4 class="font-semibold text-slate-600 mt-4 mb-2">Hva regnes som juks og plagiat med KI?</h4>
-                <p class="content-text mb-2 text-sm">
-                    Juks med KI innebærer å presentere KI-generert arbeid som ditt eget, uten tillatelse eller uten å ha gjort en betydelig egeninnsats først. Dette inkluderer direkte avskrift eller omskrivinger fra KI uten kildehenvisning. Selv om KI kan være et nyttig verktøy for læring og refleksjon, er det juks hvis du bruker det til å unngå eget arbeid og presenterer resultatet som ditt.
-                </p>
-                <p class="content-text mt-2 mb-2"><strong>Reaksjoner ved juks og plagiat med KI (paraphrased from typical school guidelines):</strong></p>
-                <p class="content-text mb-2 text-sm">
-                    Å jukse med KI kan få alvorlige følger, avhengig av hvor alvorlig det er og om det har skjedd før.
-                </p>
-                <ul class="list-disc list-inside content-text text-sm space-y-1">
-                    <li>Du kan få IV (Ikke Vurdert) på prøver, innleveringer, og i verste fall i standpunktkarakter i faget (jf. forskrift til opplæringsloven §§ 9-14, 9-17).</li>
-                    <li>Ved alvorlig eller gjentatt juks kan du få nedsatt karakter i orden og/eller oppførsel (jf. «skoleregler for elever, § 5-3»). Skolen vil da fatte et enkeltvedtak, og du (og foresatte hvis du er under 18) blir varslet og får forklare deg.</li>
-                    <li>Juks på eksamen kan føre til at eksamen blir annullert, og du mister også standpunktkarakteren i faget. Dette kan bety at du ikke får førstegangsvitnemål (jf. forskrift til opplæringsloven § 9-42).</li>
-                </ul>
-                 <p class="content-text mt-3">Hovedpoenget er: KI skal ikke erstatte din egen læring, kritiske tenkning eller kreativitet. Målet med skolen er at <strong>du</strong> skal lære og utvikle disse ferdighetene.</p>
-            </div>
-
-            <div class="interactive-card" id="ethicsTableActivity">
-                <h3 class="subsection-title">AI Use: Green, Yellow, Red Light for School Assignments</h3>
-                <p class="content-text mb-3">This table provides a guide on what is generally okay, what you should be careful with (and check with your teacher), and what is generally not okay when using AI for schoolwork. Remember the "You First" principle!</p>
-                <div class="overflow-x-auto">
-                    <table class="min-w-full ethics-table">
-                        <thead>
-                            <tr>
-                                <th class="w-1/3">Task Type (Example)</th>
-                                <th class="w-1/3 green-light">Green Light (Generally OK with permission & "You First")</th>
-                                <th class="w-1/3 yellow-light">Yellow Light (Be cautious – Check with teacher, use ethically & openly)</th>
-                                <th class="w-1/3 red-light">Red Light (Generally NOT OK)</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>Brainstorming</strong></td>
-                                <td>After own thoughts, ask AI for related concepts or new angles.</td>
-                                <td>AI generates topic list if stuck; research independently to choose/develop.</td>
-                                <td>AI chooses topic & provides all initial ideas without own effort.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Fact-checking/Definitions</strong></td>
-                                <td>AI explains term *after* own attempt; verify with reliable sources.</td>
-                                <td>AI summarizes long article (read first) for notes; understand original source.</td>
-                                <td>Using AI summaries/facts without reading original sources or verifying.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Writing Drafts</strong></td>
-                                <td>AI checks *your* text for grammar/spelling; suggests improvements to *your* sentences.</td>
-                                <td>AI helps outline *after* main arguments/sources decided; AI rephrases *your* awkward sentence. Be open.</td>
-                                <td>AI writes paragraphs/sections/entire text; submitting AI text as own.</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <p class="text-xs text-slate-500 mt-2">Always check with your teacher if you're unsure!</p>
-            </div>
-        </section>
-
-        <section id="future" class="pt-16 -mt-16 mb-12">
-            <h2 class="section-title">4. Your AI Future: Opportunities and Human Strengths</h2>
-            <div class="interactive-card">
-                <h3 class="subsection-title">AI's Impact on Your Vocational Field (Focus: Electrical Trades & Computer Technology)</h3>
-                <p class="content-text mb-2">AI will affect most professions, but its impact is particularly notable in technical fields. For students in Electrical Trades and Computer Technology, understanding these changes is key:</p>
-                <ul class="list-disc list-inside content-text mb-2 space-y-1">
-                    <li><strong>Electrical Trades & Computer Technology:</strong> Expect to see more AI in smart power grid management, automated fault detection in complex circuits, advanced AI tools for cybersecurity threat analysis, and AI assistants that help with coding and software development.</li>
-                </ul>
-                <p class="content-text">
-                    The point is often that AI <span class="tooltip">enhances<span class="tooltiptext">Improves or makes better.</span></span> human skills and changes job tasks, rather than replacing skilled workers. It will be important to be able to collaborate with AI systems.
-                     <a href="https://www.livingstonjames.com/fundamentally-human-the-irreplaceable-skills-needed-in-the-age-of-ai/" target="_blank" rel="noopener noreferrer" class="resource-link">Read: Irreplaceable Human Skills</a>
-                </p>
-            </div>
-
-            <div class="interactive-card">
-                <h3 class="subsection-title">The Irreplaceable Human Skills</h3>
-                <p class="content-text mb-2">Even as AI gets smarter, many skills remain uniquely human and become even more important:</p>
-                <div id="humanSkillsContainer" class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    </div>
-                 <p class="content-text mt-3">You develop many of these skills through practical work and collaboration in your vocational subjects!</p>
-            </div>
-
-            <div class="interactive-card" id="vocationalFutureActivity">
-                <h3 class="subsection-title">Writing Prompt 3.1: My Vocational Future with AI</h3>
-                <p class="content-text mb-3">Consider the following questions and write a few paragraphs in a separate document to explore your thoughts. This is for your own reflection and learning:</p>
-                <ul class="list-disc list-inside content-text space-y-2 mb-3">
-                    <li>What is your chosen vocational field or dream job (e.g., within Electrical Trades or Computer Technology)?</li>
-                    <li>Imagine you're working in this job 5-10 years from now. How do you think AI might be a part of your daily work? Describe 1-2 specific tasks AI could help with.</li>
-                    <li>In that same future job, what are 1-2 important tasks or responsibilities that you believe *only a human* (you!) could do well, where your human skills and judgment would be essential? Explain why.</li>
-                    <li>What's one key skill (like critical thinking, problem-solving, or communication) you think you should focus on developing now to be successful working alongside AI in the future? How can you work on this skill in your current studies?</li>
-                </ul>
-            </div>
-        </section>
-
         <section id="society" class="pt-16 -mt-16 mb-12">
-            <h2 class="section-title">5. AI & Society: Your Responsibility as a User and Citizen</h2>
+            <h2 class="section-title">3. AI & Society: Your Responsibility as a User and Citizen</h2>
             
             <div class="interactive-card">
                 <h3 class="subsection-title">The Attention Economy and AI's Role</h3>
@@ -564,6 +408,167 @@
                 <p class="content-text mt-2"><em>(This can be a starting point for a class discussion or a personal commitment.)</em></p>
             </div>
         </section>
+
+        <section id="future" class="pt-16 -mt-16 mb-12">
+            <h2 class="section-title">4. Your AI Future: Opportunities and Human Strengths</h2>
+            <div class="interactive-card">
+                <h3 class="subsection-title">AI's Impact on Your Vocational Field (Focus: Electrical Trades & Computer Technology)</h3>
+                <p class="content-text mb-2">AI will affect most professions, but its impact is particularly notable in technical fields. For students in Electrical Trades and Computer Technology, understanding these changes is key:</p>
+                <ul class="list-disc list-inside content-text mb-2 space-y-1">
+                    <li><strong>Electrical Trades & Computer Technology:</strong> Expect to see more AI in smart power grid management, automated fault detection in complex circuits, advanced AI tools for cybersecurity threat analysis, and AI assistants that help with coding and software development.</li>
+                </ul>
+                <p class="content-text">
+                    The point is often that AI <span class="tooltip">enhances<span class="tooltiptext">Improves or makes better.</span></span> human skills and changes job tasks, rather than replacing skilled workers. It will be important to be able to collaborate with AI systems.
+                     <a href="https://www.livingstonjames.com/fundamentally-human-the-irreplaceable-skills-needed-in-the-age-of-ai/" target="_blank" rel="noopener noreferrer" class="resource-link">Read: Irreplaceable Human Skills</a>
+                </p>
+            </div>
+
+            <div class="interactive-card">
+                <h3 class="subsection-title">The Irreplaceable Human Skills</h3>
+                <p class="content-text mb-2">Even as AI gets smarter, many skills remain uniquely human and become even more important:</p>
+                <div id="humanSkillsContainer" class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    </div>
+                 <p class="content-text mt-3">You develop many of these skills through practical work and collaboration in your vocational subjects!</p>
+            </div>
+
+            <div class="interactive-card" id="vocationalFutureActivity">
+                <h3 class="subsection-title">Writing Prompt 3.1: My Vocational Future with AI</h3>
+                <p class="content-text mb-3">Consider the following questions and write a few paragraphs in a separate document to explore your thoughts. This is for your own reflection and learning:</p>
+                <ul class="list-disc list-inside content-text space-y-2 mb-3">
+                    <li>What is your chosen vocational field or dream job (e.g., within Electrical Trades or Computer Technology)?</li>
+                    <li>Imagine you're working in this job 5-10 years from now. How do you think AI might be a part of your daily work? Describe 1-2 specific tasks AI could help with.</li>
+                    <li>In that same future job, what are 1-2 important tasks or responsibilities that you believe *only a human* (you!) could do well, where your human skills and judgment would be essential? Explain why.</li>
+                    <li>What's one key skill (like critical thinking, problem-solving, or communication) you think you should focus on developing now to be successful working alongside AI in the future? How can you work on this skill in your current studies?</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="helper" class="pt-16 -mt-16 mb-12">
+            <h2 class="section-title">5. AI as Helper: Use the Tools Smartly and Responsibly</h2>
+            <div class="interactive-card">
+                <h3 class="subsection-title">The "You First" Principle: Your Brain, Then AI</h3>
+                <p class="content-text mb-2">
+                    When you use AI for school, the most important rule is: <strong>You First!</strong> This means you must always start by using your own brain – your own thinking, planning, and initial effort – <em>before</em> you turn to AI.
+                </p>
+                <p class="content-text mb-2">
+                    Think of it this way: using AI to write your essays or solve all your problems is like using a forklift to lift weights at the gym. Sure, the forklift can lift heavy things easily, but <em>you</em> don't get any stronger. The whole point of lifting weights is to build <em>your own</em> muscles. Similarly, the point of doing schoolwork isn't just to get an answer or a finished product; it's to build your "mental muscles."
+                </p>
+                <p class="content-text mb-2">
+                    When you write an essay, for example, you're not just learning to write. You're learning much deeper skills: how to structure your thoughts, organize complex information, think critically about a topic, find evidence, and communicate your ideas clearly and persuasively. These are incredibly important skills for any job and for life in general. If AI does this heavy lifting for you, you miss out on developing these critical abilities.
+                </p>
+                <p class="content-text mb-2">
+                    Learning can sometimes feel a bit tough or "painful" – that's when your brain is really working hard and growing. It's often at these moments that it's most tempting to let AI take over. But remember the saying, "no pain, no gain." That struggle is actually what learning feels like. If you skip that struggle, you skip the learning.
+                </p>
+                <p class="content-text mb-2">
+                    Scientists have noticed that many teenagers today report feeling more stressed and perhaps less able to tackle difficulties. Some think this might be partly because technology, including AI, can remove many of the small challenges and hurdles that actually help us grow stronger and more resilient. Your brain is incredibly <span class="tooltip">plastic<span class="tooltiptext">Able to change and adapt as a result of experience.</span></span> (able to change and adapt) when you're young – roughly until your early twenties.<sup class="citation"><a href="#ref-11">[11]</a></sup> This is the prime time to build those fundamental thinking skills. If you rely too much on AI to do the thinking for you now, it can be much harder to develop these essential skills later in life.
+                </p>
+                <p class="content-text">
+                    So, always start with your own effort. Once you've wrestled with the material yourself, then AI can be a useful tool to <span class="tooltip">support<span class="tooltiptext">To assist or hold up.</span></span>, <span class="tooltip">improve<span class="tooltiptext">To make better.</span></span>, or <span class="tooltip">refine<span class="tooltiptext">To make small changes to improve something.</span></span> your work. But you do the core thinking first.
+                </p>
+            </div>
+
+            <div class="interactive-card">
+                <h3 class="subsection-title">AI for <span class="tooltip">Augmentation<span class="tooltiptext">To add to or enhance something, making it better or more effective.</span></span> vs. Generation</h3>
+                <p class="content-text mb-2">
+                    There's a big difference between using AI to augment your work and letting AI generate work for you.
+                </p>
+                <div class="grid md:grid-cols-2 gap-4 content-text">
+                    <div class="bg-rose-50 p-4 rounded">
+                        <h4 class="font-semibold text-rose-700 mb-1">Generation (Risky for Learning)</h4>
+                        <p class="text-sm">AI creates content or solutions almost entirely from scratch, often based on a simple command (prompt), without much prior effort from you. This is like letting the forklift do all the lifting – you don't build your own skills.</p>
+                        <p class="text-sm mt-1"><i>Example: "Write an essay about..."</i></p>
+                    </div>
+                    <div class="bg-green-50 p-4 rounded">
+                        <h4 class="font-semibold text-green-700 mb-1">Augmentation (Good for Learning)</h4>
+                        <p class="text-sm">AI helps you, improves, or builds upon work you've already started or thought out. AI is a collaborator, helping you lift more after you've done your reps.</p>
+                        <p class="text-sm mt-1"><i>Example: "Here's a paragraph I wrote. Can you give feedback on clarity and grammar?"</i></p>
+                    </div>
+                </div>
+                <p class="content-text mt-3">
+                    In school and professional life, the focus should be on augmentation. AI can help you see new angles, improve what you've created, or automate simple parts of a task, so you can focus on the more demanding and creative parts.
+                </p>
+            </div>
+
+            <div class="interactive-card">
+                <h3 class="subsection-title">Ethical Use: AI as a Learning Partner (with Norwegian Guidelines)</h3>
+                <p class="content-text mb-2">With the "You First" principle and your teacher's permission, AI can be a great learning partner. Here are some examples of ethical AI use:
+                     <a href="https://ndla.no/r/engelsk-sf/presentation-sf/3f99192e37" target="_blank" rel="noopener noreferrer" class="resource-link">Ethical AI Use (NDLA)</a>
+                     <a href="https://www.udir.no/kvalitet-og-kompetanse/digitalisering-skole/kunstig-intelligens-ki-i-skolen/kunstig-intelligens-ki-i-skolen/" target="_blank" rel="noopener noreferrer" class="resource-link">Norwegian AI Guidelines (Udir)</a>
+                </p>
+                <ul class="list-disc list-inside content-text mb-3 space-y-1">
+                    <li><strong>Brainstorming (<em>after</em> your own effort!):</strong> This is key: <em>after</em> you have already thought deeply about your project and have your own initial ideas, you could ask AI: "I've thought about X, Y, Z for my project. Can you suggest some other angles or related concepts I might have missed?" Using AI before you've done your own thinking is like asking the forklift to decide which muscles you should train – it defeats the purpose.</li>
+                    <li><strong>Getting feedback on YOUR work:</strong> "Can you check this text I wrote for grammar mistakes?"</li>
+                    <li><strong>Explaining difficult topics (after your own effort):</strong> "I've read about Ohm's Law but struggle to understand. Can you explain it simply for an apprentice in electrical trades?"</li>
+                    <li><strong>Practicing skills:</strong> "Give me a scenario for a customer conversation where the customer is dissatisfied."</li>
+                </ul>
+                 <p class="content-text mb-2"><strong>Important in Norway:</strong></p>
+                <ul class="list-disc list-inside content-text mb-2 space-y-1 text-sm">
+                    <li><strong>AI as support, not replacement:</strong> AI should support learning, not replace your own work and critical thinking.</li>
+                    <li><strong>Be transparent:</strong> Be clear about when and how you've used AI.</li>
+                    <li><strong>Check facts:</strong> Information from AI must always be checked against reliable sources. Do not cite AI as a source.</li>
+                    <li><strong>Privacy:</strong> Don't share sensitive personal information or copyrighted material with AI tools, especially those not approved for GDPR (privacy regulations). Consider using tools like <strong>NDLA AI Chat</strong>, which is adapted to Norwegian privacy laws.<sup class="citation"><a href="#ref-12">[12]</a></sup></li>
+                </ul>
+                <p class="content-text">Ethical use is about your intention and transparency. The goal must be to learn more and become better, not to avoid work.</p>
+            </div>
+            
+            <div class="interactive-card">
+                <h3 class="subsection-title">Academic Integrity: What's NOT Okay? – Consequences of Cheating with AI</h3>
+                <p class="content-text mb-2">Using AI to do your work for you and presenting it as your own is considered cheating. Schools take this very seriously. The following information about what constitutes cheating with AI and its potential consequences is paraphrased and inspired by guidelines such as those from Vestfold Fylke (see <a href="https://www.vestfoldfylke.no/no/skoler/smi-skolen/meny/praktisk-info/regler-og-rettigheter/" target="_blank" rel="noopener noreferrer" class="text-sky-600 hover:underline">Vestfold Fylke's rules</a>). Similar rules and consequences apply in Møre og Romsdal and other regions.</p>
+                
+                <h4 class="font-semibold text-slate-600 mt-4 mb-2">Hva regnes som juks og plagiat med KI?</h4>
+                <p class="content-text mb-2 text-sm">
+                    Juks med KI innebærer å presentere KI-generert arbeid som ditt eget, uten tillatelse eller uten å ha gjort en betydelig egeninnsats først. Dette inkluderer direkte avskrift eller omskrivinger fra KI uten kildehenvisning. Selv om KI kan være et nyttig verktøy for læring og refleksjon, er det juks hvis du bruker det til å unngå eget arbeid og presenterer resultatet som ditt.
+                </p>
+                <p class="content-text mt-2 mb-2"><strong>Reaksjoner ved juks og plagiat med KI (paraphrased from typical school guidelines):</strong></p>
+                <p class="content-text mb-2 text-sm">
+                    Å jukse med KI kan få alvorlige følger, avhengig av hvor alvorlig det er og om det har skjedd før.
+                </p>
+                <ul class="list-disc list-inside content-text text-sm space-y-1">
+                    <li>Du kan få IV (Ikke Vurdert) på prøver, innleveringer, og i verste fall i standpunktkarakter i faget (jf. forskrift til opplæringsloven §§ 9-14, 9-17).</li>
+                    <li>Ved alvorlig eller gjentatt juks kan du få nedsatt karakter i orden og/eller oppførsel (jf. «skoleregler for elever, § 5-3»). Skolen vil da fatte et enkeltvedtak, og du (og foresatte hvis du er under 18) blir varslet og får forklare deg.</li>
+                    <li>Juks på eksamen kan føre til at eksamen blir annullert, og du mister også standpunktkarakteren i faget. Dette kan bety at du ikke får førstegangsvitnemål (jf. forskrift til opplæringsloven § 9-42).</li>
+                </ul>
+                 <p class="content-text mt-3">Hovedpoenget er: KI skal ikke erstatte din egen læring, kritiske tenkning eller kreativitet. Målet med skolen er at <strong>du</strong> skal lære og utvikle disse ferdighetene.</p>
+            </div>
+
+            <div class="interactive-card" id="ethicsTableActivity">
+                <h3 class="subsection-title">AI Use: Green, Yellow, Red Light for School Assignments</h3>
+                <p class="content-text mb-3">This table provides a guide on what is generally okay, what you should be careful with (and check with your teacher), and what is generally not okay when using AI for schoolwork. Remember the "You First" principle!</p>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full ethics-table">
+                        <thead>
+                            <tr>
+                                <th class="w-1/3">Task Type (Example)</th>
+                                <th class="w-1/3 green-light">Green Light (Generally OK with permission & "You First")</th>
+                                <th class="w-1/3 yellow-light">Yellow Light (Be cautious – Check with teacher, use ethically & openly)</th>
+                                <th class="w-1/3 red-light">Red Light (Generally NOT OK)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Brainstorming</strong></td>
+                                <td>After own thoughts, ask AI for related concepts or new angles.</td>
+                                <td>AI generates topic list if stuck; research independently to choose/develop.</td>
+                                <td>AI chooses topic & provides all initial ideas without own effort.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Fact-checking/Definitions</strong></td>
+                                <td>AI explains term <em>after</em> own attempt; verify with reliable sources.</td>
+                                <td>AI summarizes long article (read first) for notes; understand original source.</td>
+                                <td>Using AI summaries/facts without reading original sources or verifying.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Writing Drafts</strong></td>
+                                <td>AI checks <em>your</em> text for grammar/spelling; suggests improvements to <em>your</em> sentences.</td>
+                                <td>AI helps outline <em>after</em> main arguments/sources decided; AI rephrases <em>your</em> awkward sentence. Be open.</td>
+                                <td>AI writes paragraphs/sections/entire text; submitting AI text as own.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="text-xs text-slate-500 mt-2">Always check with your teacher if you're unsure!</p>
+            </div>
+        </section>
         
         <section id="exercises" class="pt-16 -mt-16 mb-12">
             <h2 class="section-title">Exercises: Test Your Knowledge and Reflect</h2>
@@ -585,11 +590,10 @@
         <section id="skills_connect" class="pt-16 -mt-16 mb-12">
             <h2 class="section-title">Connecting AI to 'Skills'</h2>
             <div class="interactive-card">
-                <p class="content-text mb-4">This AI literacy guide is designed to complement your learning with the "Skills Elektro" textbook. Many concepts and skills you're developing in English class are directly relevant to understanding and using AI responsibly. Here’s how you can make connections:</p>
+                <p class="content-text mb-4">This AI literacy guide is designed to complement your learning with the <em>'Skills 2. utgave for Elektro og Datateknologi.'</em> textbook. Many concepts and skills you're developing in English class are directly relevant to understanding and using AI responsibly. Here’s how you can make connections:</p>
 
                 <h3 class="subsection-title mt-4">General Connections (Chapter 1 Focus)</h3>
                 <ul class="list-disc list-inside content-text space-y-2">
-                    <li><strong>Expectations & New Inventions (Ch 1, pp. 8-9):</strong> Think of AI as a new, powerful "invention that is changing the use of electricity" and many other fields. Just like past technologies transformed society, AI is doing so now. The "learning strategies and language tools" mentioned on p. 9 are exactly what you'll use to understand AI.</li>
                     <li><strong>Vocational English for AI (Ch 1, pp. 18-19):</strong> As you learn specialized vocabulary for electrical trades, recognize that understanding AI also involves learning new "vocational English" specific to AI and digital technologies (like "algorithm," "bias," "hallucination").</li>
                     <li><strong>Innovation: Edison & AI (Ch 1, pp. 40-41):</strong> Thomas Edison was a great innovator. AI is a modern-day innovation with huge transformative potential. <em>Discussion Point:</em> How is AI similar to or different from Edison's inventions in its impact on society and work?</li>
                 </ul>
@@ -599,19 +603,17 @@
                     <li><strong>Fictional AI vs. Real LLMs (Ch 5, "True Love", pp. 210-211):</strong> After learning that real LLMs don't "think" like humans, read the summary of Asimov's short story "True Love." <em>Writing Prompt 1.4:</em> In what ways does the AI 'Joe' in the story seem to understand or misunderstand human concepts like 'love' or 'ideal partner'? How does this compare to what you've learned about how real LLMs work?</li>
                     <li><strong>AI and Automation in Jobs (Ch 6, "Robots 'to replace up to 20 million factory jobs'", pp. 274-275):</strong> When we discuss AI enhancing human skills, this article provides context on automation. <em>Writing Prompt 1.5:</em> Read the summary of the article. Discuss how AI-driven automation might specifically impact the Elektro-field or another vocational trade you know. What 'human skills' from our list (Module 4) will be most important to complement this automation?</li>
                     <li><strong>Human-Tech Integration (Ch 6, "iBoy 101", pp. 278-279):</strong> This novel excerpt shows an extreme fictional example of human-tech fusion. <em>Discussion Starter:</em> The character in 'iBoy' literally has technology in his brain. While fictional, how does this idea relate to how integrated AI is becoming in our daily tools and devices (like smartphones)?</li>
-                    <li><strong>Complex Systems Analogy (Ch 2, "The Black Box", pp. 80-81):</strong> When we say "AI is not magic," think about the complex electronic systems and data recording in aircraft, as described in "The Black Box." AI also relies on vast data and complex algorithms, similar to modern flight systems.</li>
                 </ul>
 
                 <h3 class="subsection-title mt-6">Connections for "2. Think Critically"</h3>
                 <ul class="list-disc list-inside content-text space-y-2">
-                    <li><strong>Misinformation & Fake News (Ch 4, "Nothing on This Page is Real", pp. 138-139):</strong> This article is a perfect match! Christopher Blair's "satirical/fake news" directly relates to misinformation and how AI can generate convincing but false content. <em>Writing Prompt 2.2 (after "What is AI-Generated Fiction?" exercise):</em> Read the summary of "Nothing on This Page is Real." How does Christopher Blair's motivation for creating 'fake news' compare or contrast with how an AI might generate a 'hallucination'? What are the different dangers posed by human-created fake news versus AI-generated misinformation?</li>
+                    <li><strong>Misinformation & Fake News (Ch 4, "Nothing on This Page is Real", pp. 138-142):</strong> This article is a perfect match! Christopher Blair's "satirical/fake news" directly relates to misinformation and how AI can generate convincing but false content. <em>Writing Prompt 2.2 (after "What is AI-Generated Fiction?" exercise):</em> Read the summary of "Nothing on This Page is Real." How does Christopher Blair's motivation for creating 'fake news' compare or contrast with how an AI might generate a 'hallucination'? What are the different dangers posed by human-created fake news versus AI-generated misinformation?</li>
                     <li><strong>Evaluating AI as a Source (Ch 4, "Skills Focus: Selecting Sources", p. 146):</strong> The principles here are <em>essential</em> for evaluating information from AI. AI is a new type of "source" needing extra scrutiny. <em>Activity Idea:</em> Review the 'Selecting Sources' guidelines. How would you adapt step 3 ('Is it relevant?'), step 4 ('Is it reliable?'), and step 5 ('Cross-check') when evaluating information from an AI like NDLA AI Chat?</li>
                     <li><strong>Social Media Impact (Ch 3, "It's a Wonderful, Digital World?", pp. 116-117):</strong> This text provides context for discussing Echo Chambers, Filter Bubbles, and the Attention Economy, as social media impact is often algorithm-driven.</li>
-                    <li><strong>The "Look of Expertise" (Ch 1, "Did You Know?", p. 25):</strong> The fact that "90% of texts use only about 1000 different words" is relevant. AI can generate fluent text using common words, making it sound authoritative, even if it lacks deep understanding or is factually wrong.</li>
                     <li><strong>Key Vocabulary (Ch 4, "Useful words and phrases", p. 133):</strong> Note terms like "echo chamber," "fake news," and "manipulation" from your textbook are directly relevant here.</li>
                 </ul>
 
-                 <h3 class="subsection-title mt-6">Connections for "3. AI as Helper"</h3>
+                 <h3 class="subsection-title mt-6">Connections for "5. AI as Helper" (Note: Chapter number changed)</h3>
                 <ul class="list-disc list-inside content-text space-y-2">
                     <li><strong>"You First" & Learning Strategies (Ch 1, "Skills Focus: Learning Strategies", p. 16):</strong> The "You First" principle directly links to these strategies. AI can be a tool *within* these (e.g., for "Expand your vocabulary," after trying yourself, ask AI for synonyms; for "Repeat," ask AI to quiz you on material you've studied). Crucially, apply strategy 1: "Prepare your brain for learning" <em>before</em> engaging AI.</li>
                     <li><strong>Citing Sources (Not AI!) (Ch 8, "Skills Focus: Referring to Sources", p. 372):</strong> When discussing academic integrity, these principles are vital. You must cite the <em>original human-created sources</em> that AI might point you to (after you've verified them yourself). Never cite the AI as the primary source of factual information.</li>
@@ -620,7 +622,7 @@
                     <li><strong>Understanding AI Feedback (Ch 9, "Language Lab", pp. 398-430):</strong> Use the Language Lab to understand grammar or style feedback AI gives on your writing, or to self-correct *before* asking AI for help.</li>
                 </ul>
 
-                <h3 class="subsection-title mt-6">Connections for "4. Your AI Future"</h3>
+                <h3 class="subsection-title mt-6">Connections for "4. Your AI Future" (Note: Chapter number changed)</h3>
                 <ul class="list-disc list-inside content-text space-y-2">
                     <li><strong>Relating to Peers (Ch 1, "Core Content: This Is Me", pp. 10-11):</strong> <em>Writing Prompt 3.2 (related to Prompt 3.1):</em> Re-read one of the student profiles in 'This Is Me'. Imagine that student (e.g., Emilie with audio-visual equipment, Joel as a power-supply fitter) is working in their field 5-10 years from now. How might AI be part of *their* daily work? What human skills would still be essential for them?</li>
                     <li><strong>Discussing AI in Your Trade (Ch 6, "Skills Focus: Discussing Vocational Topics", p. 272):</strong> This framework is excellent for class discussions about AI's role in specific trades like Electrical Engineering or Computer Technology.</li>
@@ -629,7 +631,7 @@
                     <li><strong>AI in Vocational Scenarios (Various "Core Content" texts):</strong> Texts like "The Rule of Three" (Ch 2, pp. 64-65 - loss of digital infrastructure), "On Call-Out" (Ch 6, pp. 250-251 - technician problem-solving), or "Spare Parts" (Ch 6, pp. 258-259 - students building ROV) can be springboards. <em>Discussion:</em> How would AI change these scenarios? What human skills shown by the characters would still be vital?</li>
                 </ul>
 
-                <h3 class="subsection-title mt-6">Connections for "5. AI & Society"</h3>
+                <h3 class="subsection-title mt-6">Connections for "3. AI & Society" (Note: Chapter number changed)</h3>
                 <ul class="list-disc list-inside content-text space-y-2">
                     <li><strong>Advocacy & Shaping AI (Ch 4, "Young Activists", pp. 192-193):</strong> When discussing "Your Voice Counts," these examples show how individuals can advocate for change. This can inspire you to be active in shaping ethical AI.</li>
                     <li><strong>Arguing for Responsible AI (Ch 8, "Skills Focus: Arguing a Case", p. 358):</strong> This skill is crucial for you to "Promote ethical practices" or "Join the dialogue" about AI. Use this framework to structure your arguments for responsible AI use.</li>
@@ -672,7 +674,7 @@
     </main>
 
     <footer class="bg-slate-800 text-slate-300 text-center p-6 mt-12">
-        <p class="text-sm">(C) 2025 - Daniel the Teacher</p>
+        <p class="text-sm">&copy; 2025 - Daniel the Teacher</p>
         <p class="text-xs mt-1">Created for demonstration purposes.</p>
     </footer>
 
