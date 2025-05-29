@@ -1,3 +1,4 @@
+
 import React from 'react';
 
 export const CitationLink = ({ referenceId, text }) => { // Removed React.FC and prop types
@@ -10,7 +11,7 @@ export const CitationLink = ({ referenceId, text }) => { // Removed React.FC and
         href: `#${referenceId}`, 
         onClick: (e) => e.preventDefault(), 
         className: "text-gray-400 no-underline hover:underline" 
-      } as any, // Cast to any to allow standard HTML attributes
+      }, // Removed 'as any'
         text
       )
     )

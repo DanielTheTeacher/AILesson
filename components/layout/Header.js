@@ -1,3 +1,4 @@
+
 import React from 'react';
 // Types are effectively removed, rely on JSDoc or conventions
 import { VOCATION_OPTIONS } from '../../constants.js';
@@ -22,8 +23,8 @@ export const Header = ({
             value: selectedVocation,
             onChange: (e) => onVocationChange(e.target.value), // Removed 'as Vocation'
             className: `bg-sky-600 text-white border border-sky-500 rounded-md shadow-sm focus:ring-2 focus:ring-sky-400 focus:border-sky-400 text-sm ${isScrolled ? 'p-1.5 text-xs' : 'p-2 text-sm'} transition-all duration-300`,
-            "aria-label": "Select your vocational field" // Changed aria-label to "aria-label"
-          } as any, // Cast to any to allow standard HTML attributes
+            "aria-label": "Select your vocational field" 
+          }, // Removed 'as any'
             VOCATION_OPTIONS.map(vocation => (
               React.createElement('option', { key: vocation, value: vocation }, vocation)
             ))
@@ -42,7 +43,7 @@ export const Header = ({
                     }
                     ${isScrolled ? 'sm:px-2 sm:py-1' : 'sm:px-3 sm:py-1.5'}
                   `,
-                  "aria-current": activeChapterId === item.id ? "page" : undefined // Changed aria-current to "aria-current"
+                  "aria-current": activeChapterId === item.id ? "page" : undefined
                 },
                   item.label
                 )

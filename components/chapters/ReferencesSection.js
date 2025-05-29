@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { InteractiveCard } from '../ui/InteractiveCard.js';
 import { SectionTitle } from '../ui/SectionTitle.js';
@@ -138,7 +139,7 @@ export const ReferencesSection = () => { // Removed React.FC
         children: React.createElement('details', { 
             open: isOpen, 
             onToggle: (e) => setIsOpen(e.target.open) 
-          } as any, // Cast to any to allow standard HTML attributes
+          }, // Removed 'as any'
           React.createElement('summary', { className: "text-lg font-semibold text-sky-800 cursor-pointer py-2 mb-2 border-b border-slate-200 focus:outline-none" },
             "View All References"
           ),
