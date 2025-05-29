@@ -1,17 +1,16 @@
-
 import React from 'react';
-import { InteractiveCard } from '../ui/InteractiveCard.tsx';
-import { SectionTitle } from '../ui/SectionTitle.tsx';
-import { SubsectionTitle } from '../ui/SubsectionTitle.tsx';
-import { Tooltip } from '../ui/Tooltip.tsx';
-import { ResourceLink } from '../ui/ResourceLink.tsx';
-import { CitationLink } from '../ui/CitationLink.tsx';
-import { ListItem } from '../ui/ListItem.tsx';
-import { SpotTheLieGame } from '../shared/SpotTheLieGame.tsx';
-import { EscapeTheBubble } from '../shared/EscapeTheBubble.tsx';
-import { Vocation, VocationSpecificProps } from '../../types.ts';
+import { InteractiveCard } from '../ui/InteractiveCard.js';
+import { SectionTitle } from '../ui/SectionTitle.js';
+import { SubsectionTitle } from '../ui/SubsectionTitle.js';
+import { Tooltip } from '../ui/Tooltip.js';
+import { ResourceLink } from '../ui/ResourceLink.js';
+import { CitationLink } from '../ui/CitationLink.js';
+import { ListItem } from '../ui/ListItem.js';
+import { SpotTheLieGame } from '../shared/SpotTheLieGame.js';
+import { EscapeTheBubble } from '../shared/EscapeTheBubble.js';
+import { Vocation } from '../../types.js'; // Vocation is JS object
 
-export const CriticalThinkingSection: React.FC<VocationSpecificProps> = ({ selectedVocation }) => {
+export const CriticalThinkingSection = ({ selectedVocation }) => { // Removed React.FC and prop types
 
   const getVocationSpecificBiasExample = () => {
     switch (selectedVocation) {
@@ -27,74 +26,79 @@ export const CriticalThinkingSection: React.FC<VocationSpecificProps> = ({ selec
   };
 
   return (
-    <section className="mb-12">
-      <SectionTitle>2. Think Critically: Navigating an AI-Driven World</SectionTitle>
+    React.createElement('section', { className: "mb-12" },
+      React.createElement(SectionTitle, { children: "2. Think Critically: Navigating an AI-Driven World" }),
       
-      <InteractiveCard>
-        <SubsectionTitle>How AI Learns (and Gets it Wrong): Bias In, Bias Out</SubsectionTitle>
-        <p className="text-slate-700 mb-2 leading-relaxed">
-          AI models learn from data; if data contains bias, AI will reflect/amplify it.<CitationLink referenceId="ref-7" text="[7]" />
-          <ResourceLink href="https://www.youtube.com/watch?v=DzV10l-OJwQ">Watch: AI Bias Explained</ResourceLink>
-          <ResourceLink href="https://www.youtube.com/watch?v=x2mRoFNm22g">Watch: How Training Data Creates Bias</ResourceLink>
-        </p>
-        <p className="text-slate-700 mb-2 leading-relaxed">Examples of AI bias that could affect you (specifically for <strong className="text-sky-600">{selectedVocation}</strong> and generally):</p>
-        <ul className="list-disc list-inside text-slate-700 mb-2 space-y-2 leading-relaxed">
-          <ListItem><strong>Dangerous "Facts" for Your Trade ({selectedVocation}):</strong> {getVocationSpecificBiasExample()}</ListItem>
-          <ListItem><strong>Getting Skipped for an Opportunity (And No One Knows Why):</strong> Let's say in a few years you apply for a summer job or a special program. The company uses AI to sort through applications. Your application might get skipped. It could be that the AI was poorly designed to promote diversity and ended up accidentally filtering *out* male applicants for certain roles, or it might unfairly filter out female candidates for technical roles if it learned from historical data where mostly men held those positions. Or it might be looking for tiny, weird patterns in CVs that it <em>thinks</em> predict success, but actually have nothing to do with how good you'd be, accidentally discriminating against you.</ListItem>
-          <ListItem><strong>Social Media Misunderstandings & Shadow Bans:</strong> You post something online – a joke, an opinion, a comment. An AI moderator, trained mostly on English internet drama or American cultural issues, might misunderstand your Norwegian slang, sarcasm, or cultural reference. It could flag your normal comment as "problematic," delete it, or even temporarily ban your account ("shadow ban" you so fewer people see your stuff) because it wrongly thinks you're breaking rules, even when you're just talking like a typical Norwegian teen.</ListItem>
-        </ul>
-        <p className="text-slate-700 leading-relaxed">
-          For your vocational field of <strong className="text-sky-600">{selectedVocation}</strong>, a biased AI could lead to incorrect diagnoses, unfair assessments, or designs that don't suit everyone. It's important to remember that AI bias often mirrors existing <Tooltip text="Unfair differences in how groups of people are treated or have access to opportunities in society.">societal inequalities</Tooltip>.<CitationLink referenceId="ref-7" text="[7]" /> Therefore, human oversight and critical assessment are always needed.
-        </p>
-      </InteractiveCard>
+      React.createElement(InteractiveCard, {
+        children: [
+          React.createElement(SubsectionTitle, { key: 'sub1', children: "How AI Learns (and Gets it Wrong): Bias In, Bias Out" }),
+          React.createElement('p', { key: 'p1', className: "text-slate-700 mb-2 leading-relaxed" },
+            "AI models learn from data; if data contains bias, AI will reflect/amplify it.",
+            React.createElement(CitationLink, { key: 'c1', referenceId: "ref-7", text: "[7]" }),
+            React.createElement(ResourceLink, { key: 'r1', href: "https://www.youtube.com/watch?v=DzV10l-OJwQ", children: "Watch: AI Bias Explained" }),
+            React.createElement(ResourceLink, { key: 'r2', href: "https://www.youtube.com/watch?v=x2mRoFNm22g", children: "Watch: How Training Data Creates Bias" })
+          ),
+          React.createElement('p', { key: 'p2', className: "text-slate-700 mb-2 leading-relaxed" }, "Examples of AI bias that could affect you (specifically for ", React.createElement('strong', { key: 's1', className: "text-sky-600" }, selectedVocation), " and generally):"),
+          React.createElement('ul', { key: 'ul1', className: "list-disc list-inside text-slate-700 mb-2 space-y-2 leading-relaxed" },
+            React.createElement(ListItem, { key: 'li1', children: [React.createElement('strong', { key: 's2' }, "Dangerous \"Facts\" for Your Trade (", selectedVocation, "):"), " ", getVocationSpecificBiasExample()] }),
+            React.createElement(ListItem, { key: 'li2', children: [React.createElement('strong', { key: 's3' }, "Getting Skipped for an Opportunity (And No One Knows Why):"), " Let's say in a few years you apply for a summer job or a special program. The company uses AI to sort through applications. Your application might get skipped. It could be that the AI was poorly designed to promote diversity and ended up accidentally filtering *out* male applicants for certain roles, or it might unfairly filter out female candidates for technical roles if it learned from historical data where mostly men held those positions. Or it might be looking for tiny, weird patterns in CVs that it <em>thinks</em> predict success, but actually have nothing to do with how good you'd be, accidentally discriminating against you."] }),
+            React.createElement(ListItem, { key: 'li3', children: [React.createElement('strong', { key: 's4' }, "Social Media Misunderstandings & Shadow Bans:"), " You post something online – a joke, an opinion, a comment. An AI moderator, trained mostly on English internet drama or American cultural issues, might misunderstand your Norwegian slang, sarcasm, or cultural reference. It could flag your normal comment as \"problematic,\" delete it, or even temporarily ban your account (\"shadow ban\" you so fewer people see your stuff) because it wrongly thinks you're breaking rules, even when you're just talking like a typical Norwegian teen."] })
+          ),
+          React.createElement('p', { key: 'p3', className: "text-slate-700 leading-relaxed" },
+            "For your vocational field of ", React.createElement('strong', { key: 's5', className: "text-sky-600" }, selectedVocation), ", a biased AI could lead to incorrect diagnoses, unfair assessments, or designs that don't suit everyone. It's important to remember that AI bias often mirrors existing ", React.createElement(Tooltip, { key: 't1', text: "Unfair differences in how groups of people are treated or have access to opportunities in society.", children: "societal inequalities" }), ".", React.createElement(CitationLink, { key: 'c2', referenceId: "ref-7", text: "[7]" }), " Therefore, human oversight and critical assessment are always needed."
+          )
+        ]
+      }),
 
-      <InteractiveCard>
-        <SubsectionTitle>AI "Hallucinations" & <strong>Looks Real, But Isn't</strong>: Spotting Convincing Fakes</SubsectionTitle>
-        <p className="text-slate-700 mb-2 leading-relaxed">
-          Sometimes AI can generate incorrect or misleading information presented as fact. This is called <Tooltip text="When AI invents facts or information that isn't true.">AI hallucinations</Tooltip>.<CitationLink referenceId="ref-2" text="[2]" />
-          <ResourceLink href="https://builtin.com/artificial-intelligence/ai-hallucination">Read: AI Hallucinations Explained</ResourceLink>
-        </p>
-        <p className="text-slate-700 mb-2 leading-relaxed">
-          <strong>Why does this happen?</strong> AI hallucinations occur because AI doesn't 'know' but predicts based on patterns.<CitationLink referenceId="ref-2" text="[2]" /> Think of it like a super-advanced autocomplete. If you ask it, 'Who will win the Ballon d'Or in 2025?', it doesn't know the answer. But it knows which football players' names often appear near 'Ballon d'Or winner'. So, it might confidently name a famous current player. It <em>sounds</em> believable because the name is right, the context is right, but the AI is just making a highly probable guess, not stating a known fact. It can be totally wrong.
-        </p>
-        <p className="text-slate-700 mb-2 leading-relaxed">
-          This isn't deliberate deception by the AI. It's just how it works: predicting patterns. If the patterns in its data are incomplete or lead to a 'likely' but false statement, it will still generate it.
-        </p>
-        <p className="text-slate-700 mb-4 leading-relaxed">
-          For example, an AI might 'invent' historical events or scientific 'facts.' The problem is made worse because AI can make its output look very real and professional (what I, Daniel the teacher, like to call 'the look of expertise'). Perfect grammar and a confident tone can make false information seem true, even when it's completely made up.
-        </p>
-        <SpotTheLieGame />
-      </InteractiveCard>
+      React.createElement(InteractiveCard, {
+        children: [
+          React.createElement(SubsectionTitle, { key: 'sub2', children: ["AI \"Hallucinations\" & ", React.createElement('strong', { key: 's6' }, "Looks Real, But Isn't"), ": Spotting Convincing Fakes"] }),
+          React.createElement('p', { key: 'p4', className: "text-slate-700 mb-2 leading-relaxed" },
+            "Sometimes AI can generate incorrect or misleading information presented as fact. This is called ", React.createElement(Tooltip, { key: 't2', text: "When AI invents facts or information that isn't true.", children: "AI hallucinations" }), ".", React.createElement(CitationLink, { key: 'c3', referenceId: "ref-2", text: "[2]" }),
+            React.createElement(ResourceLink, { key: 'r3', href: "https://builtin.com/artificial-intelligence/ai-hallucination", children: "Read: AI Hallucinations Explained" })
+          ),
+          React.createElement('p', { key: 'p5', className: "text-slate-700 mb-2 leading-relaxed" },
+            React.createElement('strong', { key: 's7' }, "Why does this happen?"), " AI hallucinations occur because AI doesn't 'know' but predicts based on patterns.", React.createElement(CitationLink, { key: 'c4', referenceId: "ref-2", text: "[2]" }), " Think of it like a super-advanced autocomplete. If you ask it, 'Who will win the Ballon d'Or in 2025?', it doesn't know the answer. But it knows which football players' names often appear near 'Ballon d'Or winner'. So, it might confidently name a famous current player. It ", React.createElement('em', { key: 'e1' }, "sounds"), " believable because the name is right, the context is right, but the AI is just making a highly probable guess, not stating a known fact. It can be totally wrong."
+          ),
+          React.createElement('p', { key: 'p6', className: "text-slate-700 mb-2 leading-relaxed" },
+            "This isn't deliberate deception by the AI. It's just how it works: predicting patterns. If the patterns in its data are incomplete or lead to a 'likely' but false statement, it will still generate it."
+          ),
+          React.createElement('p', { key: 'p7', className: "text-slate-700 mb-4 leading-relaxed" },
+            "For example, an AI might 'invent' historical events or scientific 'facts.' The problem is made worse because AI can make its output look very real and professional (what I, Daniel the teacher, like to call 'the look of expertise'). Perfect grammar and a confident tone can make false information seem true, even when it's completely made up."
+          ),
+          React.createElement(SpotTheLieGame, { key: 'game1' })
+        ]
+      }),
       
-      <InteractiveCard>
-        <SubsectionTitle>Misinformation, Echo Chambers & Filter Bubbles</SubsectionTitle>
-        <p className="text-slate-700 mb-2 leading-relaxed">
-          On the internet, false or inaccurate information can spread quickly. It's important to distinguish between:
-        </p>
-        <ul className="list-disc list-inside text-slate-700 my-2 space-y-1 leading-relaxed">
-            <ListItem><Tooltip text="False info spread, often without the sender knowing it's false.">Misinformation</Tooltip></ListItem>
-            <ListItem><Tooltip text="False info created and spread intentionally to deceive or harm.">Disinformation</Tooltip></ListItem>
-        </ul>
-        <ResourceLink href="https://guides.lib.k-state.edu/media-literacy/factcheck">Learn: Mis/Disinformation & Fact-Checking</ResourceLink>
-        
-        <p className="text-slate-700 mb-2 mt-3 leading-relaxed">
-          AI can amplify these problems. Algorithms on social media can create:
-        </p>
-        <ul className="list-disc list-inside text-slate-700 my-2 space-y-1 leading-relaxed">
-            <ListItem><Tooltip text="Environments where you mostly see opinions you already agree with, and alternative views are rarely encountered.">Echo Chambers</Tooltip></ListItem>
-            <ListItem><Tooltip text="When algorithms personalize the content you see based on your past behavior, so you miss other perspectives, often without knowing it.">Filter Bubbles</Tooltip></ListItem>
-        </ul>
-        <ResourceLink href="https://en.wikipedia.org/wiki/Filter_bubble">Read: Filter Bubbles (Wikipedia)</ResourceLink>
-        <ResourceLink href="https://www.youtube.com/watch?v=eaolE1blpWk">Watch: Echo Chambers & Filter Bubbles</ResourceLink>
-        
-        <p className="text-slate-700 mb-2 mt-3 leading-relaxed">
-          This is related to the <Tooltip text="The idea that your attention is a valuable resource that websites and apps compete for, often through advertising.">Attention Economy</Tooltip>. AI is good at finding and promoting content that captures attention, regardless of whether it's true or good for you.
-        </p>
-        <p className="text-slate-700 mb-2 font-semibold text-red-700 leading-relaxed">
-          <strong>The Dangers are Real:</strong> This isn't just about being wrong; it's serious. Believing and spreading false AI-generated information can have severe consequences. In your future jobs in <strong className="text-red-600">{selectedVocation}</strong>, decisions based on bad info could lead to dangerous mistakes, financial loss, or harm to people's reputations or even their safety. Imagine an electrician relying on faulty AI-generated wiring diagrams, or a healthcare assistant acting on incorrect AI medical advice. Online, it can lead to bullying, scams, and even influence important societal events like elections with false narratives, undermining democratic processes. Being critical isn't just a skill; it's a responsibility to protect yourself and others.
-        </p>
-        <EscapeTheBubble />
-      </InteractiveCard>
-    </section>
+      React.createElement(InteractiveCard, {
+        children: [
+          React.createElement(SubsectionTitle, { key: 'sub3', children: "Misinformation, Echo Chambers & Filter Bubbles" }),
+          React.createElement('p', { key: 'p8', className: "text-slate-700 mb-2 leading-relaxed" },
+            "On the internet, false or inaccurate information can spread quickly. It's important to distinguish between:"
+          ),
+          React.createElement('ul', { key: 'ul2', className: "list-disc list-inside text-slate-700 my-2 space-y-1 leading-relaxed" },
+            React.createElement(ListItem, { key: 'li4', children: React.createElement(Tooltip, { key: 't3', text: "False info spread, often without the sender knowing it's false.", children: "Misinformation" }) }),
+            React.createElement(ListItem, { key: 'li5', children: React.createElement(Tooltip, { key: 't4', text: "False info created and spread intentionally to deceive or harm.", children: "Disinformation" }) })
+          ),
+          React.createElement(ResourceLink, { key: 'r4', href: "https://guides.lib.k-state.edu/media-literacy/factcheck", children: "Learn: Mis/Disinformation & Fact-Checking" }),
+          React.createElement('p', { key: 'p9', className: "text-slate-700 mb-2 mt-3 leading-relaxed" },
+            "AI can amplify these problems. Algorithms on social media can create:"
+          ),
+          React.createElement('ul', { key: 'ul3', className: "list-disc list-inside text-slate-700 my-2 space-y-1 leading-relaxed" },
+            React.createElement(ListItem, { key: 'li6', children: React.createElement(Tooltip, { key: 't5', text: "Environments where you mostly see opinions you already agree with, and alternative views are rarely encountered.", children: "Echo Chambers" }) }),
+            React.createElement(ListItem, { key: 'li7', children: React.createElement(Tooltip, { key: 't6', text: "When algorithms personalize the content you see based on your past behavior, so you miss other perspectives, often without knowing it.", children: "Filter Bubbles" }) })
+          ),
+          React.createElement(ResourceLink, { key: 'r5', href: "https://en.wikipedia.org/wiki/Filter_bubble", children: "Read: Filter Bubbles (Wikipedia)" }),
+          React.createElement(ResourceLink, { key: 'r6', href: "https://www.youtube.com/watch?v=eaolE1blpWk", children: "Watch: Echo Chambers & Filter Bubbles" }),
+          React.createElement('p', { key: 'p10', className: "text-slate-700 mb-2 mt-3 leading-relaxed" },
+            "This is related to the ", React.createElement(Tooltip, { key: 't7', text: "The idea that your attention is a valuable resource that websites and apps compete for, often through advertising.", children: "Attention Economy" }), ". AI is good at finding and promoting content that captures attention, regardless of whether it's true or good for you."
+          ),
+          React.createElement('p', { key: 'p11', className: "text-slate-700 mb-2 font-semibold text-red-700 leading-relaxed" },
+            React.createElement('strong', { key: 's8' }, "The Dangers are Real:"), " This isn't just about being wrong; it's serious. Believing and spreading false AI-generated information can have severe consequences. In your future jobs in ", React.createElement('strong', { key: 's9', className: "text-red-600" }, selectedVocation), ", decisions based on bad info could lead to dangerous mistakes, financial loss, or harm to people's reputations or even their safety. Imagine an electrician relying on faulty AI-generated wiring diagrams, or a healthcare assistant acting on incorrect AI medical advice. Online, it can lead to bullying, scams, and even influence important societal events like elections with false narratives, undermining democratic processes. Being critical isn't just a skill; it's a responsibility to protect yourself and others."
+          ),
+          React.createElement(EscapeTheBubble, { key: 'escape1' })
+        ]
+      })
+    )
   );
 };

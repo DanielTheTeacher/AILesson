@@ -57,106 +57,17 @@
     }
     </script>
     
-    <!-- Babel Standalone for in-browser TSX/JSX transpilation -->
-    <script src="https://unpkg.com/@babel/standalone@7/babel.min.js"></script>
+    <!-- Babel Standalone REMOVED -->
 
 </head>
 <body>
     <div id="root">
-        <!-- React app will render here, or the help message if on file:/// protocol -->
+        <!-- React app will render here -->
     </div>
 
-    <!-- Statically declare the main app script. Babel will find and transpile this. -->
-    <!-- It will be removed by the script below if on file: protocol. -->
-    <script id="main-app-script-tag" type="text/babel" data-presets="react,typescript" data-type="module" src="./index.tsx"></script>
+    <!-- Main app script is now plain JavaScript -->
+    <script type="module" src="./index.js"></script>
 
-    <script>
-      (function() { // IIFE to avoid polluting global scope
-        const rootElement = document.getElementById('root');
-        const appScriptTag = document.getElementById('main-app-script-tag');
-
-        if (window.location.protocol === 'file:') {
-          if (appScriptTag) {
-            appScriptTag.remove();
-          }
-          rootElement.innerHTML = `
-            <div style="font-family: 'Inter', sans-serif; padding: 20px; margin: 20px auto; max-width: 800px; background-color: #fffde7; border: 1px solid #ffc107; color: #5d4037; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
-              <h2 style="color: #ef6c00; font-size: 1.6em; margin-top:0; margin-bottom: 15px; text-align: center; border-bottom: 1px solid #ffcc80; padding-bottom: 10px;">Local Development: Use a Properly Configured Web Server</h2>
-              <p style="line-height: 1.7; margin-bottom: 15px;">This application uses modern JavaScript (ES Modules) and TypeScript/JSX. For security and functionality, browsers require these to be served over HTTP with correct <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types" target="_blank" rel="noopener" style="color: #1565c0;">MIME types</a>, not opened directly from your computer (<code>file:///</code> path).</p>
-              
-              <div style="background-color: #ffffff; padding: 15px; border-radius: 6px; border: 1px solid #eee; margin-bottom:20px;">
-                <h3 style="margin-top:0; margin-bottom:12px; font-size: 1.3em; color: #d32f2f; font-weight: bold;">ATTENTION: ".tsx file MIME type" Errors (like for App.tsx or index.tsx)</h3>
-                <p style="line-height: 1.7; margin-bottom: 10px;">If you see errors like <code style="background-color: #ffebee; color: #c62828; padding: 1px 3px; border-radius: 3px;">Failed to load module script ... MIME type of "application/octet-stream"</code> for <code>.tsx</code> files, your local server (VS Code's "Live Server" by Ritwick Dey) is not telling the browser these are JavaScript files. <strong>This must be fixed in your server configuration.</strong></p>
-                
-                <h4 style="margin-top:15px; margin-bottom:5px; font-size: 1.1em; color: #1565c0;">Step 1: Confirm You're Using "Live Server" by Ritwick Dey in VS Code</h4>
-                <p style="line-height: 1.7; margin-bottom: 10px;">In VS Code's Extensions view, search for "Live Server". Ensure the one installed is by <strong>Ritwick Dey</strong>. If you're using Microsoft's "Live Preview" or another server, these instructions will not work.</p>
-
-                <h4 style="margin-top:15px; margin-bottom:5px; font-size: 1.1em; color: #1565c0;">Step 2: Meticulously Configure "Live Server" by Ritwick Dey (Final Attempt)</h4>
-                <p style="line-height: 1.7; margin-bottom: 5px;"><strong>Follow these steps with EXTREME PRECISION. This is the only way to fix this for Ritwick Dey's Live Server if it's not blocked by admin policies.</strong></p>
-                <ol style="list-style-type: decimal; padding-left: 20px; line-height: 1.8; margin-bottom: 10px;">
-                    <li style="margin-bottom: 5px;">Ensure VS Code is opened with your project folder (the one containing <code>index.html</code>, <code>App.tsx</code> etc.) as the <strong>ABSOLUTE TOP-LEVEL ROOT FOLDER</strong> in the VS Code Explorer. Not a parent folder.</li>
-                    <li style="margin-bottom: 5px;">In that <strong>EXACT PROJECT ROOT FOLDER</strong>, create a new folder named precisely <code>.vscode</code> (it starts with a period, which means it might be hidden in some file explorers, but VS Code will see it). If it already exists, double-check you are using this one.</li>
-                    <li style="margin-bottom: 5px;">Inside that <code>.vscode</code> folder, create a new file named precisely <code>settings.json</code>.</li>
-                    <li style="margin-bottom: 5px;">Copy and paste the following content <strong>EXACTLY</strong> into your <code>YOUR_PROJECT_ROOT/.vscode/settings.json</code> file. If the file already has content, carefully merge this in, ensuring correct JSON syntax (e.g., ensure this block is properly nested within the main JSON object <code>{}</code> if other settings exist, and commas are correct):
-                        <pre style="background-color: #f0f4f8; color: #334155; padding: 12px; border: 1px solid #cbd5e1; border-radius: 4px; margin-top:5px; overflow-x:auto; font-size: 0.9em;">{
-  "liveServer.settings.CustomBrowser": "chrome",
-  "liveServer.settings.port": 0, // Auto-select port
-  "liveServer.settings.NoBrowser": false,
-  "liveServer.settings.mimeTypes": {
-    ".tsx": "text/javascript",
-    ".ts": "text/javascript"
-  }
-}</pre>
-                    </li>
-                    <li style="margin-bottom: 5px; font-weight:bold;"><strong>CRITICAL: Completely CLOSE ALL VS CODE WINDOWS and then REOPEN VS Code and your project.</strong> This ensures Live Server attempts to reload the settings. Simply restarting Live Server is often not enough.</li>
-                    <li style="margin-bottom: 5px; font-weight:bold;">After restarting VS Code and then starting Live Server (right-click <code>index.html</code> -> "Open with Live Server"), <strong>HARD REFRESH your browser page</strong> (e.g., Ctrl+Shift+R or Cmd+Shift+R) AND consider clearing your browser's cache and site data for <code>127.0.0.1</code> or the specific port Live Server is using (usually shown in the URL).</li>
-                </ol>
-                
-                <div style="background-color: #ffebee; border: 1px solid #c62828; padding: 15px; margin-top: 20px; border-radius: 4px;">
-                    <h5 style="margin-top:0; margin-bottom:10px; font-size:1.1em; color:#b71c1c; font-weight:bold;">If MIME Type Errors Persist: School/Admin Restrictions Are Likely the Cause</h5>
-                    <p style="font-size:0.95em; line-height:1.6; color:#c62828;">If you have meticulously followed all the steps above for Ritwick Dey's "Live Server" and the <code style="background-color: #ffcdd2; color: #c62828; padding: 1px 3px; border-radius: 3px;">"application/octet-stream"</code> MIME type error still occurs for <code>index.tsx</code> or <code>App.tsx</code>:
-                    </p>
-                    <ul style="list-style-type: disc; padding-left: 20px; line-height: 1.7; color: #c62828; font-size:0.95em; margin-top:10px;">
-                        <li style="margin-bottom:5px;">It is almost <strong>certain</strong> that <strong>administrator restrictions or security software on your school-controlled computer are preventing Live Server from using the <code>.vscode/settings.json</code> configuration.</strong> These systems can override local settings or block the server from sending correct MIME types.</li>
-                        <li style="margin-bottom:5px;">Further attempts to fix Live Server on this specific machine will likely be unsuccessful without intervention from your school's IT department.</li>
-                        <li style="margin-bottom:5px;"><strong>You will NOT be able to run this project locally with full functionality using Live Server under these conditions.</strong></li>
-                    </ul>
-                </div>
-
-                <h4 style="margin-top:25px; margin-bottom:10px; font-size: 1.2em; color: #2e7d32; font-weight:bold;">Workarounds if Live Server is Blocked:</h4>
-                 <p style="line-height: 1.7; margin-bottom: 10px;">Since you cannot install Node.js (which would allow tools like Vite or Parcel that bypass these Live Server issues), your options to see the project run correctly are:</p>
-                <ul style="list-style-type: disc; padding-left: 20px; line-height: 1.8;">
-                  <li style="margin-bottom: 8px;">
-                    <strong>Deploy to a Free Static Web Host:</strong>
-                    Upload your project files (<code>index.html</code>, <code>index.tsx</code>, all <code>.ts</code>/<code>.tsx</code> components, <code>favicon.ico</code>, <code>index.css</code>, <code>metadata.json</code>) to a service like:
-                    <ul style="list-style-type:circle; padding-left:20px; margin-top:5px;">
-                        <li>GitHub Pages (if your project is in a GitHub repository)</li>
-                        <li>Netlify Drop (drag and drop your project folder)</li>
-                        <li>Vercel</li>
-                    </ul>
-                    These platforms will serve your files with the correct MIME types, and your application <em>should work correctly there</em>. This is a good way to test and share your project.
-                  </li>
-                  <li style="margin-bottom: 8px;">
-                    <strong>Ask School IT for Assistance:</strong> Explain the situation. They might be able to:
-                     <ul style="list-style-type:circle; padding-left:20px; margin-top:5px;">
-                        <li>Adjust security settings to allow Live Server to use custom MIME types from <code>.vscode/settings.json</code>.</li>
-                        <li>Install Node.js for you, which would allow you to use Vite or Parcel (these are more robust for local development).</li>
-                    </ul>
-                  </li>
-                   <li style="margin-bottom: 8px;"><strong>Use a Personal Computer:</strong> If you have access to a personal computer without these administrative restrictions, Live Server with the <code>.vscode/settings.json</code> configuration (or Vite/Parcel) should work correctly.</li>
-                </ul>
-                <p style="line-height:1.7; margin-top:10px;">The Tailwind CSS CDN and Babel in-browser transformer warnings you might see in the console are separate best-practice suggestions for production but not the cause of these critical loading errors.</p>
-              </div>
-            </div>
-          `;
-        } else {
-          // On http/https:
-          // Babel will automatically find and process the <script id="main-app-script-tag">.
-          // If this still fails with MIME type errors, it means the server (e.g. Live Server)
-          // is not configured correctly even for the initial index.tsx load.
-        }
-      })();
-    </script>
 </body>
 </html><link rel="stylesheet" href="index.css">
 <script src="index.tsx" type="module"></script>

@@ -1,19 +1,12 @@
-
 import React from 'react';
 
-interface WritingPromptProps {
-  number?: string;
-  children: React.ReactNode;
-  className?: string;
-}
-
-export const WritingPrompt: React.FC<WritingPromptProps> = ({ number, children, className = '' }) => {
+export const WritingPrompt = ({ number, children, className = '' }) => { // Removed React.FC and prop types
   return (
-    <div className={`mt-3 p-3 bg-slate-50 border-l-4 border-sky-400 rounded-r-md ${className}`}>
-      <p className="text-sm text-slate-800">
-        {number && <span className="font-bold text-sky-600 mr-1">{number}</span>}
-        {children}
-      </p>
-    </div>
+    React.createElement('div', { className: `mt-3 p-3 bg-slate-50 border-l-4 border-sky-400 rounded-r-md ${className}` },
+      React.createElement('p', { className: "text-sm text-slate-800" },
+        number && React.createElement('span', { className: "font-bold text-sky-600 mr-1" }, number),
+        children
+      )
+    )
   );
 };

@@ -1,16 +1,14 @@
-
 import React, { useState } from 'react';
-import { TabButton } from '../ui/TabButton.tsx';
-import { WritingPrompt } from '../ui/WritingPrompt.tsx';
-import { ResourceLink } from '../ui/ResourceLink.tsx';
-import { Vocation, VocationSpecificProps } from '../../types.ts';
+import { TabButton } from '../ui/TabButton.js';
+import { WritingPrompt } from '../ui/WritingPrompt.js';
+import { ResourceLink } from '../ui/ResourceLink.js';
+import { Vocation } from '../../types.js'; // Vocation is JS object
 
-type DilemmaTab = 'dilemma1' | 'dilemma2';
+// DilemmaTab type removed
+// EthicalDilemmasTabsProps interface removed
 
-interface EthicalDilemmasTabsProps extends VocationSpecificProps {}
-
-export const EthicalDilemmasTabs: React.FC<EthicalDilemmasTabsProps> = ({ selectedVocation }) => {
-  const [activeTab, setActiveTab] = useState<DilemmaTab>('dilemma1');
+export const EthicalDilemmasTabs = ({ selectedVocation }) => { // Removed React.FC and prop types
+  const [activeTab, setActiveTab] = useState('dilemma1'); // Removed DilemmaTab type
 
   const getScenario1Title = () => {
     switch (selectedVocation) {
@@ -81,41 +79,46 @@ export const EthicalDilemmasTabs: React.FC<EthicalDilemmasTabsProps> = ({ select
 
 
   return (
-    <div id="ethicalDilemmasActivity">
-      <p className="text-slate-700 mb-3 leading-relaxed">
-        As a professional in <strong className="text-sky-600">{selectedVocation}</strong>, you might face ethical dilemmas where AI recommendations clash with your judgment or professional ethics. Consider the following scenarios:
-        <ResourceLink href="https://library.fiveable.me/lists/key-ai-ethics-case-studies">More: AI Ethics Case Studies</ResourceLink>
-      </p>
-      <div className="mb-0 flex border-b border-slate-300"> {/* Removed mb-4 */}
-        <TabButton onClick={() => setActiveTab('dilemma1')} isActive={activeTab === 'dilemma1'}>
-          {getScenario1Title()}
-        </TabButton>
-        <TabButton onClick={() => setActiveTab('dilemma2')} isActive={activeTab === 'dilemma2'}>
-          {getScenario2Title()}
-        </TabButton>
-      </div>
-      {/* Apply border to the content area directly */}
-      <div className="p-4 border border-t-0 border-slate-300 rounded-b-md bg-white">
-        {activeTab === 'dilemma1' && (
-          <div>
-            <h4 className="font-semibold text-slate-700 mb-1 text-lg">{getScenario1Title()}</h4>
-            <p className="text-slate-700 mb-2 leading-relaxed">{getScenario1Description()}</p>
-            <WritingPrompt number="Prompt 4.1:">
-              {getScenario1Prompt()}
-            </WritingPrompt>
-          </div>
-        )}
-        {activeTab === 'dilemma2' && (
-          <div>
-            <h4 className="font-semibold text-slate-700 mb-1 text-lg">{getScenario2Title()}</h4>
-            <p className="text-slate-700 mb-2 leading-relaxed">{getScenario2Description()}</p>
-            <WritingPrompt number="Prompt 4.2:">
-             {getScenario2Prompt()}
-            </WritingPrompt>
-          </div>
-        )}
-      </div>
-      <p className="text-slate-700 mt-3 leading-relaxed">Such dilemmas often have no easy answers. They show how important human judgment, ethical reflection, and the ability to critically question AI are.</p>
-    </div>
+    React.createElement('div', { id: "ethicalDilemmasActivity" },
+      React.createElement('p', { className: "text-slate-700 mb-3 leading-relaxed" },
+        "As a professional in ", React.createElement('strong', { className: "text-sky-600" }, selectedVocation), ", you might face ethical dilemmas where AI recommendations clash with your judgment or professional ethics. Consider the following scenarios:",
+        React.createElement(ResourceLink, { href: "https://library.fiveable.me/lists/key-ai-ethics-case-studies", children: "More: AI Ethics Case Studies" })
+      ),
+      React.createElement('div', { className: "mb-0 flex border-b border-slate-300" }, 
+        React.createElement(TabButton, { 
+          onClick: () => setActiveTab('dilemma1'), 
+          isActive: activeTab === 'dilemma1', 
+          children: getScenario1Title() 
+        }),
+        React.createElement(TabButton, { 
+          onClick: () => setActiveTab('dilemma2'), 
+          isActive: activeTab === 'dilemma2', 
+          children: getScenario2Title() 
+        })
+      ),
+      React.createElement('div', { className: "p-4 border border-t-0 border-slate-300 rounded-b-md bg-white" },
+        activeTab === 'dilemma1' && (
+          React.createElement('div', null,
+            React.createElement('h4', { className: "font-semibold text-slate-700 mb-1 text-lg" }, getScenario1Title()),
+            React.createElement('p', { className: "text-slate-700 mb-2 leading-relaxed" }, getScenario1Description()),
+            React.createElement(WritingPrompt, { 
+              number: "Prompt 4.1:", 
+              children: getScenario1Prompt() 
+            })
+          )
+        ),
+        activeTab === 'dilemma2' && (
+          React.createElement('div', null,
+            React.createElement('h4', { className: "font-semibold text-slate-700 mb-1 text-lg" }, getScenario2Title()),
+            React.createElement('p', { className: "text-slate-700 mb-2 leading-relaxed" }, getScenario2Description()),
+            React.createElement(WritingPrompt, { 
+              number: "Prompt 4.2:", 
+              children: getScenario2Prompt() 
+            })
+          )
+        )
+      ),
+      React.createElement('p', { className: "text-slate-700 mt-3 leading-relaxed" }, "Such dilemmas often have no easy answers. They show how important human judgment, ethical reflection, and the ability to critically question AI are.")
+    )
   );
 };

@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 const tableData = [
@@ -22,31 +21,31 @@ const tableData = [
   }
 ];
 
-export const EthicsTable: React.FC = () => {
+export const EthicsTable = () => { // Removed React.FC
   return (
-    <div id="ethicsTableActivity" className="overflow-x-auto">
-      <p className="text-slate-700 mb-3 leading-relaxed">This table provides a guide on what is generally okay, what you should be careful with (and check with your teacher), and what is generally not okay when using AI for schoolwork. Remember the "You First" principle!</p>
-      <table className="min-w-full w-full text-xs sm:text-sm border-collapse border border-slate-300">
-        <thead>
-          <tr className="bg-slate-50">
-            <th className="w-1/4 border border-slate-300 p-2 text-left font-semibold text-slate-700">Task Type (Example)</th>
-            <th className="w-1/4 border border-slate-300 p-2 text-left font-semibold text-slate-700 bg-green-100 text-green-700">Green Light (Generally OK with permission & "You First")</th>
-            <th className="w-1/4 border border-slate-300 p-2 text-left font-semibold text-slate-700 bg-yellow-100 text-yellow-700">Yellow Light (Be cautious – Check with teacher, use ethically & openly)</th>
-            <th className="w-1/4 border border-slate-300 p-2 text-left font-semibold text-slate-700 bg-red-100 text-red-700">Red Light (Generally NOT OK)</th>
-          </tr>
-        </thead>
-        <tbody>
-          {tableData.map((row, index) => (
-            <tr key={index} className="[&>td]:border [&>td]:border-slate-300 [&>td]:p-2 [&>td]:align-top">
-              <td className="font-semibold">{row.task}</td>
-              <td className="bg-green-50 text-green-800">{row.green}</td>
-              <td className="bg-yellow-50 text-yellow-800">{row.yellow}</td>
-              <td className="bg-red-50 text-red-800">{row.red}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      <p className="text-xs text-slate-500 mt-2">Always check with your teacher if you're unsure!</p>
-    </div>
+    React.createElement('div', { id: "ethicsTableActivity", className: "overflow-x-auto" },
+      React.createElement('p', { className: "text-slate-700 mb-3 leading-relaxed" }, "This table provides a guide on what is generally okay, what you should be careful with (and check with your teacher), and what is generally not okay when using AI for schoolwork. Remember the \"You First\" principle!"),
+      React.createElement('table', { className: "min-w-full w-full text-xs sm:text-sm border-collapse border border-slate-300" },
+        React.createElement('thead', null,
+          React.createElement('tr', { className: "bg-slate-50" },
+            React.createElement('th', { className: "w-1/4 border border-slate-300 p-2 text-left font-semibold text-slate-700" }, "Task Type (Example)"),
+            React.createElement('th', { className: "w-1/4 border border-slate-300 p-2 text-left font-semibold text-slate-700 bg-green-100 text-green-700" }, "Green Light (Generally OK with permission & \"You First\")"),
+            React.createElement('th', { className: "w-1/4 border border-slate-300 p-2 text-left font-semibold text-slate-700 bg-yellow-100 text-yellow-700" }, "Yellow Light (Be cautious – Check with teacher, use ethically & openly)"),
+            React.createElement('th', { className: "w-1/4 border border-slate-300 p-2 text-left font-semibold text-slate-700 bg-red-100 text-red-700" }, "Red Light (Generally NOT OK)")
+          )
+        ),
+        React.createElement('tbody', null,
+          tableData.map((row, index) => (
+            React.createElement('tr', { key: index, className: "[&>td]:border [&>td]:border-slate-300 [&>td]:p-2 [&>td]:align-top" },
+              React.createElement('td', { className: "font-semibold" }, row.task),
+              React.createElement('td', { className: "bg-green-50 text-green-800" }, row.green),
+              React.createElement('td', { className: "bg-yellow-50 text-yellow-800" }, row.yellow),
+              React.createElement('td', { className: "bg-red-50 text-red-800" }, row.red)
+            )
+          ))
+        )
+      ),
+      React.createElement('p', { className: "text-xs text-slate-500 mt-2" }, "Always check with your teacher if you're unsure!")
+    )
   );
 };

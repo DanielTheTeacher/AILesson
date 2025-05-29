@@ -1,60 +1,74 @@
-export enum ChapterId {
-  Home = 'home',
-  ExploreAI = 'explore',
-  CriticalThinking = 'critical',
-  AIHelper = 'helper',
-  AIFuture = 'future',
-  AISociety = 'society',
-  Exercises = 'exercises',
-  SkillsConnect = 'skills_connect',
-  References = 'references',
-}
+// Enums are converted to plain JavaScript objects
+export const ChapterId = {
+  Home: 'home',
+  ExploreAI: 'explore',
+  CriticalThinking: 'critical',
+  AIHelper: 'helper',
+  AIFuture: 'future',
+  AISociety: 'society',
+  Exercises: 'exercises',
+  SkillsConnect: 'skills_connect',
+  References: 'references',
+};
 
-export enum Vocation {
-  Elektro = "Elektro & Datateknologi",
-  Helse = "Helse & Oppvekstfag",
-  Bygg = "Bygg & Anleggsteknikk",
-}
+export const Vocation = {
+  Elektro: "Elektro & Datateknologi",
+  Helse: "Helse & Oppvekstfag",
+  Bygg: "Bygg & Anleggsteknikk",
+};
 
-export interface NavItem {
-  id: ChapterId;
-  label: string;
-}
+// Interfaces are removed in plain JavaScript as they are TypeScript-specific.
+// Object shapes will be based on convention and usage.
+// We can add JSDoc comments for clarity if needed, but for direct conversion, they are removed.
 
-export interface HumanSkill {
-  name: string;
-  desc: string;
-}
+// Example of how you might document an expected shape with JSDoc (optional):
+/**
+ * @typedef {Object} NavItem
+ * @property {string} id - Should be one of ChapterId values
+ * @property {string} label
+ */
 
-export interface Reference {
-  id: string;
-  content: React.ReactNode; // Allow JSX in reference content
-}
+/**
+ * @typedef {Object} HumanSkill
+ * @property {string} name
+ * @property {string} desc
+ */
 
-export interface Citation {
-  refId: string;
-  text: string;
-}
+/**
+ * @typedef {Object} Reference
+ * @property {string} id
+ * @property {React.ReactNode} content - Allow JSX in reference content (will be React.createElement calls)
+ */
 
-export interface ResourceLinkProps {
-  href: string;
-  children: React.ReactNode;
-}
+/**
+ * @typedef {Object} Citation
+ * @property {string} refId
+ * @property {string} text
+ */
 
-// Props for components that will display vocation-specific content
-export interface VocationSpecificProps {
-  selectedVocation: Vocation;
-}
+/**
+ * @typedef {Object} ResourceLinkProps
+ * @property {string} href
+ * @property {React.ReactNode} children
+ */
 
-export interface HeaderProps {
-  navItems: NavItem[];
-  activeChapterId: ChapterId;
-  onNavClick: (id: ChapterId, elementId?: string) => void; // Updated for elementId
-  selectedVocation: Vocation;
-  onVocationChange: (vocation: Vocation) => void;
-  isScrolled: boolean;
-}
+/**
+ * @typedef {Object} VocationSpecificProps
+ * @property {string} selectedVocation - Should be one of Vocation values
+ */
 
-export interface ExercisesSectionProps extends VocationSpecificProps {
-  onNavigate: (chapterId: ChapterId, elementId?: string) => void;
-}
+/**
+ * @typedef {Object} HeaderProps
+ * @property {NavItem[]} navItems
+ * @property {string} activeChapterId
+ * @property {function(string, string=): void} onNavClick
+ * @property {string} selectedVocation
+ * @property {function(string): void} onVocationChange
+ * @property {boolean} isScrolled
+ */
+
+/**
+ * @typedef {Object} ExercisesSectionProps
+ * @property {string} selectedVocation
+ * @property {function(string, string=): void} onNavigate
+ */

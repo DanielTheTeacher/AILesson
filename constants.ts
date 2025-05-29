@@ -1,7 +1,6 @@
+import { ChapterId, Vocation } from './types.js'; // Updated import
 
-import { NavItem, HumanSkill, ChapterId, Vocation } from './types.ts';
-
-export const NAV_ITEMS: NavItem[] = [
+export const NAV_ITEMS = [
   { id: ChapterId.Home, label: 'Home' },
   { id: ChapterId.ExploreAI, label: '1. Explore AI' },
   { id: ChapterId.CriticalThinking, label: '2. Think Critically' },
@@ -13,7 +12,7 @@ export const NAV_ITEMS: NavItem[] = [
   { id: ChapterId.References, label: 'References' },
 ];
 
-export const HUMAN_SKILLS_DATA: HumanSkill[] = [
+export const HUMAN_SKILLS_DATA = [
   { name: "Critical Thinking & Problem Solving", desc: "Analyzing complex situations, evaluating info, solving unusual problems." },
   { name: "Creativity & Innovation", desc: "Generating new ideas, thinking outside the box, developing original solutions." },
   { name: "Emotional Intelligence & Empathy", desc: "Understanding own and others' emotions, building relationships, showing care." },
@@ -23,7 +22,7 @@ export const HUMAN_SKILLS_DATA: HumanSkill[] = [
   { name: "Manual Dexterity & Physical Skills", desc: "Performing precise and complex manual tasks (important in many vocational trades)." }
 ];
 
-export const VOCATION_OPTIONS: Vocation[] = [
+export const VOCATION_OPTIONS = [
   Vocation.Elektro,
   Vocation.Helse,
   Vocation.Bygg,
