@@ -1,9 +1,10 @@
+
 import React from 'react';
-import { InteractiveCard } from '../ui/InteractiveCard';
+import { InteractiveCard } from '../ui/InteractiveCard.tsx';
 // Removed SectionTitle import as we'll use a more prominent h1
-import { Tooltip } from '../ui/Tooltip';
-import { ListItem } from '../ui/ListItem';
-import { VocationSpecificProps } from '../../types';
+import { Tooltip } from '../ui/Tooltip.tsx';
+import { ListItem } from '../ui/ListItem.tsx';
+import { VocationSpecificProps } from '../../types.ts';
 
 export const WelcomeSection: React.FC<VocationSpecificProps> = ({ selectedVocation }) => {
   return (

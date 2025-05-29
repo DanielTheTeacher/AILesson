@@ -1,4 +1,5 @@
-import { NavItem, HumanSkill, ChapterId, Vocation } from './types';
+
+import { NavItem, HumanSkill, ChapterId, Vocation } from './types.ts';
 
 export const NAV_ITEMS: NavItem[] = [
   { id: ChapterId.Home, label: 'Home' },

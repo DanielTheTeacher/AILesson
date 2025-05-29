@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { CitationLink } from '../ui/CitationLink';
+import { CitationLink } from '../ui/CitationLink.tsx';
 
 interface LieOption {
   id: number;

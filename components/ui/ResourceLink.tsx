@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { ResourceLinkProps } from '../../types';
+import { ResourceLinkProps } from '../../types.ts';
 
 export const ResourceLink: React.FC<ResourceLinkProps> = ({ href, children }) => {
   return (

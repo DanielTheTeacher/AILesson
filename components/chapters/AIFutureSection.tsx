@@ -1,13 +1,14 @@
+
 import React from 'react';
-import { InteractiveCard } from '../ui/InteractiveCard';
-import { SectionTitle } from '../ui/SectionTitle';
-import { SubsectionTitle } from '../ui/SubsectionTitle';
-import { Tooltip } from '../ui/Tooltip';
-import { ResourceLink } from '../ui/ResourceLink';
-import { WritingPrompt } from '../ui/WritingPrompt';
-import { ListItem } from '../ui/ListItem';
-import { HumanSkillsList } from '../shared/HumanSkillsList';
-import { Vocation, VocationSpecificProps } from '../../types';
+import { InteractiveCard } from '../ui/InteractiveCard.tsx';
+import { SectionTitle } from '../ui/SectionTitle.tsx';
+import { SubsectionTitle } from '../ui/SubsectionTitle.tsx';
+import { Tooltip } from '../ui/Tooltip.tsx';
+import { ResourceLink } from '../ui/ResourceLink.tsx';
+import { WritingPrompt } from '../ui/WritingPrompt.tsx';
+import { ListItem } from '../ui/ListItem.tsx';
+import { HumanSkillsList } from '../shared/HumanSkillsList.tsx';
+import { Vocation, VocationSpecificProps } from '../../types.ts';
 
 export const AIFutureSection: React.FC<VocationSpecificProps> = ({ selectedVocation }) => {
 

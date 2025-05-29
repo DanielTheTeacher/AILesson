@@ -1,17 +1,18 @@
+
 import React, { useState, useEffect, useRef } from 'react';
-import { Header } from './components/layout/Header';
-import { Footer } from './components/layout/Footer';
-import { WelcomeSection } from './components/chapters/WelcomeSection';
-import { ExploreAISection } from './components/chapters/ExploreAISection';
-import { CriticalThinkingSection } from './components/chapters/CriticalThinkingSection';
-import { AIHelperSection } from './components/chapters/AIHelperSection';
-import { AIFutureSection } from './components/chapters/AIFutureSection';
-import { AISocietySection } from './components/chapters/AISocietySection';
-import { ExercisesSection } from './components/chapters/ExercisesSection';
-import { SkillsConnectSection } from './components/chapters/SkillsConnectSection';
-import { ReferencesSection } from './components/chapters/ReferencesSection';
-import { ChapterId, Vocation } from './types';
-import { NAV_ITEMS, VOCATION_OPTIONS } from './constants';
+import { Header } from './components/layout/Header.tsx';
+import { Footer } from './components/layout/Footer.tsx';
+import { WelcomeSection } from './components/chapters/WelcomeSection.tsx';
+import { ExploreAISection } from './components/chapters/ExploreAISection.tsx';
+import { CriticalThinkingSection } from './components/chapters/CriticalThinkingSection.tsx';
+import { AIHelperSection } from './components/chapters/AIHelperSection.tsx';
+import { AIFutureSection } from './components/chapters/AIFutureSection.tsx';
+import { AISocietySection } from './components/chapters/AISocietySection.tsx';
+import { ExercisesSection } from './components/chapters/ExercisesSection.tsx';
+import { SkillsConnectSection } from './components/chapters/SkillsConnectSection.tsx';
+import { ReferencesSection } from './components/chapters/ReferencesSection.tsx';
+import { ChapterId, Vocation } from './types.ts';
+import { NAV_ITEMS, VOCATION_OPTIONS } from './constants.ts';
 
 const App: React.FC = () => {
   const [activeChapterId, setActiveChapterId] = useState<ChapterId>(ChapterId.Home);

@@ -1,5 +1,6 @@
 {
   "name": "AI Lesson",
   "description": "An interactive web application for vocational students to learn about Artificial Intelligence, its applications, ethical considerations, and impact on their future careers. Adapted from an existing HTML structure into a React SPA.",
-  "requestFramePermissions": []
+  "requestFramePermissions": [],
+  "prompt": ""
 }

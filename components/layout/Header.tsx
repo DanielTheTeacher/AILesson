@@ -1,6 +1,7 @@
+
 import React from 'react';
-import { ChapterId, NavItem, Vocation, HeaderProps } from '../../types';
-import { VOCATION_OPTIONS } from '../../constants';
+import { ChapterId, NavItem, Vocation, HeaderProps } from '../../types.ts';
+import { VOCATION_OPTIONS } from '../../constants.ts';
 
 export const Header: React.FC<HeaderProps> = ({ 
   navItems, 

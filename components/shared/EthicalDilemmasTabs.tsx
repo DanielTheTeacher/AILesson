@@ -1,8 +1,9 @@
+
 import React, { useState } from 'react';
-import { TabButton } from '../ui/TabButton';
-import { WritingPrompt } from '../ui/WritingPrompt';
-import { ResourceLink } from '../ui/ResourceLink';
-import { Vocation, VocationSpecificProps } from '../../types';
+import { TabButton } from '../ui/TabButton.tsx';
+import { WritingPrompt } from '../ui/WritingPrompt.tsx';
+import { ResourceLink } from '../ui/ResourceLink.tsx';
+import { Vocation, VocationSpecificProps } from '../../types.ts';
 
 type DilemmaTab = 'dilemma1' | 'dilemma2';
 

@@ -1,14 +1,15 @@
+
 import React from 'react';
-import { InteractiveCard } from '../ui/InteractiveCard';
-import { SectionTitle } from '../ui/SectionTitle';
-import { SubsectionTitle } from '../ui/SubsectionTitle';
-import { Tooltip } from '../ui/Tooltip';
-import { ResourceLink } from '../ui/ResourceLink';
-import { CitationLink } from '../ui/CitationLink';
-import { WritingPrompt } from '../ui/WritingPrompt';
-import { ListItem } from '../ui/ListItem';
-import { EthicalDilemmasTabs } from '../shared/EthicalDilemmasTabs';
-import { VocationSpecificProps } from '../../types';
+import { InteractiveCard } from '../ui/InteractiveCard.tsx';
+import { SectionTitle } from '../ui/SectionTitle.tsx';
+import { SubsectionTitle } from '../ui/SubsectionTitle.tsx';
+import { Tooltip } from '../ui/Tooltip.tsx';
+import { ResourceLink } from '../ui/ResourceLink.tsx';
+import { CitationLink } from '../ui/CitationLink.tsx';
+import { WritingPrompt } from '../ui/WritingPrompt.tsx';
+import { ListItem } from '../ui/ListItem.tsx';
+import { EthicalDilemmasTabs } from '../shared/EthicalDilemmasTabs.tsx';
+import { VocationSpecificProps } from '../../types.ts';
 
 export const AISocietySection: React.FC<VocationSpecificProps> = ({ selectedVocation }) => {
   return (

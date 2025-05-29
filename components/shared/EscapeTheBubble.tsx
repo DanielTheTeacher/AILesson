@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
-import { ResourceLink } from '../ui/ResourceLink';
-import { WritingPrompt } from '../ui/WritingPrompt';
+import { ResourceLink } from '../ui/ResourceLink.tsx';
+import { WritingPrompt } from '../ui/WritingPrompt.tsx';
 
 interface Strategy {
   id: string;

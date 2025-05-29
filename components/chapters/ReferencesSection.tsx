@@ -1,8 +1,8 @@
 
 import React, { useState } from 'react';
-import { InteractiveCard } from '../ui/InteractiveCard';
-import { SectionTitle } from '../ui/SectionTitle';
-import { Reference } from '../../types';
+import { InteractiveCard } from '../ui/InteractiveCard.tsx';
+import { SectionTitle } from '../ui/SectionTitle.tsx';
+import { Reference } from '../../types.ts';
 
 const ALL_REFERENCES: Reference[] = [
   {

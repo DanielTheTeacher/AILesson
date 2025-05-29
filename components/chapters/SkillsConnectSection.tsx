@@ -1,11 +1,12 @@
+
 import React from 'react';
-import { InteractiveCard } from '../ui/InteractiveCard';
-import { SectionTitle } from '../ui/SectionTitle';
-import { SubsectionTitle } from '../ui/SubsectionTitle';
-import { ListItem } from '../ui/ListItem';
-import { Vocation, VocationSpecificProps } from '../../types';
+import { InteractiveCard } from '../ui/InteractiveCard.tsx';
+import { SectionTitle } from '../ui/SectionTitle.tsx';
+import { SubsectionTitle } from '../ui/SubsectionTitle.tsx';
+import { ListItem } from '../ui/ListItem.tsx';
+import { Vocation, VocationSpecificProps } from '../../types.ts';
 // Add WritingPrompt if specific prompts are directly in this section
-// import { WritingPrompt } from '../ui/WritingPrompt';
+// import { WritingPrompt } from '../ui/WritingPrompt.tsx';
 
 export const SkillsConnectSection: React.FC<VocationSpecificProps> = ({ selectedVocation }) => {
  

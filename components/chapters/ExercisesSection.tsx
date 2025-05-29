@@ -1,9 +1,10 @@
+
 import React from 'react';
-import { InteractiveCard } from '../ui/InteractiveCard';
-import { SectionTitle } from '../ui/SectionTitle';
-import { SubsectionTitle } from '../ui/SubsectionTitle';
-import { ChapterId, ExercisesSectionProps } from '../../types';
-import { ListItem } from '../ui/ListItem';
+import { InteractiveCard } from '../ui/InteractiveCard.tsx';
+import { SectionTitle } from '../ui/SectionTitle.tsx';
+import { SubsectionTitle } from '../ui/SubsectionTitle.tsx';
+import { ChapterId, ExercisesSectionProps } from '../../types.ts';
+import { ListItem } from '../ui/ListItem.tsx';
 
 const ExerciseLink: React.FC<{onClick: () => void; children: React.ReactNode; ariaLabel?: string}> = ({ onClick, children, ariaLabel }) => (
   <button 

@@ -1,0 +1,4 @@
+/* This file is intentionally empty. 
+   It exists to prevent 404 errors if something (e.g., browser extensions, dev tools, old cache) 
+   attempts to load an index.css file.
+   Application styles are handled by Tailwind CDN and inline <style> tags in index.html. */
