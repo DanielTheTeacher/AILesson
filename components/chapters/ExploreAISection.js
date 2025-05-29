@@ -40,7 +40,8 @@ export const ExploreAISection = ({ selectedVocation }) => { // Removed React.FC 
             React.createElement(Tooltip, { key: 't1', text: "Systems that learn from large amounts of data to find patterns and make decisions without being specifically programmed for each task.", children: "Machine Learning (ML)" }),
             ". For example, streaming services use Machine Learning (ML) to suggest movies.",
             React.createElement(CitationLink, { key: 'c1', referenceId: "ref-1", text: "[1]" }),
-            React.createElement(ResourceLink, { key: 'r1', href: "https://www.youtube.com/watch?v=PeMlggyqz0Y", children: "Watch: What is ML?" })
+            React.createElement(ResourceLink, { key: 'r1', href: "https://www.youtube.com/watch?v=PeMlggyqz0Y", children: "Watch: What is ML?" }),
+            React.createElement(ResourceLink, { key: 'rCGPGreyML', href: "https://www.youtube.com/watch?v=R9OHn5ZF4Uo", children: "Watch: CGPGrey: How Machines Learn (8:54)" })
           ),
           React.createElement('p', { key: 'p3', className: "text-slate-700 mb-4 leading-relaxed" },
             React.createElement(Tooltip, { key: 't2', text: "Advanced 'computer brains' trained on enormous amounts of text and code.", children: "Large Language Models (LLMs)" }),
