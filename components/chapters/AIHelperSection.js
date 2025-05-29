@@ -1,3 +1,5 @@
+
+
 import React from 'react';
 import { InteractiveCard } from '../ui/InteractiveCard.js';
 import { SectionTitle } from '../ui/SectionTitle.js';
@@ -26,9 +28,11 @@ export const AIHelperSection = ({ selectedVocation }) => { // Removed React.FC a
 
   return (
     React.createElement('section', { className: "mb-12" },
-      React.createElement(SectionTitle, { children: "3. AI as Helper: Use the Tools Smartly and Responsibly" }),
+      React.createElement(SectionTitle, { children: "Using AI in School" }),
 
-      React.createElement(InteractiveCard, {
+      React.createElement(InteractiveCard, { // Explanatory - non-collapsible
+        id: "youFirstPrinciple", // Added ID for direct linking
+        key: "youFirstPrincipleCard",
         children: [
           React.createElement(SubsectionTitle, { key: 'sub1', children: "The \"You First\" Principle: Your Brain, Then AI" }),
           React.createElement('p', { key: 'p1', className: "text-slate-700 mb-2 leading-relaxed" },
@@ -52,7 +56,8 @@ export const AIHelperSection = ({ selectedVocation }) => { // Removed React.FC a
         ]
       }),
 
-      React.createElement(InteractiveCard, {
+      React.createElement(InteractiveCard, { // Explanatory - non-collapsible
+        key: "augmentationVsGenerationCard",
         children: [
           React.createElement(SubsectionTitle, { key: 'sub2', children: ["AI for ", React.createElement(Tooltip, { key: 't5', text: "To add to or enhance something, making it better or more effective.", children: "Augmentation" }), " vs. Generation"] }),
           React.createElement('p', { key: 'p7', className: "text-slate-700 mb-2 leading-relaxed" },
@@ -66,7 +71,7 @@ export const AIHelperSection = ({ selectedVocation }) => { // Removed React.FC a
             ),
             React.createElement('div', { key: 'd2', className: "bg-green-50 p-4 rounded border border-green-200" },
               React.createElement('h4', { key: 'h2', className: "font-semibold text-green-700 mb-1" }, "Augmentation (Good for Learning)"),
-              React.createElement('p', { key: 'p10', className: "text-sm" }, "AI helps you, improves, or builds upon work you've already started or thought out. AI is a collaborator, helping you lift more after you've done your reps."),
+              React.createElement('p', { key: 'p10', className: "text-sm" }, "AI helps you, improves, or builds upon work you'vealready started or thought out. AI is a collaborator, helping you lift more after you've done your reps."),
               React.createElement('p', { key: 'p11', className: "text-sm mt-1" }, React.createElement('i', { key: 'i2' }, "Example: \"Here's a paragraph I wrote. Can you give feedback on clarity and grammar?\""))
             )
           ),
@@ -76,7 +81,8 @@ export const AIHelperSection = ({ selectedVocation }) => { // Removed React.FC a
         ]
       }),
 
-      React.createElement(InteractiveCard, {
+      React.createElement(InteractiveCard, { // Explanatory - non-collapsible
+        key: "ethicalUseCard",
         children: [
           React.createElement(SubsectionTitle, { key: 'sub3', children: "Ethical Use: AI as a Learning Partner (with Norwegian Guidelines)" }),
           React.createElement('p', { key: 'p13', className: "text-slate-700 mb-2 leading-relaxed" }, "With the \"You First\" principle and your teacher's permission, AI can be a great learning partner. Here are some examples of ethical AI use:",
@@ -100,7 +106,8 @@ export const AIHelperSection = ({ selectedVocation }) => { // Removed React.FC a
         ]
       }),
       
-      React.createElement(InteractiveCard, {
+      React.createElement(InteractiveCard, { // Explanatory - non-collapsible
+        key: "academicIntegrityCard",
         children: [
           React.createElement(SubsectionTitle, { key: 'sub4', children: "Academic Integrity: What's NOT Okay? – Consequences of Cheating with AI" }),
           React.createElement('p', { key: 'p16', className: "text-slate-700 mb-2 leading-relaxed" }, "Using AI to do your work for you and presenting it as your own is considered cheating. Schools take this very seriously. The following information about what constitutes cheating with AI and its consequences is paraphrased and inspired by guidelines such as those from Vestfold Fylke (see ", React.createElement('a', { key: 'a1', href: "https://www.vestfoldfylke.no/no/skoler/smi-skolen/meny/praktisk-info/regler-og-rettigheter/", target: "_blank", rel: "noopener noreferrer", className: "text-sky-600 hover:underline" }, "Vestfold Fylke's rules"), "). Similar rules and consequences apply in Møre og Romsdal and other regions."),
@@ -113,21 +120,77 @@ export const AIHelperSection = ({ selectedVocation }) => { // Removed React.FC a
             "Å jukse med KI kan få alvorlige følger, avhengig av hvor alvorlig det er og om det har skjedd før."
           ),
           React.createElement('ul', { key: 'ul3', className: "list-disc list-inside text-slate-700 text-sm space-y-1 leading-relaxed" },
-            React.createElement(ListItem, { key: 'li9', children: "Du kan få IV (Ikke Vurdert) på prøver, innleveringer, og i verste fall i standpunktkarakter i faget (jf. forskrift til opplæringsloven §§ 9-14, 9-17)." }),
-            React.createElement(ListItem, { key: 'li10', children: "Ved alvorlig eller gjentatt juks kan du få nedsatt karakter i orden og/eller oppførsel (jf. «skoleregler for elever, § 5-3»). Skolen vil da fatte et enkeltvedtak, og du (og foresatte hvis du er under 18) blir varslet og får forklare deg." }),
+            React.createElement(ListItem, { key: 'li9', children: "Du får annullert prøver og innleveringer der KI er brukt." }),
+            React.createElement(ListItem, { key: 'li10', children: "Ved alvorlig eller gjentatt juks kan du få nedsatt karakter i orden og/eller oppførsel (jf. «skoleregler for elever, § 5-3» og forskrift til opplæringsloven § 9-17). Skolen vil da fatte et enkeltvedtak, og du (og foresatte hvis du er under 18) blir varslet og får forklare deg." }),
             React.createElement(ListItem, { key: 'li11', children: "Juks på eksamen kan føre til at eksamen blir annullert, og du mister også standpunktkarakteren i faget. Dette kan bety at du ikke får førstegangsvitnemål (jf. forskrift til opplæringsloven § 9-42)." })
           ),
           React.createElement('p', { key: 'p20', className: "text-slate-700 mt-3 leading-relaxed" }, "Hovedpoenget er: KI skal ikke erstatte din egen læring, kritiske tenkning eller kreativitet. Målet med skolen er at ", React.createElement('strong', { key: 's11' }, "du"), " skal lære og utvikle disse ferdighetene.")
         ]
       }),
 
-      React.createElement(InteractiveCard, { 
+      React.createElement(InteractiveCard, { // EthicsTable is a reference, make it non-collapsible
         id: "ethicsTableActivity",
+        key: "ethicsTableActivityCard",
+        // isCollapsible: true, // Removed to make it non-collapsible
         children: [
           React.createElement(SubsectionTitle, { key: 'sub5', children: "AI Use: Green, Yellow, Red Light for School Assignments" }),
           React.createElement(EthicsTable, { key: 'et1' })
         ]
+      }),
+      
+      React.createElement('h4', { key: 'actSetHeading', className: "text-lg font-semibold text-slate-700 mt-10 mb-4 pt-6 border-t border-slate-300", children: "Chapter 2 Activities" }),
+
+      // New Activities Start Here - These are tasks, so they are collapsible
+      React.createElement(InteractiveCard, {
+        key: 'aihelper-activity1',
+        id: 'aihelper-activity1-card', // Added ID
+        isCollapsible: true,
+        children: [
+          React.createElement(SubsectionTitle, { key: 'helpAct1Title', children: "✍️ Writing Prompt: My Work, Then AI's Help" }),
+          React.createElement('p', { key: 'helpAct1Desc', className: "text-slate-700 mb-2 leading-relaxed", children: ["Think of ONE task you do for your ", selectedVocation, " studies (e.g., writing a short summary of a process, planning a simple practical step, looking up a definition)."] }),
+          React.createElement('ul', { key: 'helpAct1List', className: "list-disc list-inside text-slate-700 mb-2 space-y-1 leading-relaxed", children: [
+            React.createElement(ListItem, { key: 'helpAct1Li1', children: "What's the first thing YOU would do for this task, using your own brain?" }),
+            React.createElement(ListItem, { key: 'helpAct1Li2', children: "After doing that, how could AI give you a little bit of help (e.g., check your spelling for the summary, suggest one tool for the practical step, give you another definition to compare)?" })
+          ]})
+        ]
+      }),
+
+      React.createElement(InteractiveCard, {
+        key: 'aihelper-activity2',
+        id: 'aihelper-activity2-card', // Added ID
+        isCollapsible: true,
+        children: [
+          React.createElement(SubsectionTitle, { key: 'helpAct2Title', children: "💬 Discussion Prompt: Good AI Use for School" }),
+          React.createElement('p', { key: 'helpAct2Desc', className: "text-slate-700 mb-2 leading-relaxed", children: "Look at the 'EthicsTable', especially the 'Green Light' examples." }),
+          React.createElement('ul', { key: 'helpAct2List', className: "list-disc list-inside text-slate-700 mb-2 space-y-1 leading-relaxed", children: [
+            React.createElement(ListItem, { key: 'helpAct2Li1', children: "With a partner, choose ONE 'Green Light' example (like AI checking your grammar after you write something)." }),
+            React.createElement(ListItem, { key: 'helpAct2Li2', children: ["How could this help you learn better in ", selectedVocation, " without the AI doing the work for you? Give one reason."] })
+          ]})
+        ]
+      }),
+
+      React.createElement(InteractiveCard, {
+        key: 'aihelper-activity3',
+        id: 'aihelper-activity3-card', // Added ID
+        isCollapsible: true,
+        children: [
+          React.createElement(SubsectionTitle, { key: 'helpAct3Title', children: ["🔍 Exploration Activity: Asking AI for Help (", selectedVocation, ")"] }),
+          React.createElement('p', { key: 'helpAct3Desc', className: "text-slate-700 mb-2 leading-relaxed", children: ["Imagine you've written one sentence explaining a simple tool or concept used in ", selectedVocation, " (e.g., for Elektro: 'A multimeter is used to measure electricity.'; for Helse: 'Good hygiene helps prevent infection.'; for Bygg: 'A spirit level checks if something is straight.')."] }),
+          React.createElement('p', { key: 'helpAct3Prompt', className: "text-slate-700 mb-2 leading-relaxed", children: "With a partner, write ONE question you could ask an AI (like NDLA AI Chat) to get feedback on your sentence to make it clearer for another student. (Example: 'Is my sentence about a multimeter easy to understand for a new Elektro student?')" })
+        ]
+      }),
+
+      React.createElement(InteractiveCard, {
+        key: 'aihelper-activity4',
+        id: 'aihelper-activity4-card', // Added ID
+        isCollapsible: true,
+        children: [
+          React.createElement(SubsectionTitle, { key: 'helpAct4Title', children: "💡 Mini-Discussion: AI Use: Okay or Not Okay?" }),
+          React.createElement('p', { key: 'helpAct4Desc', className: "text-slate-700 mb-2 leading-relaxed", children: ["The teacher will describe a quick scenario of a student using AI for a ", selectedVocation, " task (e.g., 'A student asks AI to list all safety steps for a task before trying to remember them themselves')."] }),
+          React.createElement('p', { key: 'helpAct4Prompt', className: "text-slate-700 mb-2 leading-relaxed", children: "As a class, quickly discuss: Is this a 'Green Light' (good use), 'Yellow Light' (be careful), or 'Red Light' (not okay) according to the EthicsTable? Why?" })
+        ]
       })
+      // New Activities End Here
     )
   );
 };

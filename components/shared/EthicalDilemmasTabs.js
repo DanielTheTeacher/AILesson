@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { TabButton } from '../ui/TabButton.js';
 import { WritingPrompt } from '../ui/WritingPrompt.js';
@@ -102,7 +103,7 @@ export const EthicalDilemmasTabs = ({ selectedVocation }) => { // Removed React.
             React.createElement('h4', { className: "font-semibold text-slate-700 mb-1 text-lg" }, getScenario1Title()),
             React.createElement('p', { className: "text-slate-700 mb-2 leading-relaxed" }, getScenario1Description()),
             React.createElement(WritingPrompt, { 
-              number: "Prompt 4.1:", 
+              number: "Prompt:", 
               children: getScenario1Prompt() 
             })
           )
@@ -112,7 +113,7 @@ export const EthicalDilemmasTabs = ({ selectedVocation }) => { // Removed React.
             React.createElement('h4', { className: "font-semibold text-slate-700 mb-1 text-lg" }, getScenario2Title()),
             React.createElement('p', { className: "text-slate-700 mb-2 leading-relaxed" }, getScenario2Description()),
             React.createElement(WritingPrompt, { 
-              number: "Prompt 4.2:", 
+              number: "Prompt:", 
               children: getScenario2Prompt() 
             })
           )

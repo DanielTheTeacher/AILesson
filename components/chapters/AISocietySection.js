@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { InteractiveCard } from '../ui/InteractiveCard.js';
 import { SectionTitle } from '../ui/SectionTitle.js';
@@ -13,9 +14,10 @@ import { EthicalDilemmasTabs } from '../shared/EthicalDilemmasTabs.js';
 export const AISocietySection = ({ selectedVocation }) => { // Removed React.FC and prop types
   return (
     React.createElement('section', { className: "mb-12" },
-      React.createElement(SectionTitle, { children: "5. AI & Society: Your Responsibility as a User and Citizen" }),
+      React.createElement(SectionTitle, { children: "AI & Society: Your Responsibilities as a Citizen" }),
       
-      React.createElement(InteractiveCard, {
+      React.createElement(InteractiveCard, { // Explanatory - non-collapsible
+        key: "attentionEconomyCard",
         children: [
           React.createElement(SubsectionTitle, { key: 'sub1', children: "The Attention Economy and AI's Role" }),
           React.createElement('p', { key: 'p1', className: "text-slate-700 mb-2 leading-relaxed" },
@@ -40,14 +42,18 @@ export const AISocietySection = ({ selectedVocation }) => { // Removed React.FC 
         ]
       }),
 
-      React.createElement(InteractiveCard, {
+      React.createElement(InteractiveCard, { // EthicalDilemmasTabs is an activity, so this card is collapsible
+        key: "ethicalDilemmasCard",
+        id: "ethicalDilemmasActivity", // ID for ExercisesSection navigation
+        isCollapsible: true, 
         children: [
           React.createElement(SubsectionTitle, { key: 'sub2', children: "Ethical Dilemmas in AI" }),
           React.createElement(EthicalDilemmasTabs, { key: 'edt1', selectedVocation: selectedVocation })
         ]
       }),
 
-      React.createElement(InteractiveCard, {
+      React.createElement(InteractiveCard, { // Explanatory - non-collapsible
+        key: "yourVoiceCountsCard",
         children: [
           React.createElement(SubsectionTitle, { key: 'sub3', children: "Your Voice Counts: Contribute to Ethical AI Development" }),
           React.createElement('p', { key: 'p6', className: "text-slate-700 mb-2 leading-relaxed" },
@@ -62,14 +68,73 @@ export const AISocietySection = ({ selectedVocation }) => { // Removed React.FC 
         ]
       }),
 
-      React.createElement(InteractiveCard, { 
-        id: "ethicsCharterActivity",
+      React.createElement(InteractiveCard, { // This is a task card
+        id: "ethicsCharterActivity", 
+        key: "ethicsCharterActivityCard",
+        isCollapsible: true,
         children: [
-          React.createElement(SubsectionTitle, { key: 'sub4', children: "Writing Prompt 5.1: My AI Ethics Charter Ideas" }),
+          React.createElement(SubsectionTitle, { key: 'sub4', children: ["✍️ Writing Prompt: My AI Ethics Charter Ideas (", selectedVocation, ")"] }),
           React.createElement('p', { key: 'p7', className: "text-slate-700 mb-3 leading-relaxed" }, "Think about what you've learned. What are the 2-3 most important principles you believe should guide your use of AI responsibly and ethically, both in your studies for ", React.createElement('strong', { key: 's10', className: "text-sky-600" }, selectedVocation), " now and in your future job? Write them down and briefly explain why each is important to you."),
           React.createElement('p', { key: 'p8', className: "text-slate-700 mt-2 leading-relaxed" }, React.createElement('em', { key: 'e1' }, "(This can be a starting point for a class discussion or a personal commitment.)"))
         ]
+      }),
+
+      React.createElement('h4', { key: 'actSetHeading2', className: "text-lg font-semibold text-slate-700 mt-10 mb-4 pt-6 border-t border-slate-300", children: "Chapter 3 Activities - Set 2" }),
+
+      // New Activities Start Here - These are tasks, so they are collapsible
+      React.createElement(InteractiveCard, {
+        key: 'aisociety-activity1',
+        isCollapsible: true,
+        children: [
+          React.createElement(SubsectionTitle, { key: 'socAct1Title', children: "✍️ Writing Prompt: My Tech Time Check" }),
+          React.createElement('p', { key: 'socAct1Desc', className: "text-slate-700 mb-2 leading-relaxed", children: "The lesson talks about the Attention Economy, where apps try to keep you watching." }),
+          React.createElement('ul', { key: 'socAct1List', className: "list-disc list-inside text-slate-700 mb-2 space-y-1 leading-relaxed", children: [
+            React.createElement(ListItem, { key: 'socAct1Li1', children: "Which app or website do you think takes up most of your attention each day?" }),
+            React.createElement(ListItem, { key: 'socAct1Li2', children: "What's ONE small thing you could do this week to control your time on that app a bit more (e.g., set a timer, turn off notifications for an hour)?" })
+          ]})
+        ]
+      }),
+
+      React.createElement(InteractiveCard, {
+        key: 'aisociety-activity2',
+        isCollapsible: true,
+        children: [
+          React.createElement(SubsectionTitle, { key: 'socAct2Title', children: ["💬 Discussion Prompt: Problem with AI Idea (", selectedVocation, ")"] }),
+          React.createElement('p', { key: 'socAct2Desc', className: "text-slate-700 mb-2 leading-relaxed", children: ["Look at one of the 'Ethical Dilemmas' for ", selectedVocation, " in the lesson."] }),
+          React.createElement('ul', { key: 'socAct2List', className: "list-disc list-inside text-slate-700 mb-2 space-y-1 leading-relaxed", children: [
+            React.createElement(ListItem, { key: 'socAct2Li1', children: "If the AI in that story makes a mistake, what is ONE bad thing that could happen to a person or the company?" }),
+            React.createElement(ListItem, { key: 'socAct2Li2', children: "Discuss with a partner." })
+          ]})
+        ]
+      }),
+
+      React.createElement(InteractiveCard, {
+        key: 'aisociety-activity3',
+        isCollapsible: true,
+        children: [
+          React.createElement(SubsectionTitle, { key: 'socAct3Title', children: "💡 Teacher-Led Example: AI Story of the Week" }),
+          React.createElement('p', { key: 'socAct3Desc', className: "text-slate-700 mb-2 leading-relaxed", children: "The teacher will share ONE recent news headline or short story about AI (e.g., a new AI tool, an AI mistake, an ethical concern)." }),
+          React.createElement('ul', { key: 'socAct3List', className: "list-disc list-inside text-slate-700 mb-2 space-y-1 leading-relaxed", children: [
+            React.createElement(ListItem, { key: 'socAct3Li1', children: "As a class, discuss: What is the main point of the story?" }),
+            React.createElement(ListItem, { key: 'socAct3Li2', children: "Does it remind you of anything we learned in this AI lesson (e.g., AI bias, AI helping jobs, AI making things up)?" })
+          ]})
+        ]
+      }),
+
+      React.createElement(InteractiveCard, {
+        key: 'aisociety-activity4',
+        isCollapsible: true,
+        children: [
+          React.createElement(SubsectionTitle, { key: 'socAct4Title', children: ["💡 Mini-Debate: AI in Our School/Town (", selectedVocation, "Focus)"] }),
+          React.createElement('p', { key: 'socAct4Desc', className: "text-slate-700 mb-2 leading-relaxed", children: ["Imagine the school wants to use a new AI tool to help students in ", selectedVocation, " (e.g., an AI to give feedback on practical work designs for Bygg, an AI to suggest study plans for Elektro, an AI to simulate patient interactions for Helse)."] }),
+          React.createElement('ul', { key: 'socAct4List', className: "list-disc list-inside text-slate-700 mb-2 space-y-1 leading-relaxed", children: [
+            React.createElement(ListItem, { key: 'socAct4Li1', children: "One half of the class: Think of ONE big benefit of this AI." }),
+            React.createElement(ListItem, { key: 'socAct4Li2', children: "Other half of the class: Think of ONE potential problem or worry about this AI." })
+          ]}),
+          React.createElement('p', { key: 'socAct4Instruction', className: "text-slate-700 mb-2 leading-relaxed", children: "Share your benefit and problem with the class." })
+        ]
       })
+      // New Activities End Here
     )
   );
 };

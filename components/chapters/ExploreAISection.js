@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { InteractiveCard } from '../ui/InteractiveCard.js';
 import { SectionTitle } from '../ui/SectionTitle.js';
@@ -26,9 +27,9 @@ export const ExploreAISection = ({ selectedVocation }) => { // Removed React.FC 
 
   return (
     React.createElement('section', { className: "mb-12" },
-      React.createElement(SectionTitle, { children: "1. Explore AI: What is it, and where do we find it?" }),
+      React.createElement(SectionTitle, { children: "What is AI?" }),
       
-      React.createElement(InteractiveCard, {
+      React.createElement(InteractiveCard, { // This card is explanatory, not a task - remains non-collapsible
         children: [
           React.createElement(SubsectionTitle, { key: 'sub1', children: "What is Artificial Intelligence (AI)?" }),
           React.createElement('p', { key: 'p1', className: "text-slate-700 mb-2 leading-relaxed" },
@@ -61,7 +62,7 @@ export const ExploreAISection = ({ selectedVocation }) => { // Removed React.FC 
         ]
       }),
 
-      React.createElement(InteractiveCard, {
+      React.createElement(InteractiveCard, { // Explanatory - non-collapsible
         children: [
           React.createElement(SubsectionTitle, { key: 'sub2', children: "AI in your daily life and future profession" }),
           React.createElement('p', { key: 'p5', className: "text-slate-700 mb-4 leading-relaxed" }, "AI is not just something for the future – it's already part of your everyday life! You encounter AI when using social media (personalized feed)", React.createElement(CitationLink, { key: 'c5', referenceId: "ref-4", text: "[4]" }), ", email (spam filter)", React.createElement(CitationLink, { key: 'c6', referenceId: "ref-5", text: "[5]" }), ", GPS apps (route optimization)", React.createElement(CitationLink, { key: 'c7', referenceId: "ref-6", text: "[6]" }), ", and smart speakers."),
@@ -93,7 +94,7 @@ export const ExploreAISection = ({ selectedVocation }) => { // Removed React.FC 
         ]
       }),
       
-      React.createElement(InteractiveCard, {
+      React.createElement(InteractiveCard, { // Explanatory - non-collapsible
         children: [
           React.createElement(SubsectionTitle, { key: 'sub3', children: "Why is AI literacy important for you?" }),
           React.createElement('p', { key: 'p8', className: "text-slate-700 mb-2 leading-relaxed" },
@@ -111,16 +112,61 @@ export const ExploreAISection = ({ selectedVocation }) => { // Removed React.FC 
 
       React.createElement(InteractiveCard, { 
         id: "aiAroundUsActivity",
+        isCollapsible: true, // This is a task card
         children: [
-          React.createElement(SubsectionTitle, { key: 'sub4', children: "Writing Prompt Set 1: AI Around Us" }),
+          React.createElement(SubsectionTitle, { key: 'sub4', children: "✍️ Writing Prompts: AI Around Us" }),
           React.createElement('p', { key: 'p10', className: "text-slate-700 mb-3 leading-relaxed" }, "Let's become AI detectives! Think about where you encounter AI in everyday life and in your field of ", React.createElement('strong', { className: "text-sky-600" }, selectedVocation), "."),
           React.createElement('div', { key: 'div2', className: "space-y-3" },
-            React.createElement(WritingPrompt, { key: 'wp1', number: "Prompt 1.1:", children: "Name 1-2 examples of AI you use in your everyday life. Briefly describe what they do." }),
-            React.createElement(WritingPrompt, { key: 'wp2', number: "Prompt 1.2:", children: ["Your vocational field is ", selectedVocation, ". Research and describe 2-3 specific ways AI is currently used or is emerging in this field. For each, also mention one potential ethical issue or concern related to its use."] }),
-            React.createElement(WritingPrompt, { key: 'wp3', number: "Prompt 1.3:", children: ["Based on one of the examples from your vocational field (", selectedVocation, " - Prompt 1.2), explain how AI can help professionals in that task. Then, describe a potential disadvantage or problem if the AI makes a mistake or is used incorrectly in that specific scenario."] })
+            React.createElement(WritingPrompt, { key: 'wp1', number: "Prompt:", children: "Name 1-2 examples of AI you use in your everyday life. Briefly describe what they do." }),
+            React.createElement(WritingPrompt, { key: 'wp2', number: "Prompt:", children: ["Your vocational field is ", selectedVocation, ". Research and describe 2-3 specific ways AI is currently used or is emerging in this field. For each, also mention one potential ethical issue or concern related to its use."] }),
+            React.createElement(WritingPrompt, { key: 'wp3', number: "Prompt:", children: ["Based on one of the examples from your vocational field (", selectedVocation, "), explain how AI can help professionals in that task. Then, describe a potential disadvantage or problem if the AI makes a mistake or is used incorrectly in that specific scenario."] })
           )
         ]
+      }),
+
+      React.createElement('h4', { key: 'actSetHeading', className: "text-lg font-semibold text-slate-700 mt-10 mb-4 pt-6 border-t border-slate-300", children: "Chapter 1 Activities" }),
+
+      // New Activities Start Here - These are tasks, so they are collapsible
+      React.createElement(InteractiveCard, {
+        key: 'explore-activity1',
+        id: 'explore-activity1-card', // Added ID
+        isCollapsible: true,
+        children: [
+          React.createElement(SubsectionTitle, { key: 'expAct1Title', children: "🔍 Exploration Activity: AI in My Job - Quick Find" }),
+          React.createElement('p', { key: 'expAct1Desc', className: "text-slate-700 mb-2 leading-relaxed", children: ["Think about your chosen vocational field (", selectedVocation, "). Use a search engine (like Google) for 5-10 minutes to find ONE specific example of how AI is used in a job in this field."] }),
+          React.createElement('ul', { key: 'expAct1List', className: "list-disc list-inside text-slate-700 mb-2 space-y-1 leading-relaxed", children: [
+            React.createElement(ListItem, { key: 'expAct1Li1', children: "What is the AI tool or system?" }),
+            React.createElement(ListItem, { key: 'expAct1Li2', children: "What does it do for the worker?" })
+          ]}),
+          React.createElement('p', { key: 'expAct1Conclusion', className: "text-slate-700 mb-2 leading-relaxed", children: "Be ready to share your finding with a partner." })
+        ]
+      }),
+
+      React.createElement(InteractiveCard, {
+        key: 'explore-activity2',
+        id: 'explore-activity2-card', // Added ID
+        isCollapsible: true,
+        children: [
+          React.createElement(SubsectionTitle, { key: 'expAct2Title', children: "💬 Discussion Prompt: AI vs. Human Smartness" }),
+          React.createElement('p', { key: 'expAct2Desc', className: "text-slate-700 mb-2 leading-relaxed", children: "The lesson says AI can do things that need 'human intelligence'." }),
+          React.createElement('ul', { key: 'expAct2List', className: "list-disc list-inside text-slate-700 mb-2 space-y-1 leading-relaxed", children: [
+            React.createElement(ListItem, { key: 'expAct2Li1', children: "Think of one thing a human can do that you think is 'smart' (e.g., solving a tricky problem on the job, understanding someone's feelings, creating something new)." }),
+            React.createElement(ListItem, { key: 'expAct2Li2', children: "Do you think the AI described in the lesson (like ChatGPT, which predicts words) can do that 'smart' thing in the same way a human does? Why or why not?" })
+          ]}),
+          React.createElement('p', { key: 'expAct2Conclusion', className: "text-slate-700 mb-2 leading-relaxed", children: "Discuss with a partner (Pairs or Small Group)." })
+        ]
+      }),
+
+      React.createElement(InteractiveCard, {
+        key: 'explore-activity3',
+        id: 'explore-activity3-card', // Added ID
+        isCollapsible: true,
+        children: [
+          React.createElement(SubsectionTitle, { key: 'expAct3Title', children: "🤸 Active Challenge: AI Spotting Game" }),
+          React.createElement('p', { key: 'expAct3Desc', className: "text-slate-700 mb-2 leading-relaxed", children: ["The teacher names a place or situation (e.g., 'In the Kitchen,' 'On a Construction Site for ", selectedVocation, ",' 'At the Doctor's Office for ", selectedVocation, "'). Students take turns naming ONE way AI could be used there. No repeats. If you can't think of one in 15 seconds, you're out for that round. The last few students in win points."] })
+        ]
       })
+      // New Activities End Here
     )
   );
 };

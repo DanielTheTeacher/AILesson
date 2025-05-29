@@ -12,6 +12,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
     
     <style>
       body { 
@@ -19,7 +20,8 @@
         background-color: #f1f5f9; /* bg-slate-100 */
         color: #334155; /* text-slate-700 */
       }
-      .tooltip-text-custom {
+      /* General Tooltip Styles */
+      .tooltip-custom .tooltip-text-custom {
         visibility: hidden;
         background-color: #334155; /* bg-slate-700 */
         color: #fff;
@@ -28,34 +30,62 @@
         padding: 8px;
         position: absolute;
         z-index: 10;
-        bottom: 135%;
+        bottom: 135%; /* Default: above */
         left: 50%;
-        margin-left: -110px;
+        transform: translateX(-50%); /* Centering */
         opacity: 0;
         transition: opacity 0.3s;
         font-size: 0.875rem;
         box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-        width: 220px;
+        width: 220px; /* Default width */
       }
       .tooltip-custom:hover .tooltip-text-custom {
+        visibility: visible;
+        opacity: 1;
+      }
+
+      /* Skills Icon Specific Tooltip Styles */
+      .skills-icon-tooltip-trigger .skills-icon-tooltip-text {
+        visibility: hidden;
+        background-color: #334155; /* bg-slate-700 */
+        color: #fff;
+        text-align: center;
+        border-radius: 6px;
+        padding: 5px 8px; /* Smaller padding */
+        position: absolute;
+        z-index: 10;
+        left: 100%; /* Position to the right */
+        margin-left: 8px; /* Space from icon */
+        top: 50%;
+        transform: translateY(-50%);
+        opacity: 0;
+        transition: opacity 0.3s;
+        font-size: 0.75rem; /* Smaller font */
+        box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+        white-space: nowrap; /* Keep it on one line */
+      }
+      .skills-icon-tooltip-trigger:hover .skills-icon-tooltip-text {
         visibility: visible;
         opacity: 1;
       }
     </style>
 
     <script type="importmap">
-    {
-      "imports": {
-        "react": "https://esm.sh/react@19.0.0",
-        "react-dom": "https://esm.sh/react-dom@19.0.0",
-        "react-dom/client": "https://esm.sh/react-dom@19.0.0/client",
-        "react-dom/": "https://esm.sh/react-dom@19.0.0/",
-        "react/jsx-runtime": "https://esm.sh/react@19.0.0/jsx-runtime",
-        "react/jsx-dev-runtime": "https://esm.sh/react@19.0.0/jsx-dev-runtime",
-        "react/": "https://esm.sh/react@19.0.0/"
-      }
-    }
-    </script>
+{
+  "imports": {
+    "react": "https://esm.sh/react@19.0.0",
+    "react-dom": "https://esm.sh/react-dom@19.0.0",
+    "react-dom/client": "https://esm.sh/react-dom@19.0.0/client",
+    "react-dom/": "https://esm.sh/react-dom@19.0.0/",
+    "react/jsx-runtime": "https://esm.sh/react@19.0.0/jsx-runtime",
+    "react/jsx-dev-runtime": "https://esm.sh/react@19.0.0/jsx-dev-runtime",
+    "react/": "https://esm.sh/react@19.0.0/",
+    "path": "https://esm.sh/path@^0.12.7",
+    "vite": "https://esm.sh/vite@^6.3.5",
+    "url": "https://esm.sh/url@^0.11.4"
+  }
+}
+</script>
     
     <!-- Babel Standalone REMOVED -->
 

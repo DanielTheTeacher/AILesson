@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { InteractiveCard } from '../ui/InteractiveCard.js';
 import { SectionTitle } from '../ui/SectionTitle.js';
@@ -27,9 +28,10 @@ export const CriticalThinkingSection = ({ selectedVocation }) => { // Removed Re
 
   return (
     React.createElement('section', { className: "mb-12" },
-      React.createElement(SectionTitle, { children: "2. Think Critically: Navigating an AI-Driven World" }),
+      React.createElement(SectionTitle, { children: "Think Critically: Navigating an AI-Driven World" }),
       
-      React.createElement(InteractiveCard, {
+      React.createElement(InteractiveCard, { // Explanatory - non-collapsible
+        key: 'biasCard',
         children: [
           React.createElement(SubsectionTitle, { key: 'sub1', children: "How AI Learns (and Gets it Wrong): Bias In, Bias Out" }),
           React.createElement('p', { key: 'p1', className: "text-slate-700 mb-2 leading-relaxed" },
@@ -50,7 +52,10 @@ export const CriticalThinkingSection = ({ selectedVocation }) => { // Removed Re
         ]
       }),
 
-      React.createElement(InteractiveCard, {
+      React.createElement(InteractiveCard, { // SpotTheLieGame is an activity, so this card is collapsible
+        key: 'hallucinationsCard',
+        id: 'spotTheLieActivity', // ID for navigation
+        isCollapsible: true,
         children: [
           React.createElement(SubsectionTitle, { key: 'sub2', children: ["AI \"Hallucinations\" & ", React.createElement('strong', { key: 's6' }, "Looks Real, But Isn't"), ": Spotting Convincing Fakes"] }),
           React.createElement('p', { key: 'p4', className: "text-slate-700 mb-2 leading-relaxed" },
@@ -70,7 +75,37 @@ export const CriticalThinkingSection = ({ selectedVocation }) => { // Removed Re
         ]
       }),
       
-      React.createElement(InteractiveCard, {
+      React.createElement(InteractiveCard, { // This is an activity card
+        key: 'critThink-activity1',
+        id: 'critThink-activity1-card', // Added ID
+        isCollapsible: true,
+        children: [
+          React.createElement(SubsectionTitle, { key: 'critAct1Title', children: "🧪 Experiment: The AI Hallucination Challenge" }),
+          React.createElement('p', { key: 'critAct1Desc', className: "text-slate-700 mb-2 leading-relaxed", children: "Your mission: try to (safely and ethically) get an AI to 'hallucinate' – make up information that sounds plausible but isn't true. This helps understand AI fallibility and why checking info is key." }),
+          React.createElement('ol', { key: 'critAct1Instructions', className: "list-decimal list-inside text-slate-700 mb-2 space-y-1 leading-relaxed", children: [
+            React.createElement(ListItem, { key: 'critAct1Inst1', children: "Work individually or in pairs." }),
+            React.createElement(ListItem, { key: 'critAct1Inst2', children: "Use an AI chat tool approved by your teacher (e.g., NDLA AI Chat)." }),
+            React.createElement(ListItem, { key: 'critAct1Inst3', children: "Goal: Ask questions or give prompts that might lead to a 'hallucinated' (made-up/incorrect) response." }),
+            React.createElement(ListItem, { key: 'critAct1Inst4', children: "Try 3-5 different prompts using some tips below." }),
+            React.createElement(ListItem, { key: 'critAct1Inst5', children: "For ONE of your attempts: Write down your prompt, the AI's response, why you think it's a hallucination (or why it gave a good answer), and how you could verify it." }),
+            React.createElement(ListItem, { key: 'critAct1Inst6', children: "Be ready to share your most interesting attempt." })
+          ]}),
+          React.createElement('h4', { key: 'critAct1TipsTitle', className: "font-semibold text-slate-600 mt-4 mb-2", children: "Tips for Encouraging AI Hallucinations:" }),
+          React.createElement('ul', { key: 'critAct1TipsList', className: "list-disc list-inside text-slate-700 mb-2 space-y-1 leading-relaxed", children: [
+            React.createElement(ListItem, { key: 'critAct1Tip1', children: React.createElement('span', {className: 'text-sm'}, ["Ask about very recent or future events (e.g., 'What were the results of the ", selectedVocation, " competition happening next month?')."]) }),
+            React.createElement(ListItem, { key: 'critAct1Tip2', children: React.createElement('span', {className: 'text-sm'}, ["Ask about very obscure or niche topics (e.g., 'History of the left-handed widget tightener in ", selectedVocation, " in Tingvoll, 1920s.')."]) }),
+            React.createElement(ListItem, { key: 'critAct1Tip3', children: React.createElement('span', {className: 'text-sm'}, ["Ask leading questions with a false premise (e.g., 'Tell me why Norway banned [common ", selectedVocation, " tool] last year.')."]) }),
+            React.createElement(ListItem, { key: 'critAct1Tip4', children: React.createElement('span', {className: 'text-sm'}, ["Combine unrelated concepts (e.g., 'Similarities between 18th-century folk music and ", selectedVocation, " safety protocols for [modern equipment]?')."]) }),
+            React.createElement(ListItem, { key: 'critAct1Tip5', children: React.createElement('span', {className: 'text-sm'}, ["Request highly specific, made-up details (e.g., 'Transcript of the Minister of ", selectedVocation, "'s speech at the fictional \"Tingvoll Centre for Advanced ", selectedVocation, " Studies\" on March 28, 2045?')."]) })
+          ]}),
+          React.createElement('p', { key: 'critAct1Reminder', className: "text-red-600 font-semibold mt-3 leading-relaxed", children: "Important Reminder ❗: The goal is learning about AI limits. DO NOT share AI hallucinations as real facts outside this exercise. Always verify AI info!" })
+        ]
+      }),
+
+      React.createElement(InteractiveCard, { // EscapeTheBubble is an activity, so this card is collapsible
+        key: 'misinfoCard',
+        id: 'escapeBubbleActivity', // ID for navigation
+        isCollapsible: true,
         children: [
           React.createElement(SubsectionTitle, { key: 'sub3', children: "Misinformation, Echo Chambers & Filter Bubbles" }),
           React.createElement('p', { key: 'p8', className: "text-slate-700 mb-2 leading-relaxed" },
@@ -98,7 +133,63 @@ export const CriticalThinkingSection = ({ selectedVocation }) => { // Removed Re
           ),
           React.createElement(EscapeTheBubble, { key: 'escape1' })
         ]
+      }),
+
+      React.createElement('h4', { key: 'actSetHeading', className: "text-lg font-semibold text-slate-700 mt-10 mb-4 pt-6 border-t border-slate-300", children: "Chapter 3 Activities - Set 1" }),
+
+      // New Activities Start Here - These are tasks, so they are collapsible
+      React.createElement(InteractiveCard, {
+        key: 'critThink-activity2',
+        id: 'critThink-activity2-card', // Added ID
+        isCollapsible: true,
+        children: [
+          React.createElement(SubsectionTitle, { key: 'critAct2Title', children: "✍️ Writing Prompt: Spotting Unfairness" }),
+          React.createElement('p', { key: 'critAct2Desc', className: "text-slate-700 mb-2 leading-relaxed", children: "The lesson talks about AI being unfair if it's trained on biased data." }),
+          React.createElement('ul', { key: 'critAct2List', className: "list-disc list-inside text-slate-700 mb-2 space-y-1 leading-relaxed", children: [
+            React.createElement(ListItem, { key: 'critAct2Li1', children: "Can you remember a time you saw something that felt unfair in an app, a game, an ad, or on social media (e.g., a job ad only showing men, a beauty filter that changes features too much)?" }),
+            React.createElement(ListItem, { key: 'critAct2Li2', children: "Briefly describe it. Why did it feel unfair?" })
+          ]})
+        ]
+      }),
+
+      React.createElement(InteractiveCard, {
+        key: 'critThink-activity3',
+        id: 'critThink-activity3-card', // Added ID
+        isCollapsible: true,
+        children: [
+          React.createElement(SubsectionTitle, { key: 'critAct3Title', children: ["💬 Discussion Prompt: AI Mistakes at Work (", selectedVocation, ")"] }),
+          React.createElement('p', { key: 'critAct3Desc', className: "text-slate-700 mb-2 leading-relaxed", children: ["AI sometimes makes 'hallucinations' – it gives wrong information that looks real. If an AI gave wrong advice or instructions for a specific task in your ", selectedVocation, " field (e.g., a wrong measurement for a Bygg project, an incorrect safety step for Elektro, wrong patient information for Helse), what's ONE bad thing that could happen on the job? Discuss one clear example (Small Group)."] })
+        ]
+      }),
+
+      React.createElement(InteractiveCard, {
+        key: 'critThink-activity4',
+        id: 'critThink-activity4-card', // Added ID
+        isCollapsible: true,
+        children: [
+          React.createElement(SubsectionTitle, { key: 'critAct4Title', children: ["🔍 Exploration Activity: Is This Real? (", selectedVocation, ")"] }),
+          React.createElement('p', { key: 'critAct4Desc', className: "text-slate-700 mb-2 leading-relaxed", children: ["The teacher will give you ONE short piece of information or a 'fact' related to ", selectedVocation, ". It might be true, or it might be an AI-generated fake."] }),
+          React.createElement('ul', { key: 'critAct4List', className: "list-disc list-inside text-slate-700 mb-2 space-y-1 leading-relaxed", children: [
+            React.createElement(ListItem, { key: 'critAct4Li1', children: "With a partner, use a search engine to try and check if it's true. Look for reliable sources." }),
+            React.createElement(ListItem, { key: 'critAct4Li2', children: "Decide: Real or Fake? Why do you think so? Be ready to share one source you checked." })
+          ]})
+        ]
+      }),
+
+      React.createElement(InteractiveCard, {
+        key: 'critThink-activity5',
+        id: 'critThink-activity5-card', // Added ID
+        isCollapsible: true,
+        children: [
+          React.createElement(SubsectionTitle, { key: 'critAct5Title', children: "💡 Mini-Scenario: What Would You Say?" }),
+          React.createElement('p', { key: 'critAct5Desc', className: "text-slate-700 mb-2 leading-relaxed", children: ["Imagine a friend shares a 'surprising fact' about ", selectedVocation, " on social media that you think might be wrong. The teacher will give you an example of such a fact."] }),
+          React.createElement('ul', { key: 'critAct5List', className: "list-disc list-inside text-slate-700 mb-2 space-y-1 leading-relaxed", children: [
+            React.createElement(ListItem, { key: 'critAct5Li1', children: "What is ONE polite question you could ask your friend to check if the information is true, without starting an argument?" }),
+            React.createElement(ListItem, { key: 'critAct5Li2', children: "Share your question with the class." })
+          ]})
+        ]
       })
+      // New Activities End Here
     )
   );
 };

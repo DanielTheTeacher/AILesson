@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { ResourceLink } from '../ui/ResourceLink.js';
 import { WritingPrompt } from '../ui/WritingPrompt.js';
@@ -42,7 +43,7 @@ export const EscapeTheBubble = () => { // Removed React.FC
         )
       ),
       React.createElement(WritingPrompt, { 
-        number: "Writing Prompt 2.1:", 
+        number: "Writing Prompt:", 
         className: "mt-6", 
         children: "After exploring the strategies above, choose 1-2 strategies you think would be most helpful for you. In a few sentences, explain why you chose them and describe a specific situation where you could apply each one this week." 
       })
