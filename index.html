@@ -1,0 +1,62 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Learning for Vocational Studies</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <script type="module" src="./index.tsx"></script>
+    <style>
+      body { 
+        font-family: 'Inter', sans-serif; 
+        background-color: #f1f5f9; /* bg-slate-100 */
+        color: #334155; /* text-slate-700 */
+      }
+      /* Minor global styles if absolutely necessary and not covered by Tailwind can go here,
+         but the goal is to use Tailwind classes as much as possible.
+         The custom classes from the original style block will be translated to Tailwind utilities
+         within components.
+      */
+      .tooltip-text-custom {
+        visibility: hidden;
+        background-color: #334155; /* bg-slate-700 */
+        color: #fff;
+        text-align: center;
+        border-radius: 6px;
+        padding: 8px;
+        position: absolute;
+        z-index: 10;
+        bottom: 135%;
+        left: 50%;
+        margin-left: -110px;
+        opacity: 0;
+        transition: opacity 0.3s;
+        font-size: 0.875rem;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        width: 220px;
+      }
+      .tooltip-custom:hover .tooltip-text-custom {
+        visibility: visible;
+        opacity: 1;
+      }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.1.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.1.0/",
+    "react/": "https://esm.sh/react@^19.1.0/"
+  }
+}
+</script>
+</head>
+<body>
+    <div id="root"></div>
+</body>
+</html>
+<link rel="stylesheet" href="index.css">
+<script src="index.tsx" type="module"></script>
