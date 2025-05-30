@@ -3,10 +3,9 @@ export const ChapterId = {
   AIHelper: 'helper',
   RealDangers: 'dangers',
   AIFuture: 'future',
-  Exercises: 'exercises',
-  SkillsConnect: 'skills_connect',
+  ExercisesSkills: 'exercises_skills', // Combined chapter
   References: 'references',
-  Disclaimer: 'disclaimer', // Added Disclaimer
+  Disclaimer: 'disclaimer',
 };
 
 export const Vocation = {

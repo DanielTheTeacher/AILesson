@@ -7,7 +7,7 @@ export const ResourceLink = ({ href, children }) => { // Removed React.FC and pr
       href: href,
       target: "_blank",
       rel: "noopener noreferrer",
-      className: "inline-block mt-1 mr-2 px-2 py-1 bg-sky-100 text-sky-700 rounded text-xs font-medium hover:bg-sky-200 transition-colors"
+      className: "inline-block mt-1 mr-2 px-3 py-1.5 bg-teal-100 text-teal-700 rounded-full text-xs font-medium hover:bg-teal-200 hover:text-teal-800 transition-colors"
     },
       children
     )

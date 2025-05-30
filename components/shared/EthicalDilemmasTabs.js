@@ -1,4 +1,5 @@
 
+
 import React, { useState } from 'react';
 import { TabButton } from '../ui/TabButton.js';
 import { WritingPrompt } from '../ui/WritingPrompt.js';
@@ -81,11 +82,11 @@ export const EthicalDilemmasTabs = ({ selectedVocation }) => { // Removed React.
 
   return (
     React.createElement('div', { id: "ethicalDilemmasActivity" },
-      React.createElement('p', { className: "text-slate-700 mb-3 leading-relaxed" },
-        "As a professional in ", React.createElement('strong', { className: "text-sky-600" }, selectedVocation), ", you might face ethical dilemmas where AI recommendations clash with your judgment or professional ethics. Consider the following scenarios:",
+      React.createElement('p', { className: "text-neutral-700 mb-3 leading-relaxed" },
+        "As a professional in ", React.createElement('strong', { className: "text-teal-600" }, selectedVocation), ", you might face ethical dilemmas where AI recommendations clash with your judgment or professional ethics. Consider the following scenarios:",
         React.createElement(ResourceLink, { href: "https://library.fiveable.me/lists/key-ai-ethics-case-studies", children: "More: AI Ethics Case Studies" })
       ),
-      React.createElement('div', { className: "mb-0 flex border-b border-slate-300" }, 
+      React.createElement('div', { className: "mb-0 flex border-b border-neutral-300" }, 
         React.createElement(TabButton, { 
           onClick: () => setActiveTab('dilemma1'), 
           isActive: activeTab === 'dilemma1', 
@@ -97,11 +98,11 @@ export const EthicalDilemmasTabs = ({ selectedVocation }) => { // Removed React.
           children: getScenario2Title() 
         })
       ),
-      React.createElement('div', { className: "p-4 border border-t-0 border-slate-300 rounded-b-md bg-white" },
+      React.createElement('div', { className: "p-4 border border-t-0 border-neutral-300 rounded-b-md bg-white" },
         activeTab === 'dilemma1' && (
           React.createElement('div', null,
-            React.createElement('h4', { className: "font-semibold text-slate-700 mb-1 text-lg" }, getScenario1Title()),
-            React.createElement('p', { className: "text-slate-700 mb-2 leading-relaxed" }, getScenario1Description()),
+            React.createElement('h4', { className: "font-semibold text-neutral-700 mb-1 text-lg" }, getScenario1Title()),
+            React.createElement('p', { className: "text-neutral-700 mb-2 leading-relaxed" }, getScenario1Description()),
             React.createElement(WritingPrompt, { 
               number: "Prompt:", 
               children: getScenario1Prompt() 
@@ -110,8 +111,8 @@ export const EthicalDilemmasTabs = ({ selectedVocation }) => { // Removed React.
         ),
         activeTab === 'dilemma2' && (
           React.createElement('div', null,
-            React.createElement('h4', { className: "font-semibold text-slate-700 mb-1 text-lg" }, getScenario2Title()),
-            React.createElement('p', { className: "text-slate-700 mb-2 leading-relaxed" }, getScenario2Description()),
+            React.createElement('h4', { className: "font-semibold text-neutral-700 mb-1 text-lg" }, getScenario2Title()),
+            React.createElement('p', { className: "text-neutral-700 mb-2 leading-relaxed" }, getScenario2Description()),
             React.createElement(WritingPrompt, { 
               number: "Prompt:", 
               children: getScenario2Prompt() 
@@ -119,7 +120,7 @@ export const EthicalDilemmasTabs = ({ selectedVocation }) => { // Removed React.
           )
         )
       ),
-      React.createElement('p', { className: "text-slate-700 mt-3 leading-relaxed" }, "Such dilemmas often have no easy answers. They show how important human judgment, ethical reflection, and the ability to critically question AI are.")
+      React.createElement('p', { className: "text-neutral-700 mt-3 leading-relaxed" }, "Such dilemmas often have no easy answers. They show how important human judgment, ethical reflection, and the ability to critically question AI are.")
     )
   );
 };

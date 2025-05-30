@@ -1,14 +1,14 @@
+
 import React, { useState, useEffect, useRef } from 'react';
 import { Header } from './components/layout/Header.js';
 import { Footer } from './components/layout/Footer.js';
 import { ExploreAISection } from './components/chapters/ExploreAISection.js';
 import { AIHelperSection } from './components/chapters/AIHelperSection.js';
 import { AIFutureSection } from './components/chapters/AIFutureSection.js';
-import { ExercisesSection } from './components/chapters/ExercisesSection.js';
-import { SkillsConnectSection } from './components/chapters/SkillsConnectSection.js';
+import { ExercisesSkillsSection } from './components/chapters/ExercisesSkillsSection.js'; // New combined chapter
 import { ReferencesSection } from './components/chapters/ReferencesSection.js';
 import { RealDangersSection } from './components/chapters/RealDangersSection.js';
-import { DisclaimerSection } from './components/chapters/DisclaimerSection.js'; // Added import
+import { DisclaimerSection } from './components/chapters/DisclaimerSection.js';
 import { ChapterId, Vocation } from './types.js';
 import { NAV_ITEMS, VOCATION_OPTIONS } from './constants.js';
 
@@ -63,7 +63,7 @@ const App = () => {
   }, [activeChapterId, scrollToElementId, isScrolled]); // Dependency on activeChapterId ensures scroll logic runs after chapter changes
 
   const renderChapter = () => {
-    const commonProps = { selectedVocation, onNavigate: handleNavClick }; // Pass onNavigate to chapters that need it
+    const commonProps = { selectedVocation, onNavigate: handleNavClick };
     switch (activeChapterId) {
       case ChapterId.ExploreAI:
         return React.createElement(ExploreAISection, commonProps);
@@ -73,13 +73,11 @@ const App = () => {
         return React.createElement(RealDangersSection, commonProps);
       case ChapterId.AIFuture:
         return React.createElement(AIFutureSection, commonProps);
-      case ChapterId.Exercises:
-        return React.createElement(ExercisesSection, { ...commonProps, onNavigate: handleNavClick });
-      case ChapterId.SkillsConnect:
-        return React.createElement(SkillsConnectSection, commonProps);
+      case ChapterId.ExercisesSkills: // Updated to new combined chapter
+        return React.createElement(ExercisesSkillsSection, { ...commonProps, onNavigate: handleNavClick });
       case ChapterId.References:
         return React.createElement(ReferencesSection, null);
-      case ChapterId.Disclaimer: // Added case for Disclaimer
+      case ChapterId.Disclaimer:
         return React.createElement(DisclaimerSection, { onNavigate: handleNavClick });
       default:
         return React.createElement(ExploreAISection, commonProps);
@@ -87,7 +85,7 @@ const App = () => {
   };
 
   return (
-    React.createElement('div', { className: "flex flex-col min-h-screen bg-slate-100 text-slate-800" },
+    React.createElement('div', { className: "flex flex-col min-h-screen bg-neutral-50 text-neutral-800" },
       React.createElement(Header, {
         navItems: NAV_ITEMS,
         activeChapterId: activeChapterId,
@@ -102,7 +100,7 @@ const App = () => {
       },
         renderChapter()
       ),
-      React.createElement(Footer, { onNavigateToDisclaimer: () => handleNavClick(ChapterId.Disclaimer) }) // Pass navigation handler
+      React.createElement(Footer, { onNavigateToDisclaimer: () => handleNavClick(ChapterId.Disclaimer) })
     )
   );
 };

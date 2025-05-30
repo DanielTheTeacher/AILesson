@@ -7,10 +7,9 @@ export const NAV_ITEMS = [
   { id: ChapterId.AIHelper, label: '2. Using AI in School' },
   { id: ChapterId.RealDangers, label: '3. AI: Real Dangers' },
   { id: ChapterId.AIFuture, label: '4. AI & Your Job' },
-  { id: ChapterId.Exercises, label: '5. AI Exercises' },
-  { id: ChapterId.SkillsConnect, label: '6. AI & \'Skills\'' },
-  { id: ChapterId.References, label: '7. References' },
-  { id: ChapterId.Disclaimer, label: 'Disclaimer' }, // Updated label
+  { id: ChapterId.ExercisesSkills, label: '5. Exercises & textbook connections' }, // New combined chapter
+  { id: ChapterId.References, label: '6. References' }, // Renumbered
+  { id: ChapterId.Disclaimer, label: 'Disclaimer' },
 ];
 
 export const HUMAN_SKILLS_DATA = [

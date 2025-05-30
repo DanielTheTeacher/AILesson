@@ -1,4 +1,5 @@
 
+
 import React from 'react';
 import { InteractiveCard } from '../ui/InteractiveCard.js';
 import { SectionTitle } from '../ui/SectionTitle.js';
@@ -12,7 +13,7 @@ const ExerciseLink = ({ onClick, children, ariaLabel }) => {
   return React.createElement('button', {
     onClick: onClick,
     'aria-label': ariaLabel,
-    className: "text-sky-600 hover:underline focus:outline-none focus:ring-2 focus:ring-sky-300 rounded"
+    className: "text-teal-600 hover:underline focus:outline-none focus:ring-2 focus:ring-teal-300 rounded"
   }, children);
 };
 
@@ -27,11 +28,11 @@ export const ExercisesSection = ({ onNavigate, selectedVocation }) => {
       React.createElement(InteractiveCard, {
         // This card itself could be collapsible if desired, but for an overview, non-collapsible is fine.
         children: [
-          React.createElement('p', { key: 'p-intro', className: "text-slate-700 mb-4 leading-relaxed" }, "This section lists all the writing prompts and interactive exercises found throughout the learning material. You can use this as a quick navigation hub or as a checklist for completion. Click on any link to jump directly to the relevant activity within its chapter."),
+          React.createElement('p', { key: 'p-intro', className: "text-neutral-700 mb-4 leading-relaxed" }, "This section lists all the writing prompts and interactive exercises found throughout the learning material. You can use this as a quick navigation hub or as a checklist for completion. Click on any link to jump directly to the relevant activity within its chapter."),
           
           // Chapter 1: What is AI? (ExploreAISection)
           React.createElement(SubsectionTitle, { key: 'sub-explore', children: "Chapter: What is AI?"}),
-          React.createElement('ul', { key: 'ul-explore', className: "list-disc list-inside text-slate-700 space-y-2 mb-4 leading-relaxed" },
+          React.createElement('ul', { key: 'ul-explore', className: "list-disc list-inside text-neutral-700 space-y-2 mb-4 leading-relaxed" },
             React.createElement(ListItem, { key: 'ex-explore1', children: [
               React.createElement(ExerciseLink, {
                 onClick: () => handleLinkClick(ChapterId.ExploreAI, 'aiAroundUsActivity'), 
@@ -64,7 +65,7 @@ export const ExercisesSection = ({ onNavigate, selectedVocation }) => {
 
           // Chapter 2: Using AI in School (AIHelperSection)
           React.createElement(SubsectionTitle, { key: 'sub-helper', children: "Chapter: Using AI in School"}),
-          React.createElement('ul', { key: 'ul-helper', className: "list-disc list-inside text-slate-700 space-y-2 mb-4 leading-relaxed" },
+          React.createElement('ul', { key: 'ul-helper', className: "list-disc list-inside text-neutral-700 space-y-2 mb-4 leading-relaxed" },
             React.createElement(ListItem, { key: 'ex-helper1', children: [
               React.createElement(ExerciseLink, {
                 onClick: () => handleLinkClick(ChapterId.AIHelper, 'ethicsTableActivity'), 
@@ -104,7 +105,7 @@ export const ExercisesSection = ({ onNavigate, selectedVocation }) => {
           
           // Chapter 3: AI: Real Dangers (CriticalThinkingSection & AISocietySection)
           React.createElement(SubsectionTitle, { key: 'sub-dangers', children: "Chapter: AI: Real Dangers"}),
-          React.createElement('ul', { key: 'ul-dangers', className: "list-disc list-inside text-slate-700 space-y-2 mb-4 leading-relaxed" },
+          React.createElement('ul', { key: 'ul-dangers', className: "list-disc list-inside text-neutral-700 space-y-2 mb-4 leading-relaxed" },
             React.createElement(ListItem, { key: 'ex-dangers1', children: [
               React.createElement(ExerciseLink, {
                 onClick: () => handleLinkClick(ChapterId.RealDangers, 'spotTheLieActivity'), // Navigates to CriticalThinkingSection part
@@ -200,7 +201,7 @@ export const ExercisesSection = ({ onNavigate, selectedVocation }) => {
 
           // Chapter 4: AI & Your Job (AIFutureSection)
           React.createElement(SubsectionTitle, { key: 'sub-future', children: "Chapter: AI & Your Job"}),
-          React.createElement('ul', { key: 'ul-future', className: "list-disc list-inside text-slate-700 space-y-2 mb-4 leading-relaxed" },
+          React.createElement('ul', { key: 'ul-future', className: "list-disc list-inside text-neutral-700 space-y-2 mb-4 leading-relaxed" },
             React.createElement(ListItem, { key: 'ex-future1', children: [
               React.createElement(ExerciseLink, {
                 onClick: () => handleLinkClick(ChapterId.AIFuture, 'vocationalFutureActivity'),
@@ -240,7 +241,7 @@ export const ExercisesSection = ({ onNavigate, selectedVocation }) => {
           
           // Chapter 6: AI & 'Skills' (SkillsConnectSection)
           React.createElement(SubsectionTitle, { key: 'sub-skills', children: "Chapter: AI & 'Skills'"}),
-          React.createElement('ul', { key: 'ul-skills', className: "list-disc list-inside text-slate-700 space-y-2 mb-4 leading-relaxed" },
+          React.createElement('ul', { key: 'ul-skills', className: "list-disc list-inside text-neutral-700 space-y-2 mb-4 leading-relaxed" },
              React.createElement(ListItem, { key: 'ex-skills1', children: [
               React.createElement(ExerciseLink, {
                 onClick: () => handleLinkClick(ChapterId.SkillsConnect, 'skillsConnectPrompts'), 

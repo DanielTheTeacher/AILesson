@@ -16,9 +16,9 @@ export const EscapeTheBubble = () => { // Removed React.FC
   const [selectedStrategy, setSelectedStrategy] = useState(null);
 
   return (
-    React.createElement('div', { id: "escapeBubbleActivity", className: "bg-sky-50 p-4 rounded-md border border-sky-200 mt-4" },
-      React.createElement('h4', { className: "font-semibold text-sky-700 mb-2" }, "Exercise: Burst the Bubble!"),
-      React.createElement('p', { className: "text-sm text-slate-700 mb-3 leading-relaxed" },
+    React.createElement('div', { id: "escapeBubbleActivity", className: "bg-teal-50 p-4 rounded-md border border-teal-200 mt-4" },
+      React.createElement('h4', { className: "font-semibold text-teal-700 mb-2" }, "Exercise: Burst the Bubble!"),
+      React.createElement('p', { className: "text-sm text-neutral-700 mb-3 leading-relaxed" },
         "How can you avoid being trapped in filter bubbles and echo chambers? Click on a strategy to learn more and reflect.",
         React.createElement(ResourceLink, { href: "https://libguides.pittcc.edu/evaluate/fact-checking", children: "Learn: Fact-Checking Techniques" }),
         React.createElement(ResourceLink, { href: "https://guides.lib.k-state.edu/media-literacy/factcheck", children: "Tools: Fact-Checking Websites" })
@@ -29,17 +29,17 @@ export const EscapeTheBubble = () => { // Removed React.FC
             key: strategy.id,
             onClick: () => setSelectedStrategy(strategy),
             className: `p-3 bg-white rounded shadow cursor-pointer hover:shadow-md transition-all ${
-              selectedStrategy?.id === strategy.id ? 'ring-2 ring-sky-500 bg-sky-100' : ''
+              selectedStrategy?.id === strategy.id ? 'ring-2 ring-teal-500 bg-teal-100' : ''
             }`
           },
-            React.createElement('p', { className: "text-sm font-medium text-slate-700" }, strategy.title)
+            React.createElement('p', { className: "text-sm font-medium text-neutral-700" }, strategy.title)
           )
         ))
       ),
       selectedStrategy && (
-        React.createElement('div', { className: "mt-4 p-3 bg-sky-100 border border-sky-200 rounded" },
-          React.createElement('p', { className: "text-sm text-slate-700 leading-relaxed" }, selectedStrategy.info),
-          React.createElement('p', { className: "text-xs font-medium text-slate-600 mt-2 mb-1" }, "How could you apply this strategy this week? (Quick thought for yourself)")
+        React.createElement('div', { className: "mt-4 p-3 bg-teal-100 border border-teal-200 rounded" },
+          React.createElement('p', { className: "text-sm text-neutral-700 leading-relaxed" }, selectedStrategy.info),
+          React.createElement('p', { className: "text-xs font-medium text-neutral-600 mt-2 mb-1" }, "How could you apply this strategy this week? (Quick thought for yourself)")
         )
       ),
       React.createElement(WritingPrompt, { 

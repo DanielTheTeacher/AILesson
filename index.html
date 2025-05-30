@@ -17,17 +17,18 @@
     <style>
       body { 
         font-family: 'Inter', sans-serif; 
-        background-color: #f1f5f9; /* bg-slate-100 */
-        color: #334155; /* text-slate-700 */
+        background-color: #fafafa; /* neutral-50 */
+        color: #262626; /* neutral-800 */
+        line-height: 1.7; /* Increased line-height */
       }
       /* General Tooltip Styles */
       .tooltip-custom .tooltip-text-custom {
         visibility: hidden;
-        background-color: #334155; /* bg-slate-700 */
+        background-color: #262626; /* neutral-800 */
         color: #fff;
         text-align: center;
         border-radius: 6px;
-        padding: 8px;
+        padding: 10px 12px; /* Increased padding */
         position: absolute;
         z-index: 10;
         bottom: 135%; /* Default: above */
@@ -36,8 +37,9 @@
         opacity: 0;
         transition: opacity 0.3s;
         font-size: 0.875rem;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-        width: 220px; /* Default width */
+        box-shadow: 0 4px 8px rgba(0,0,0,0.25); /* Softer shadow */
+        width: 230px; /* Adjusted width */
+        border: 1px solid #404040; /* neutral-700 - subtle border */
       }
       .tooltip-custom:hover .tooltip-text-custom {
         visibility: visible;
@@ -47,11 +49,11 @@
       /* Skills Icon Specific Tooltip Styles */
       .skills-icon-tooltip-trigger .skills-icon-tooltip-text {
         visibility: hidden;
-        background-color: #334155; /* bg-slate-700 */
+        background-color: #262626; /* neutral-800 */
         color: #fff;
         text-align: center;
         border-radius: 6px;
-        padding: 5px 8px; /* Smaller padding */
+        padding: 6px 10px; /* Adjusted padding */
         position: absolute;
         z-index: 10;
         left: 100%; /* Position to the right */
@@ -61,8 +63,9 @@
         opacity: 0;
         transition: opacity 0.3s;
         font-size: 0.75rem; /* Smaller font */
-        box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Adjusted shadow */
         white-space: nowrap; /* Keep it on one line */
+        border: 1px solid #404040; /* neutral-700 */
       }
       .skills-icon-tooltip-trigger:hover .skills-icon-tooltip-text {
         visibility: visible;

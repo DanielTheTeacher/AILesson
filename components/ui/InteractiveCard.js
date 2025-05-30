@@ -29,7 +29,7 @@ export const InteractiveCard = ({ children, className = '', id = undefined, isCo
 
     return React.createElement('div', {
       id: cardId,
-      className: `bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 mb-8 border border-slate-200 ${className}`
+      className: `bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 mb-10 border border-neutral-200 ${className}`
     },
       React.createElement('div', { // Clickable Header
         className: "p-5 sm:p-6 cursor-pointer flex justify-between items-center",
@@ -47,18 +47,16 @@ export const InteractiveCard = ({ children, className = '', id = undefined, isCo
       },
         headerContent, // This is typically the SubsectionTitle
         React.createElement('span', {
-          className: `ml-2 text-sky-600 transform transition-transform duration-200 ${isOpen ? 'rotate-90' : ''}`, // '▶' icon rotates 90deg to '▼'
+          className: `ml-3 text-teal-600 transform transition-transform duration-300 ease-in-out text-lg ${isOpen ? 'rotate-180' : ''}`,
           'aria-hidden': 'true'
-        }, '▶')
+        }, '▼') // Icon changes direction based on isOpen
       ),
       // Collapsible Body with transition
-      // The outer div handles the max-height transition and overflow
-      // The inner div applies padding to the actual bodyContent
       bodyContent && React.createElement('div', { 
         id: contentId,
         className: `overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'}`,
         role: 'region',
-        'aria-labelledby': cardId // Assuming headerContent has an id, or link to cardId if header acts as label
+        'aria-labelledby': cardId 
       },
          React.createElement('div', { className: "p-5 sm:p-6 pt-0" }, bodyContent)
       )
@@ -68,6 +66,6 @@ export const InteractiveCard = ({ children, className = '', id = undefined, isCo
   // Original non-collapsible rendering
   return React.createElement('div', {
     id: cardId,
-    className: `bg-white p-5 sm:p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 mb-8 border border-slate-200 ${className}`
+    className: `bg-white p-5 sm:p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 mb-10 border border-neutral-200 ${className}`
   }, children);
 };
