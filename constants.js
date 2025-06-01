@@ -7,8 +7,8 @@ export const NAV_ITEMS = [
   { id: ChapterId.AIHelper, label: '2. Using AI in School' },
   { id: ChapterId.RealDangers, label: '3. AI: Real Dangers' },
   { id: ChapterId.AIFuture, label: '4. AI & Your Job' },
-  { id: ChapterId.ExercisesSkills, label: '5. Exercises & textbook connections' }, // New combined chapter
-  { id: ChapterId.References, label: '6. References' }, // Renumbered
+  { id: ChapterId.ExercisesSkills, label: '5. Exercises & textbook connections' }, 
+  // { id: ChapterId.References, label: '6. References' }, // Removed
   { id: ChapterId.Disclaimer, label: 'Disclaimer' },
 ];
 

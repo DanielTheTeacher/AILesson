@@ -1,5 +1,4 @@
 
-
 import React from 'react';
 import { InteractiveCard } from '../ui/InteractiveCard.js';
 import { SectionTitle } from '../ui/SectionTitle.js';
@@ -9,9 +8,17 @@ import { ResourceLink } from '../ui/ResourceLink.js';
 import { WritingPrompt } from '../ui/WritingPrompt.js';
 import { ListItem } from '../ui/ListItem.js';
 import { HumanSkillsList } from '../shared/HumanSkillsList.js';
-import { Vocation } from '../../types.js'; // Vocation is JS object
+import { Vocation } from '../../types.js'; 
+import { EmptyReferencesDropdown } from '../ui/EmptyReferencesDropdown.js';
 
-export const AIFutureSection = ({ selectedVocation }) => { // Removed React.FC and prop types
+export const AI_FUTURE_SUB_CHAPTERS = [
+  { id: 'aifuture-impact-vocational', title: "AI's Impact on Your Field" },
+  { id: 'aifuture-human-skills', title: 'Irreplaceable Human Skills' },
+  { id: 'aifuture-writing-prompt-vocational', title: '✍️ My Vocational Future Prompt' }, // This is 'vocationalFutureActivity'
+  { id: 'aifuture-chapter4-activities-heading', title: 'Chapter 4 Activities' }
+];
+
+export const AIFutureSection = ({ selectedVocation }) => { 
 
   const getVocationImpactDetails = () => {
     switch (selectedVocation) {
@@ -43,7 +50,9 @@ export const AIFutureSection = ({ selectedVocation }) => { // Removed React.FC a
     React.createElement('section', { className: "mb-12" },
       React.createElement(SectionTitle, { children: "AI & Your Job" }),
 
-      React.createElement(InteractiveCard, { // Explanatory - non-collapsible
+      React.createElement(InteractiveCard, { 
+        id: AI_FUTURE_SUB_CHAPTERS[0].id, // 'aifuture-impact-vocational'
+        "data-subchapter-target": "true",
         key: "impactCard",
         children: [
           React.createElement(SubsectionTitle, { key: 'sub1', children: ["AI's Impact on Your Vocational Field (Focus: ", selectedVocation, ")"] }),
@@ -52,25 +61,39 @@ export const AIFutureSection = ({ selectedVocation }) => { // Removed React.FC a
             React.createElement('p', { key: 'p2', className: "text-neutral-700 leading-relaxed font-medium text-teal-800" }, "Specifically for ", selectedVocation, ":"),
             React.createElement('p', { key: 'p3', className: "text-neutral-700 leading-relaxed mt-1" }, getVocationImpactDetails())
           ),
-          React.createElement('p', { key: 'p4', className: "text-neutral-700 leading-relaxed" },
-            "The point is often that AI ", React.createElement(Tooltip, { key: 't1', text: "Improves or makes better.", children: "enhances" }), " human skills and changes job tasks, rather than replacing skilled workers. It will be important to be able to collaborate with AI systems.",
-            React.createElement(ResourceLink, { key: 'r1', href: "https://www.livingstonjames.com/fundamentally-human-the-irreplaceable-skills-needed-in-the-age-of-ai/", children: "Read: Irreplaceable Human Skills" })
-          )
+          
+          React.createElement('div', { key: 'content-block-p4-future', className: "flex flex-col gap-y-3" }, 
+            React.createElement('div', { className: "" },
+              React.createElement('p', { key: 'p4', className: "text-neutral-700 leading-relaxed" },
+                "The point is often that AI ", React.createElement(Tooltip, { key: 't1', text: "Improves or makes better.", children: "enhances" }), " human skills and changes job tasks, rather than replacing skilled workers. It will be important to be able to collaborate with AI systems."
+              )
+            ),
+            React.createElement('div', { key: 'links-p4-future', className: "w-full" },
+              React.createElement('div', { className: "flex flex-col gap-2" },
+                React.createElement(ResourceLink, { key: 'r1', href: "https://www.livingstonjames.com/fundamentally-human-the-irreplaceable-skills-needed-in-the-age-of-ai/", children: "Read: Irreplaceable Human Skills" })
+              )
+            )
+          ),
+          React.createElement(EmptyReferencesDropdown, { key: 'refs-dropdown-impact' })
         ]
       }),
 
-      React.createElement(InteractiveCard, { // Explanatory / List - non-collapsible (HumanSkillsList is not a task)
+      React.createElement(InteractiveCard, { 
+        id: AI_FUTURE_SUB_CHAPTERS[1].id, // 'aifuture-human-skills'
+        "data-subchapter-target": "true",
         key: "humanSkillsCard",
         children: [
           React.createElement(SubsectionTitle, { key: 'sub2', children: "The Irreplaceable Human Skills" }),
           React.createElement('p', { key: 'p5', className: "text-neutral-700 mb-4 leading-relaxed" }, "Even as AI gets smarter, many skills remain uniquely human and become even more important:"),
           React.createElement(HumanSkillsList, { key: 'hsl1' }),
-          React.createElement('p', { key: 'p6', className: "text-neutral-700 mt-3 leading-relaxed" }, "You develop many of these skills through practical work and collaboration in your vocational subjects for ", React.createElement('strong', { key: 's2', className: "text-teal-600" }, selectedVocation), "!")
+          React.createElement('p', { key: 'p6', className: "text-neutral-700 mt-3 leading-relaxed" }, "You develop many of these skills through practical work and collaboration in your vocational subjects for ", React.createElement('strong', { key: 's2', className: "text-teal-600" }, selectedVocation), "!"),
+          React.createElement(EmptyReferencesDropdown, { key: 'refs-dropdown-skills' })
         ]
       }),
 
-      React.createElement(InteractiveCard, { // This is a task card
-        id: "vocationalFutureActivity",
+      React.createElement(InteractiveCard, { 
+        id: AI_FUTURE_SUB_CHAPTERS[2].id, // 'aifuture-writing-prompt-vocational' (also 'vocationalFutureActivity')
+        "data-subchapter-target": "true",
         key: "vocationalFutureActivityCard",
         isCollapsible: true,
         children: [
@@ -85,12 +108,17 @@ export const AIFutureSection = ({ selectedVocation }) => { // Removed React.FC a
         ]
       }),
       
-      React.createElement('h4', { key: 'actSetHeading', className: "text-lg font-semibold text-neutral-700 mt-10 mb-4 pt-6 border-t border-neutral-300", children: "Chapter 4 Activities" }),
+      React.createElement('h4', { 
+        key: 'actSetHeading', 
+        id: AI_FUTURE_SUB_CHAPTERS[3].id, // 'aifuture-chapter4-activities-heading'
+        "data-subchapter-target": "true",
+        className: "text-lg font-semibold text-neutral-700 mt-10 mb-4 pt-6 border-t border-neutral-300", 
+        children: "Chapter 4 Activities" 
+      }),
 
-      // New Activities Start Here - These are tasks, so they are collapsible
       React.createElement(InteractiveCard, {
         key: 'aifuture-activity1',
-        id: 'aifuture-activity1-card', // Added ID
+        id: 'aifuture-activity1-card', 
         isCollapsible: true,
         children: [
           React.createElement(SubsectionTitle, { key: 'futAct1Title', children: ["✍️ Writing Prompt: My Best Skill for (", selectedVocation, ")"] }),
@@ -104,7 +132,7 @@ export const AIFutureSection = ({ selectedVocation }) => { // Removed React.FC a
 
       React.createElement(InteractiveCard, {
         key: 'aifuture-activity2',
-        id: 'aifuture-activity2-card', // Added ID
+        id: 'aifuture-activity2-card', 
         isCollapsible: true,
         children: [
           React.createElement(SubsectionTitle, { key: 'futAct2Title', children: ["💬 Discussion Prompt: How AI Changes Work in (", selectedVocation, ")"] }),
@@ -120,7 +148,7 @@ export const AIFutureSection = ({ selectedVocation }) => { // Removed React.FC a
 
       React.createElement(InteractiveCard, {
         key: 'aifuture-activity3',
-        id: 'aifuture-activity3-card', // Added ID
+        id: 'aifuture-activity3-card', 
         isCollapsible: true,
         children: [
           React.createElement(SubsectionTitle, { key: 'futAct3Title', children: "🔍 Exploration Activity: AI Tool for My Future Job" }),
@@ -135,7 +163,7 @@ export const AIFutureSection = ({ selectedVocation }) => { // Removed React.FC a
 
       React.createElement(InteractiveCard, {
         key: 'aifuture-activity4',
-        id: 'aifuture-activity4-card', // Added ID
+        id: 'aifuture-activity4-card', 
         isCollapsible: true,
         children: [
           React.createElement(SubsectionTitle, { key: 'futAct4Title', children: "💡 Quick Share: Why My Skill Matters with AI" }),
@@ -143,7 +171,6 @@ export const AIFutureSection = ({ selectedVocation }) => { // Removed React.FC a
           React.createElement('p', { key: 'futAct4Prompt', className: "text-neutral-700 mb-2 leading-relaxed", children: ["Be ready to tell the class in 1-2 sentences: What is the skill, and why will it still be important even if AI helps with many tasks in ", selectedVocation, "?"] })
         ]
       })
-      // New Activities End Here
     )
   );
 };

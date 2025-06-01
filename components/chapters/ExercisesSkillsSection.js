@@ -7,7 +7,11 @@ import { ListItem } from '../ui/ListItem.js';
 import { SkillsIconWithTooltip } from '../ui/SkillsIconWithTooltip.js';
 import { ChapterId, Vocation } from '../../types.js';
 
-// Define ExerciseLink component locally as it's specific to this section for now
+export const EXERCISES_SKILLS_SUB_CHAPTERS = [
+  { id: 'exercises-overview-main', title: 'AI Exercises Overview' },
+  { id: 'exercises-skills-textbook-connections', title: "'Skills' Textbook Connections" } // Refers to 'skills-textbook-connections-content' div
+];
+
 const ExerciseLink = ({ onClick, children, ariaLabel }) => {
   return React.createElement('button', {
     onClick: onClick,
@@ -21,7 +25,6 @@ export const ExercisesSkillsSection = ({ selectedVocation, onNavigate }) => {
      onNavigate(chapterId, elementId);
   };
 
-  // Content from former SkillsConnectSection
   const getVocationSpecificSkillsConnectIntro = () => {
     switch (selectedVocation) {
       case Vocation.Elektro:
@@ -39,8 +42,9 @@ export const ExercisesSkillsSection = ({ selectedVocation, onNavigate }) => {
     React.createElement('section', { className: "mb-12" },
       React.createElement(SectionTitle, { children: "Exercises & Textbook Connections" }),
       
-      // Part 1: AI Exercises Overview (from former ExercisesSection)
       React.createElement(InteractiveCard, {
+        id: EXERCISES_SKILLS_SUB_CHAPTERS[0].id, // 'exercises-overview-main'
+        "data-subchapter-target": "true",
         children: [
           React.createElement(SubsectionTitle, { key: 'sub-exercises-overview', children: "AI Exercises Overview" }),
           React.createElement('p', { key: 'p-intro', className: "text-neutral-700 mb-4 leading-relaxed" }, "This section lists all the writing prompts and interactive exercises found throughout the learning material. You can use this as a quick navigation hub or as a checklist for completion. Click on any link to jump directly to the relevant activity within its chapter, or to the textbook connections section below."),
@@ -49,7 +53,7 @@ export const ExercisesSkillsSection = ({ selectedVocation, onNavigate }) => {
           React.createElement('ul', { key: 'ul-explore', className: "list-disc list-inside text-neutral-700 space-y-2 mb-4 leading-relaxed" },
             React.createElement(ListItem, { key: 'ex-explore1', children: [
               React.createElement(ExerciseLink, {
-                onClick: () => handleLinkClick(ChapterId.ExploreAI, 'aiAroundUsActivity'), 
+                onClick: () => handleLinkClick(ChapterId.ExploreAI, 'explore-writing-prompts-ai-around-us'), // Updated to new ID in ExploreAI
                 ariaLabel: "Navigate to Writing Prompts: AI Around Us",
                 children: "✍️ Writing Prompts: AI Around Us"
               })
@@ -61,7 +65,6 @@ export const ExercisesSkillsSection = ({ selectedVocation, onNavigate }) => {
                 children: "🔍 Exploration Activity: AI in My Job - Quick Find"
               })
             ]}),
-            // ... (other links from ExploreAI as in original ExercisesSection)
             React.createElement(ListItem, { key: 'ex-explore3', children: [
               React.createElement(ExerciseLink, {
                 onClick: () => handleLinkClick(ChapterId.ExploreAI, 'explore-activity2-card'), 
@@ -82,7 +85,7 @@ export const ExercisesSkillsSection = ({ selectedVocation, onNavigate }) => {
           React.createElement('ul', { key: 'ul-helper', className: "list-disc list-inside text-neutral-700 space-y-2 mb-4 leading-relaxed" },
             React.createElement(ListItem, { key: 'ex-helper1', children: [
               React.createElement(ExerciseLink, {
-                onClick: () => handleLinkClick(ChapterId.AIHelper, 'ethicsTableActivity'), 
+                onClick: () => handleLinkClick(ChapterId.AIHelper, 'ai-helper-ethics-table'), // Updated to new ID in AIHelper
                 ariaLabel: "Navigate to AI Use: Green, Yellow, Red Light table",
                 children: "AI Use: Green, Yellow, Red Light for School Assignments"
               })
@@ -121,21 +124,21 @@ export const ExercisesSkillsSection = ({ selectedVocation, onNavigate }) => {
           React.createElement('ul', { key: 'ul-dangers', className: "list-disc list-inside text-neutral-700 space-y-2 mb-4 leading-relaxed" },
             React.createElement(ListItem, { key: 'ex-dangers1', children: [
               React.createElement(ExerciseLink, {
-                onClick: () => handleLinkClick(ChapterId.RealDangers, 'spotTheLieActivity'),
+                onClick: () => handleLinkClick(ChapterId.RealDangers, 'critthink-hallucinations-fakes'), // Uses CritThink sub-chapter ID
                 ariaLabel: "Navigate to What is AI-Generated Fiction? exercise",
                 children: "What is AI-Generated Fiction?"
               })
             ]}),
              React.createElement(ListItem, { key: 'ex-dangers2', children: [
               React.createElement(ExerciseLink, {
-                onClick: () => handleLinkClick(ChapterId.RealDangers, 'critThink-activity1-card'), 
+                onClick: () => handleLinkClick(ChapterId.RealDangers, 'critthink-hallucination-challenge-activity'), // Uses CritThink sub-chapter ID
                 ariaLabel: "Navigate to Experiment: The AI Hallucination Challenge",
                 children: "🧪 Experiment: The AI Hallucination Challenge"
               })
             ]}),
             React.createElement(ListItem, { key: 'ex-dangers3', children: [
               React.createElement(ExerciseLink, {
-                onClick: () => handleLinkClick(ChapterId.RealDangers, 'escapeBubbleActivity'),
+                onClick: () => handleLinkClick(ChapterId.RealDangers, 'critthink-misinfo-bubbles'), // Uses CritThink sub-chapter ID
                 ariaLabel: "Navigate to Writing Prompt: Burst the Bubble! Action Plan",
                 children: "Writing Prompt: Burst the Bubble! Action Plan"
               })
@@ -170,42 +173,42 @@ export const ExercisesSkillsSection = ({ selectedVocation, onNavigate }) => {
             ]}),
             React.createElement(ListItem, { key: 'ex-dangers8', children: [
               React.createElement(ExerciseLink, {
-                onClick: () => handleLinkClick(ChapterId.RealDangers, 'ethicalDilemmasActivity'), // Corrected ChapterId
+                onClick: () => handleLinkClick(ChapterId.RealDangers, 'aisociety-ethical-dilemmas'), // Uses AISociety sub-chapter ID
                 ariaLabel: "Navigate to Ethical Dilemmas in AI",
                 children: ["Ethical Dilemmas in AI (for ", selectedVocation, ")"]
               })
             ]}),
              React.createElement(ListItem, { key: 'ex-dangers9', children: [
               React.createElement(ExerciseLink, {
-                onClick: () => handleLinkClick(ChapterId.RealDangers, 'ethicsCharterActivity'),  // Corrected ChapterId
+                onClick: () => handleLinkClick(ChapterId.RealDangers, 'aisociety-ethics-charter-prompt'),  // Uses AISociety sub-chapter ID
                 ariaLabel: "Navigate to Writing Prompt: My AI Ethics Charter Ideas",
                 children: ["✍️ Writing Prompt: My AI Ethics Charter Ideas (", selectedVocation, ")"]
               })
             ]}),
             React.createElement(ListItem, { key: 'ex-dangers10', children: [
               React.createElement(ExerciseLink, {
-                onClick: () => handleLinkClick(ChapterId.RealDangers, 'aisociety-activity1-card'), // Corrected ChapterId
+                onClick: () => handleLinkClick(ChapterId.RealDangers, 'aisociety-activity1-card'), 
                 ariaLabel: "Navigate to Writing Prompt: My Tech Time Check",
                 children: "✍️ Writing Prompt: My Tech Time Check"
               })
             ]}),
             React.createElement(ListItem, { key: 'ex-dangers11', children: [
               React.createElement(ExerciseLink, {
-                onClick: () => handleLinkClick(ChapterId.RealDangers, 'aisociety-activity2-card'), // Corrected ChapterId
+                onClick: () => handleLinkClick(ChapterId.RealDangers, 'aisociety-activity2-card'), 
                 ariaLabel: "Navigate to Discussion Prompt: Problem with AI Idea",
                 children: ["💬 Discussion Prompt: Problem with AI Idea (", selectedVocation, ")"]
               })
             ]}),
             React.createElement(ListItem, { key: 'ex-dangers12', children: [
               React.createElement(ExerciseLink, {
-                onClick: () => handleLinkClick(ChapterId.RealDangers, 'aisociety-activity3-card'), // Corrected ChapterId
+                onClick: () => handleLinkClick(ChapterId.RealDangers, 'aisociety-activity3-card'), 
                 ariaLabel: "Navigate to Teacher-Led Example: AI Story of the Week",
                 children: "💡 Teacher-Led Example: AI Story of the Week"
               })
             ]}),
             React.createElement(ListItem, { key: 'ex-dangers13', children: [
               React.createElement(ExerciseLink, {
-                onClick: () => handleLinkClick(ChapterId.RealDangers, 'aisociety-activity4-card'), // Corrected ChapterId
+                onClick: () => handleLinkClick(ChapterId.RealDangers, 'aisociety-activity4-card'), 
                 ariaLabel: "Navigate to Mini-Debate: AI in Our School/Town",
                 children: ["💡 Mini-Debate: AI in Our School/Town (", selectedVocation, "Focus)"]
               })
@@ -216,7 +219,7 @@ export const ExercisesSkillsSection = ({ selectedVocation, onNavigate }) => {
           React.createElement('ul', { key: 'ul-future', className: "list-disc list-inside text-neutral-700 space-y-2 mb-4 leading-relaxed" },
             React.createElement(ListItem, { key: 'ex-future1', children: [
               React.createElement(ExerciseLink, {
-                onClick: () => handleLinkClick(ChapterId.AIFuture, 'vocationalFutureActivity'),
+                onClick: () => handleLinkClick(ChapterId.AIFuture, 'aifuture-writing-prompt-vocational'), // Updated to new ID in AIFuture
                 ariaLabel: "Navigate to Writing Prompt: My Vocational Future with AI",
                 children: ["✍️ Writing Prompt: My Vocational Future with AI (", selectedVocation, ")"]
               })
@@ -251,12 +254,11 @@ export const ExercisesSkillsSection = ({ selectedVocation, onNavigate }) => {
             ]}),
           ),
           
-          // Link to the "Skills Textbook Connections" part WITHIN this chapter:
           React.createElement(SubsectionTitle, { key: 'sub-skills-link-header', children: "This Chapter: 'Skills' Textbook Connections"}),
           React.createElement('ul', { key: 'ul-skills-link', className: "list-disc list-inside text-neutral-700 space-y-2 mb-4 leading-relaxed" },
             React.createElement(ListItem, { key: 'ex-skills-internal-link', children: [
               React.createElement(ExerciseLink, {
-                onClick: () => handleLinkClick(ChapterId.ExercisesSkills, 'skills-textbook-connections-content'),
+                onClick: () => handleLinkClick(ChapterId.ExercisesSkills, 'exercises-skills-textbook-connections'), // Updated to new ID below
                 ariaLabel: `Navigate to 'Skills' Textbook Connections`,
                 children: `Writing Prompts and Discussion Points related to 'Skills' Textbook (for ${selectedVocation})`
               }),
@@ -264,16 +266,14 @@ export const ExercisesSkillsSection = ({ selectedVocation, onNavigate }) => {
             ]})
           )
         ]
-      }), // End of AI Exercises Overview Card
+      }), 
 
-      // Part 2: 'Skills' Textbook Connections (from former SkillsConnectSection)
-      React.createElement('div', { id: "skills-textbook-connections-content", className: "mt-12 pt-6 border-t border-neutral-300" }, // Added class for spacing and visual separation
-        // This div acts as the target for the internal link.
-        // The content from SkillsConnectSection starts here.
+      React.createElement('div', { 
+        id: EXERCISES_SKILLS_SUB_CHAPTERS[1].id, // 'exercises-skills-textbook-connections'
+        "data-subchapter-target": "true",
+        className: "mt-12 pt-6 border-t border-neutral-300" 
+      }, 
         React.createElement(InteractiveCard, { 
-          // The ID 'skillsConnectPrompts' was on the original section, we can place it here if needed for any old direct links,
-          // but 'skills-textbook-connections-content' is the primary target now.
-          // id: 'skillsConnectPrompts', 
           children: [
             React.createElement(SubsectionTitle, { key: 'sub-skills-actual-title', children: ["'Skills' Textbook Connections (for ", selectedVocation, ")"], hasSkillsIcon: true }),
             React.createElement('p', { key: 'p-skills-intro', className: "text-neutral-700 mb-4 leading-relaxed" }, getVocationSpecificSkillsConnectIntro()),
@@ -317,7 +317,7 @@ export const ExercisesSkillsSection = ({ selectedVocation, onNavigate }) => {
             React.createElement('p', { key: 'p-skills-outro', className: "mt-4 text-sm text-neutral-600" }, React.createElement('em', { key: 'e12' }, "Further connections from the original \"Skills Elektro\" list can be adapted based on your specific vocational curriculum for ", selectedVocation, ". The prompts above aim to make them more relevant to your chosen field."))
           ]
         })
-      ) // End of 'Skills' Textbook Connections Content
+      ) 
     )
   );
 };

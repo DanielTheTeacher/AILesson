@@ -1,5 +1,4 @@
 
-
 import React, { useState } from 'react';
 import { TabButton } from '../ui/TabButton.js';
 import { WritingPrompt } from '../ui/WritingPrompt.js';
@@ -82,9 +81,17 @@ export const EthicalDilemmasTabs = ({ selectedVocation }) => { // Removed React.
 
   return (
     React.createElement('div', { id: "ethicalDilemmasActivity" },
-      React.createElement('p', { className: "text-neutral-700 mb-3 leading-relaxed" },
-        "As a professional in ", React.createElement('strong', { className: "text-teal-600" }, selectedVocation), ", you might face ethical dilemmas where AI recommendations clash with your judgment or professional ethics. Consider the following scenarios:",
-        React.createElement(ResourceLink, { href: "https://library.fiveable.me/lists/key-ai-ethics-case-studies", children: "More: AI Ethics Case Studies" })
+      React.createElement('div', { key: 'content-block-dilemmas-intro', className: "flex flex-col gap-y-3 mb-3" },
+        React.createElement('div', { className: "" },
+          React.createElement('p', { className: "text-neutral-700 leading-relaxed" }, 
+            "As a professional in ", React.createElement('strong', { className: "text-teal-600" }, selectedVocation), ", you might face ethical dilemmas where AI recommendations clash with your judgment or professional ethics. Consider the following scenarios:"
+          )
+        ),
+        React.createElement('div', { key: 'links-dilemmas-intro', className: "w-full" },
+          React.createElement('div', { className: "flex flex-row flex-wrap gap-2 items-center" },
+            React.createElement(ResourceLink, { href: "https://library.fiveable.me/lists/key-ai-ethics-case-studies", children: "More: AI Ethics Case Studies" })
+          )
+        )
       ),
       React.createElement('div', { className: "mb-0 flex border-b border-neutral-300" }, 
         React.createElement(TabButton, { 

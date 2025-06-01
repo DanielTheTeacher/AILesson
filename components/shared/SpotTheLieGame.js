@@ -1,12 +1,13 @@
+
 import React, { useState } from 'react';
-import { CitationLink } from '../ui/CitationLink.js';
+// CitationLink import removed as it's no longer used
 
 // LieOption interface removed
 
 const options = [ // Removed LieOption[] type
-  { id: 1, text: React.createElement(React.Fragment, null, "\"The chocolate fountain was invented in Canada by Aztec Inc. in the early 1990s and quickly became popular at fairs and events for its unique way of serving melted chocolate.\" ", React.createElement(CitationLink, { referenceId: "ref-8", text: "[8]" })), isLie: true },
-  { id: 2, text: React.createElement(React.Fragment, null, "\"The world's longest documented hiccuping spell lasted for 68 years, from 1922 to 1990, affecting an American man named Charles Osborne.\" ", React.createElement(CitationLink, { referenceId: "ref-9", text: "[9]" })), isLie: false },
-  { id: 3, text: React.createElement(React.Fragment, null, "\"The 'Great Emu War' in Australia in 1932 was an actual military operation where soldiers were deployed with machine guns to combat a large population of emus destroying crops.\" ", React.createElement(CitationLink, { referenceId: "ref-10", text: "[10]" })), isLie: false },
+  { id: 1, text: React.createElement(React.Fragment, null, "\"The chocolate fountain was invented in Canada by Aztec Inc. in the early 1990s and quickly became popular at fairs and events for its unique way of serving melted chocolate.\" "), isLie: true },
+  { id: 2, text: React.createElement(React.Fragment, null, "\"The world's longest documented hiccuping spell lasted for 68 years, from 1922 to 1990, affecting an American man named Charles Osborne.\" "), isLie: false },
+  { id: 3, text: React.createElement(React.Fragment, null, "\"The 'Great Emu War' in Australia in 1932 was an actual military operation where soldiers were deployed with machine guns to combat a large population of emus destroying crops.\" "), isLie: false },
 ];
 
 export const SpotTheLieGame = () => { // Removed React.FC

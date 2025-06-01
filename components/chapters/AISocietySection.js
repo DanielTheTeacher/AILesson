@@ -6,27 +6,45 @@ import { SectionTitle } from '../ui/SectionTitle.js';
 import { SubsectionTitle } from '../ui/SubsectionTitle.js';
 import { Tooltip } from '../ui/Tooltip.js';
 import { ResourceLink } from '../ui/ResourceLink.js';
-import { CitationLink } from '../ui/CitationLink.js';
 import { WritingPrompt } from '../ui/WritingPrompt.js';
 import { ListItem } from '../ui/ListItem.js';
 import { EthicalDilemmasTabs } from '../shared/EthicalDilemmasTabs.js';
-// Types removed
+import { EmptyReferencesDropdown } from '../ui/EmptyReferencesDropdown.js';
+import { FictionalStoryLink } from '../ui/FictionalStoryLink.js'; 
 
-export const AISocietySection = ({ selectedVocation }) => { // Removed React.FC and prop types
+export const AI_SOCIETY_SUB_CHAPTERS = [
+  { id: 'aisociety-attention-economy', title: 'Attention Economy & AI' },
+  { id: 'aisociety-ethical-dilemmas', title: 'Ethical Dilemmas (Interactive)' }, // This is the 'ethicalDilemmasActivity' card
+  { id: 'aisociety-your-voice-counts', title: 'Your Voice Counts' },
+  { id: 'aisociety-ethics-charter-prompt', title: '✍️ AI Ethics Charter Prompt' }, // This is 'ethicsCharterActivity'
+  { id: 'aisociety-chapter3-set2-activities-heading', title: 'Chapter 3 Activities - Set 2' }
+];
+
+export const AISocietySection = ({ selectedVocation }) => { 
   return (
     React.createElement('section', { className: "mb-12" },
       React.createElement(SectionTitle, { children: "AI & Society: Your Responsibilities as a Citizen" }),
       
-      React.createElement(InteractiveCard, { // Explanatory - non-collapsible
+      React.createElement(InteractiveCard, { 
+        id: AI_SOCIETY_SUB_CHAPTERS[0].id, // 'aisociety-attention-economy'
+        "data-subchapter-target": "true",
         key: "attentionEconomyCard",
         children: [
           React.createElement(SubsectionTitle, { key: 'sub1', children: "The Attention Economy and AI's Role" }),
-          React.createElement('p', { key: 'p1', className: "text-neutral-700 mb-2 leading-relaxed" },
-            "The ", React.createElement(Tooltip, { key: 't1', text: "The idea that your attention is valuable, and tech companies design products to capture it, often for advertising revenue.", children: "Attention Economy" }), " is about your attention being valuable, and tech companies design products to capture it, often for advertising revenue.", React.createElement(CitationLink, { key: 'c1', referenceId: "ref-13", text: "[13]" }),
-            React.createElement(ResourceLink, { key: 'r1', href: "https://econreview.studentorg.berkeley.edu/paying-attention-the-attention-economy/", children: "Read: The Attention Economy (Text)" }),
-            React.createElement(ResourceLink, { key: 'r2', href: "https://www.youtube.com/watch?v=50R21mblLb0", children: "Watch: The Attention Economy (Video)" })
+          React.createElement('div', { key: 'content-block-p1-society', className: "flex flex-col gap-y-3 mb-2" },
+            React.createElement('div', { className: "" },
+              React.createElement('p', { key: 'p1', className: "text-neutral-700 leading-relaxed" }, 
+                "The ", React.createElement(Tooltip, { key: 't1', text: "The idea that your attention is valuable, and tech companies design products to capture it, often for advertising revenue.", children: "Attention Economy" }), " is about your attention being valuable, and tech companies design products to capture it, often for advertising revenue."
+              )
+            ),
+            React.createElement('div', { key: 'links-p1-society', className: "w-full" },
+              React.createElement('div', { className: "flex flex-row flex-wrap gap-2 items-center" },
+                React.createElement(ResourceLink, { key: 'r1', href: "https://econreview.studentorg.berkeley.edu/paying-attention-the-attention-economy/", children: "Read: The Attention Economy (Text)" }),
+                React.createElement(ResourceLink, { key: 'r2', href: "https://www.youtube.com/watch?v=50R21mblLb0", children: "Watch: The Attention Economy (Video)" })
+              )
+            )
           ),
-          React.createElement('p', { key: 'p2', className: "text-neutral-700 mb-2 leading-relaxed" }, "AI is an engine in this:", React.createElement(CitationLink, { key: 'c2', referenceId: "ref-14", text: "[14]" })),
+          React.createElement('p', { key: 'p2', className: "text-neutral-700 mb-2 leading-relaxed" }, "AI is an engine in this:"),
           React.createElement('ul', { key: 'ul1', className: "list-disc list-inside text-neutral-700 mb-2 space-y-1 leading-relaxed" },
             React.createElement(ListItem, { key: 'li1', children: [React.createElement('strong', { key: 's1' }, "Personalization:"), " AI algorithms tailor content (feeds, recommendations, notifications) to be as engaging as possible for you."] }),
             React.createElement(ListItem, { key: 'li2', children: [React.createElement('strong', { key: 's2' }, "Engagement Optimization:"), " AI can identify and promote content that captures attention (e.g., emotional, sensational), regardless of quality or accuracy."] })
@@ -37,23 +55,31 @@ export const AISocietySection = ({ selectedVocation }) => { // Removed React.FC 
           React.createElement('p', { key: 'p4', className: "text-neutral-700 leading-relaxed" },
             "Disadvantages can include increased distraction, impact on mental health, and spread of misleading content. For you as a vocational student in ", React.createElement('strong', { key: 's3', className: "text-teal-600" }, selectedVocation), ", it's important to protect your focus for learning and future work."
           ),
-          React.createElement('p', { key: 'p5', className: "text-neutral-700 mt-2 leading-relaxed" },
-            React.createElement('strong', { key: 's4' }, "Supplementary Material:"), " For more on how online content can be designed to provoke reactions like anger, watch CGPGrey's video: ", React.createElement('a', { key: 'a1', href: "https://www.youtube.com/watch?v=rE3j_RHkqJc", target: "_blank", rel: "noopener noreferrer", className: "text-teal-600 hover:underline" }, "Why I'm Not Angry (Anymore)"), ". (Note: This is an external link to YouTube.)"
-          )
+          
+          React.createElement('div', { key: 'content-block-p5-society', className: "flex flex-col sm:flex-row gap-x-6 mt-2" }, 
+            React.createElement('div', { className: "flex-1" },
+              React.createElement('p', { key: 'p5', className: "text-neutral-700 leading-relaxed" },
+                React.createElement('strong', { key: 's4' }, "Supplementary Material:"), " For more on how online content can be designed to provoke reactions like anger, watch CGPGrey's video: ", React.createElement('a', { key: 'a1', href: "https://www.youtube.com/watch?v=rE3j_RHkqJc", target: "_blank", rel: "noopener noreferrer", className: "text-teal-600 hover:underline" }, "Why I'm Not Angry (Anymore)"), ". (Note: This is an external link to YouTube.)"
+              )
+            )
+          ),
+          React.createElement(EmptyReferencesDropdown, { key: 'refs-dropdown-attention' })
         ]
       }),
 
-      React.createElement(InteractiveCard, { // EthicalDilemmasTabs is an activity, so this card is collapsible
+      React.createElement(InteractiveCard, { 
+        id: AI_SOCIETY_SUB_CHAPTERS[1].id, // 'aisociety-ethical-dilemmas' (which is 'ethicalDilemmasActivity')
+        "data-subchapter-target": "true",
         key: "ethicalDilemmasCard",
-        id: "ethicalDilemmasActivity", // ID for ExercisesSection navigation
-        isCollapsible: true, 
         children: [
           React.createElement(SubsectionTitle, { key: 'sub2', children: "Ethical Dilemmas in AI" }),
           React.createElement(EthicalDilemmasTabs, { key: 'edt1', selectedVocation: selectedVocation })
         ]
       }),
 
-      React.createElement(InteractiveCard, { // Explanatory - non-collapsible
+      React.createElement(InteractiveCard, { 
+        id: AI_SOCIETY_SUB_CHAPTERS[2].id, // 'aisociety-your-voice-counts'
+        "data-subchapter-target": "true",
         key: "yourVoiceCountsCard",
         children: [
           React.createElement(SubsectionTitle, { key: 'sub3', children: "Your Voice Counts: Contribute to Ethical AI Development" }),
@@ -65,12 +91,14 @@ export const AISocietySection = ({ selectedVocation }) => { // Removed React.FC 
             React.createElement(ListItem, { key: 'li4', children: [React.createElement('strong', { key: 's6' }, "Promote ethical practices:"), " In your future job in ", React.createElement('strong', { key: 's7', className: "text-teal-600" }, selectedVocation), ", advocate for ethical AI principles and responsible use."] }),
             React.createElement(ListItem, { key: 'li5', children: [React.createElement('strong', { key: 's8' }, "Be mindful of the data you create:"), " The data you generate online and through your interactions with AI can be used to train future AI models."] }),
             React.createElement(ListItem, { key: 'li6', children: [React.createElement('strong', { key: 's9' }, "Join the dialogue:"), " Engage in discussions about AI, such as in student councils or professional forums. Community input is valuable."] })
-          )
+          ),
+          React.createElement(EmptyReferencesDropdown, { key: 'refs-dropdown-voice' })
         ]
       }),
 
-      React.createElement(InteractiveCard, { // This is a task card
-        id: "ethicsCharterActivity", 
+      React.createElement(InteractiveCard, { 
+        id: AI_SOCIETY_SUB_CHAPTERS[3].id, // 'aisociety-ethics-charter-prompt' (which is 'ethicsCharterActivity')
+        "data-subchapter-target": "true",
         key: "ethicsCharterActivityCard",
         isCollapsible: true,
         children: [
@@ -80,11 +108,17 @@ export const AISocietySection = ({ selectedVocation }) => { // Removed React.FC 
         ]
       }),
 
-      React.createElement('h4', { key: 'actSetHeading2', className: "text-lg font-semibold text-neutral-700 mt-10 mb-4 pt-6 border-t border-neutral-300", children: "Chapter 3 Activities - Set 2" }),
+      React.createElement('h4', { 
+        key: 'actSetHeading2', 
+        id: AI_SOCIETY_SUB_CHAPTERS[4].id, // 'aisociety-chapter3-set2-activities-heading'
+        "data-subchapter-target": "true",
+        className: "text-lg font-semibold text-neutral-700 mt-10 mb-4 pt-6 border-t border-neutral-300", 
+        children: "Chapter 3 Activities - Set 2" 
+      }),
 
-      // New Activities Start Here - These are tasks, so they are collapsible
       React.createElement(InteractiveCard, {
         key: 'aisociety-activity1',
+        id: 'aisociety-activity1-card', 
         isCollapsible: true,
         children: [
           React.createElement(SubsectionTitle, { key: 'socAct1Title', children: "✍️ Writing Prompt: My Tech Time Check" }),
@@ -98,6 +132,7 @@ export const AISocietySection = ({ selectedVocation }) => { // Removed React.FC 
 
       React.createElement(InteractiveCard, {
         key: 'aisociety-activity2',
+        id: 'aisociety-activity2-card', 
         isCollapsible: true,
         children: [
           React.createElement(SubsectionTitle, { key: 'socAct2Title', children: ["💬 Discussion Prompt: Problem with AI Idea (", selectedVocation, ")"] }),
@@ -111,6 +146,7 @@ export const AISocietySection = ({ selectedVocation }) => { // Removed React.FC 
 
       React.createElement(InteractiveCard, {
         key: 'aisociety-activity3',
+        id: 'aisociety-activity3-card', 
         isCollapsible: true,
         children: [
           React.createElement(SubsectionTitle, { key: 'socAct3Title', children: "💡 Teacher-Led Example: AI Story of the Week" }),
@@ -124,6 +160,7 @@ export const AISocietySection = ({ selectedVocation }) => { // Removed React.FC 
 
       React.createElement(InteractiveCard, {
         key: 'aisociety-activity4',
+        id: 'aisociety-activity4-card', 
         isCollapsible: true,
         children: [
           React.createElement(SubsectionTitle, { key: 'socAct4Title', children: ["💡 Mini-Debate: AI in Our School/Town (", selectedVocation, "Focus)"] }),
@@ -135,7 +172,6 @@ export const AISocietySection = ({ selectedVocation }) => { // Removed React.FC 
           React.createElement('p', { key: 'socAct4Instruction', className: "text-neutral-700 mb-2 leading-relaxed", children: "Share your benefit and problem with the class." })
         ]
       })
-      // New Activities End Here
     )
   );
 };

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,7 +22,7 @@
         color: #262626; /* neutral-800 */
         line-height: 1.7; /* Increased line-height */
       }
-      /* General Tooltip Styles */
+      /* General Tooltip Styles (for definitions) */
       .tooltip-custom .tooltip-text-custom {
         visibility: hidden;
         background-color: #262626; /* neutral-800 */
@@ -42,6 +43,32 @@
         border: 1px solid #404040; /* neutral-700 - subtle border */
       }
       .tooltip-custom:hover .tooltip-text-custom {
+        visibility: visible;
+        opacity: 1;
+      }
+
+      /* Footnote Specific Tooltip Styles */
+      .tooltip-custom .tooltip-text-footnote-custom {
+        visibility: hidden;
+        background-color: #262626; /* neutral-800, same as original */
+        color: #fff; /* same as original */
+        text-align: left; /* Changed from center for better readability of longer footnote text */
+        border-radius: 6px; /* same as original */
+        padding: 8px 12px; /* Adjusted padding for smaller font */
+        position: absolute; /* same as original */
+        z-index: 10; /* same as original */
+        bottom: 135%; /* same as original */
+        left: 50%; /* same as original */
+        transform: translateX(-50%); /* same as original */
+        opacity: 0; /* same as original */
+        transition: opacity 0.3s; /* same as original */
+        font-size: 0.75rem; /* Smaller font size (12px if base is 16px) */
+        box-shadow: 0 4px 8px rgba(0,0,0,0.25); /* same as original */
+        width: 380px; /* Significantly wider */
+        border: 1px solid #404040; /* neutral-700, same as original */
+        line-height: 1.5; /* Added for better readability */
+      }
+      .tooltip-custom:hover .tooltip-text-footnote-custom {
         visibility: visible;
         opacity: 1;
       }
@@ -71,6 +98,32 @@
         visibility: visible;
         opacity: 1;
       }
+
+      /* FictionalStoryLink Tooltip Styles */
+      .fictional-story-link-container .fictional-story-tooltip {
+        /* Tailwind classes handle most of this, but this ensures base behavior */
+        visibility: hidden; /* Hidden by default, controlled by opacity and pointer-events via Tailwind group-hover */
+        transform: translateY(5px); /* Initial offset for transition */
+        transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+        z-index: 20; /* Ensure it's above other content */
+      }
+
+      .fictional-story-link-container:hover .fictional-story-tooltip,
+      .fictional-story-link-container:focus-within .fictional-story-tooltip {
+        visibility: visible; /* Make visible for CSS-only fallback if JS/Tailwind fails */
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Style for sub-chapter targets to ensure sticky header doesn't overlap */
+      [data-subchapter-target="true"] {
+        scroll-margin-top: 150px; /* Adjust this value based on sticky header height + some buffer */
+      }
+      @media (max-width: 640px) { /* Smaller offset for smaller header */
+        [data-subchapter-target="true"] {
+          scroll-margin-top: 120px;
+        }
+      }
     </style>
 
     <script type="importmap">
@@ -84,23 +137,21 @@
     "react/jsx-dev-runtime": "https://esm.sh/react@19.0.0/jsx-dev-runtime",
     "react/": "https://esm.sh/react@19.0.0/",
     "path": "https://esm.sh/path@^0.12.7",
-    "vite": "https://esm.sh/vite@^6.3.5",
-    "url": "https://esm.sh/url@^0.11.4"
+    "url": "https://esm.sh/url@^0.11.4",
+    "vite": "https://esm.sh/vite@^6.3.5"
   }
 }
 </script>
     
-    <!-- Babel Standalone REMOVED -->
-
+<link rel="stylesheet" href="/index.css">
 </head>
 <body>
     <div id="root">
         <!-- React app will render here -->
     </div>
 
-    <!-- Main app script is now plain JavaScript -->
-    <script type="module" src="./index.js"></script>
+    <script type="module" src="./index.tsx"></script>
 
+<script type="module" src="/index.tsx"></script>
 </body>
-</html><link rel="stylesheet" href="index.css">
-<script src="index.tsx" type="module"></script>
+</html>

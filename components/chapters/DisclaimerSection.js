@@ -5,18 +5,24 @@ import { InteractiveCard } from '../ui/InteractiveCard.js';
 import { SectionTitle } from '../ui/SectionTitle.js';
 import { ChapterId } from '../../types.js';
 
+export const DISCLAIMER_SUB_CHAPTERS = [
+  { id: 'disclaimer-main-content', title: 'Disclaimer Details' }
+];
+
 export const DisclaimerSection = ({ onNavigate }) => {
   const handleYouFirstLink = (e) => {
     e.preventDefault();
     if (onNavigate) {
-      onNavigate(ChapterId.AIHelper, 'youFirstPrinciple');
+      onNavigate(ChapterId.AIHelper, 'ai-helper-you-first'); // Updated to use the sub-chapter ID from AIHelperSection
     }
   };
 
   return (
     React.createElement('section', { className: "mb-12" },
-      React.createElement(SectionTitle, { children: "Disclaimer" }), // Updated title
+      React.createElement(SectionTitle, { children: "Disclaimer" }),
       React.createElement(InteractiveCard, {
+        id: DISCLAIMER_SUB_CHAPTERS[0].id, // 'disclaimer-main-content'
+        "data-subchapter-target": "true",
         children: [
           React.createElement('p', { className: "text-neutral-700 mb-3 leading-relaxed" },
             "Dette AI-kurset er utviklet av Daniel Bolstad-Heien for utdanningsformål."

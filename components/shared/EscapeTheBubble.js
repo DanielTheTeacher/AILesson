@@ -18,11 +18,21 @@ export const EscapeTheBubble = () => { // Removed React.FC
   return (
     React.createElement('div', { id: "escapeBubbleActivity", className: "bg-teal-50 p-4 rounded-md border border-teal-200 mt-4" },
       React.createElement('h4', { className: "font-semibold text-teal-700 mb-2" }, "Exercise: Burst the Bubble!"),
-      React.createElement('p', { className: "text-sm text-neutral-700 mb-3 leading-relaxed" },
-        "How can you avoid being trapped in filter bubbles and echo chambers? Click on a strategy to learn more and reflect.",
-        React.createElement(ResourceLink, { href: "https://libguides.pittcc.edu/evaluate/fact-checking", children: "Learn: Fact-Checking Techniques" }),
-        React.createElement(ResourceLink, { href: "https://guides.lib.k-state.edu/media-literacy/factcheck", children: "Tools: Fact-Checking Websites" })
+      
+      React.createElement('div', { key: 'content-block-bubble-intro', className: "flex flex-col gap-y-3 mb-3" },
+        React.createElement('div', { className: "" },
+          React.createElement('p', { className: "text-sm text-neutral-700 leading-relaxed" }, 
+            "How can you avoid being trapped in filter bubbles and echo chambers? Click on a strategy to learn more and reflect."
+          )
+        ),
+        React.createElement('div', { key: 'links-bubble-intro', className: "w-full" },
+          React.createElement('div', { className: "flex flex-row flex-wrap gap-2 items-center" },
+            React.createElement(ResourceLink, { href: "https://libguides.pittcc.edu/evaluate/fact-checking", children: "Learn: Fact-Checking Techniques" }),
+            React.createElement(ResourceLink, { href: "https://guides.lib.k-state.edu/media-literacy/factcheck", children: "Tools: Fact-Checking Websites" })
+          )
+        )
       ),
+
       React.createElement('div', { className: "grid grid-cols-1 md:grid-cols-2 gap-3" },
         strategies.map((strategy) => (
           React.createElement('div', {

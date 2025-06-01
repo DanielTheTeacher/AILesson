@@ -1,10 +1,11 @@
+
 export const ChapterId = {
   ExploreAI: 'explore',
   AIHelper: 'helper',
   RealDangers: 'dangers',
   AIFuture: 'future',
   ExercisesSkills: 'exercises_skills', // Combined chapter
-  References: 'references',
+  // References: 'references', // Removed
   Disclaimer: 'disclaimer',
 };
 
