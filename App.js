@@ -1,4 +1,5 @@
 
+
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Header } from './components/layout/Header.js';
 import { Footer } from './components/layout/Footer.js';
@@ -167,8 +168,8 @@ const App = () => {
     }
   };
   
-  // Sidebar width (w-60 = 15rem = 240px). Padding for main content: sidebar width + gap (e.g., 1.5rem = 24px) = 16.5rem
-  const mainContentPaddingLeft = currentSubChapters.length > 0 ? 'lg:pl-[16.5rem]' : '';
+  // Sidebar width (w-60 = 15rem = 240px). Padding for main content: sidebar width (no gap) = 15rem
+  const mainContentPaddingLeft = currentSubChapters.length > 0 ? 'lg:pl-[15rem]' : '';
 
   return (
     React.createElement('div', { className: "flex flex-col min-h-screen bg-neutral-50 text-neutral-800" },
@@ -180,10 +181,10 @@ const App = () => {
         onVocationChange: setSelectedVocation,
         isScrolled: isScrolled
       }),
-      React.createElement('div', { className: "container mx-auto flex-grow max-w-[1000px] sm:max-w-[1200px] lg:max-w-[1088px]" },
+      React.createElement('div', { className: "container mx-auto flex-grow max-w-[1000px] sm:max-w-[1200px] lg:max-w-[1040px]" }, // Adjusted lg:max-w
         React.createElement('main', {
           ref: mainContentRef,
-          className: `p-4 sm:p-6 pt-0 transition-all duration-300 ${mainContentPaddingLeft}`
+          className: `p-4 sm:p-6 lg:pr-0 pt-0 transition-all duration-300 ${mainContentPaddingLeft}` // Added lg:pr-0
         },
           React.createElement('div', { className: "max-w-[800px] mx-auto" },
             renderChapter()
